@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DistrictApiController;
+use App\Http\Controllers\ProvinceApiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('api/province/{country_id}', [ProvinceApiController::class, 'index']);
+Route::get('api/district/{province_id}', [DistrictApiController::class, 'index']);
+

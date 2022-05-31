@@ -2,8 +2,9 @@
 
 namespace App\Base;
 
-
-
+use App\Models\MstCountry;
+use App\Models\MstDistrict;
+use App\Models\MstProvince;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Support\Facades\DB;
@@ -58,4 +59,17 @@ class BaseModel extends Model
         }
         return $code;
     }
+
+
+    public function countryEntity(){
+        return $this->belongsTo(MstCountry::class,'country_id','id');
+    }
+    public function provinceEntity(){
+        return $this->belongsTo(MstProvince::class,'province_id','id');
+    }
+
+    public function districtEntity(){
+        return $this->belongsTo(MstDistrict::class,'district_id','id');
+    }
+
 }

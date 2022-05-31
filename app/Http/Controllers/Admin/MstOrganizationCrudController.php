@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Base\BaseCrudController;
 use App\Http\Requests\MstOrganizationRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
@@ -11,14 +12,9 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class MstOrganizationCrudController extends CrudController
+class MstOrganizationCrudController extends BaseCrudController
 {
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
-
+  
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
      * 
@@ -39,7 +35,7 @@ class MstOrganizationCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('id');
+        
         CRUD::column('code');
         CRUD::column('name_en');
         CRUD::column('name_lc');
@@ -49,14 +45,8 @@ class MstOrganizationCrudController extends CrudController
         CRUD::column('address');
         CRUD::column('email');
         CRUD::column('phone_no');
-        CRUD::column('logo');
-        CRUD::column('description');
         CRUD::column('is_active');
-        CRUD::column('created_by');
-        CRUD::column('updated_by');
-        CRUD::column('deleted_by');
-        CRUD::column('created_at');
-        CRUD::column('updated_at');
+
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -75,24 +65,30 @@ class MstOrganizationCrudController extends CrudController
     {
         CRUD::setValidation(MstOrganizationRequest::class);
 
-        CRUD::field('id');
-        CRUD::field('code');
-        CRUD::field('name_en');
-        CRUD::field('name_lc');
-        CRUD::field('country_id');
-        CRUD::field('province_id');
-        CRUD::field('district_id');
-        CRUD::field('address');
-        CRUD::field('email');
-        CRUD::field('phone_no');
-        CRUD::field('logo');
-        CRUD::field('description');
-        CRUD::field('is_active');
-        CRUD::field('created_by');
-        CRUD::field('updated_by');
-        CRUD::field('deleted_by');
-        CRUD::field('created_at');
-        CRUD::field('updated_at');
+        $fields = [
+            $this->addReadOnlyCodeField(),
+            $this->addNameEnField(),
+            $this->addNameLcField(),
+            $this->addCountryField(),
+            $this->addProvinceField(),
+            $this->addDistrictField(),
+
+            [
+                'name'        => 'user_level', // the name of the db column
+                'label'       => 'User Level', // the input label
+                'type'        => 'radio',
+                'default'     =>2,
+                'options'     => [
+                    // the key will be stored in the db, the value will be shown as label; 
+                    1 => "Organization User",
+                    2 => "Store User"
+                ],
+                // optional
+                'inline'      => true, // show the radios all on the same line?
+            ],
+            $this->addIsActiveField(),
+        ];
+        $this->crud->addFields(array_filter($fields));
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
