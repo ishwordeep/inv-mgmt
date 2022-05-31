@@ -16,4 +16,26 @@ Route::group([
     ),
     'namespace'  => 'App\Http\Controllers\Admin',
 ], function () { // custom admin routes
+    Route::crud('mst-country', 'MstCountryCrudController');
+    Route::crud('mst-province', 'MstProvinceCrudController');
+    Route::crud('mst-district', 'MstDistrictCrudController');
+    Route::crud('mst-organization', 'MstOrganizationCrudController');
+    Route::crud('mst-unit', 'MstUnitCrudController');
+    Route::crud('mst-discount-mode', 'MstDiscountModeCrudController');
+    Route::crud('mst-category', 'MstCategoryCrudController');
+    Route::crud('mst-subcategory', 'MstSubcategoryCrudController');
+    Route::crud('mst-supplier', 'MstSupplierCrudController');
+    Route::crud('mst-gender', 'MstGenderCrudController');
+    Route::crud('mst-invoice-sequence', 'MstInvoiceSequenceCrudController');
+    Route::crud('mst-po-sequence', 'MstPoSequenceCrudController');
+    Route::crud('mst-purchase-return-sequence', 'MstPurchaseReturnSequenceCrudController');
+    Route::crud('mst-store', 'MstStoreCrudController');
+    Route::crud('mst-sup-status', 'MstSupStatusCrudController');
+    Route::crud('mst-payment-mode', 'MstPaymentModeCrudController');
+    Route::crud('mst-return-reason', 'MstReturnReasonCrudController');
+    Route::crud('mst-stock-adjustment-no', 'MstStockAdjustmentNoCrudController');
+    Route::crud('mst-batch-no', 'MstBatchNoCrudController');
+    Route::crud('mst-brand', 'MstBrandCrudController');
+    Route::crud('mst-item', 'MstItemCrudController');
+    Route::crud('user', 'UserCrudController');
 }); // this should be the absolute last line of this file
