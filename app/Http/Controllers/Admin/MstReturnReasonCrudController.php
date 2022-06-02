@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Base\BaseCrudController;
 use App\Http\Requests\MstReturnReasonRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
@@ -11,13 +12,9 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class MstReturnReasonCrudController extends CrudController
+class MstReturnReasonCrudController extends BaseCrudController
 {
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -68,17 +65,15 @@ class MstReturnReasonCrudController extends CrudController
     {
         CRUD::setValidation(MstReturnReasonRequest::class);
 
-        CRUD::field('id');
-        CRUD::field('code');
-        CRUD::field('name_en');
-        CRUD::field('name_lc');
-        CRUD::field('description');
-        CRUD::field('is_active');
-        CRUD::field('created_by');
-        CRUD::field('updated_by');
-        CRUD::field('deleted_by');
-        CRUD::field('created_at');
-        CRUD::field('updated_at');
+       
+        $fields = [
+            $this->addReadOnlyCodeField(),
+            $this->addNameEnField(),
+            $this->addNameLcField(),
+            $this->addDescriptionField(),
+            $this->addIsActiveField(),
+        ];
+        $this->crud->addFields(array_filter($fields));
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

@@ -68,7 +68,7 @@ class CreateMasterMigrationsTable extends Migration
 
             $table->string('address')->nullable();
             $table->string('email')->nullable();
-            $table->string('phone_no')->nullable();
+            $table->string('phone')->nullable();
             $table->string('logo')->nullable();
             $table->string('description')->nullable();
             $table->boolean('is_active')->default(true);
@@ -153,7 +153,7 @@ class CreateMasterMigrationsTable extends Migration
             $table->string('address');
             $table->string('email');
             $table->string('contact_person');
-            $table->string('contact_number')->unique();
+            $table->string('phone')->unique();
             $table->text('description')->nullable();
 
             $table->boolean('is_active')->default(true);
@@ -224,9 +224,13 @@ class CreateMasterMigrationsTable extends Migration
             $table->string('code')->unique();
             $table->string('name_en')->unique();
             $table->string('name_lc')->unique()->nullable();
+            $table->unsignedInteger('country_id')->nullable();
+            $table->unsignedInteger('province_id')->nullable();
+            $table->unsignedInteger('district_id')->nullable();
+
             $table->string('address');
             $table->string('email')->unique();
-            $table->string('phone_no')->unique();
+            $table->string('phone')->unique();
             $table->string('logo')->nullable();
             $table->string('description')->nullable();
 
@@ -235,6 +239,11 @@ class CreateMasterMigrationsTable extends Migration
             $table->unsignedSmallInteger('updated_by')->nullable();
             $table->unsignedSmallInteger('deleted_by')->nullable();
             $table->timestamps();
+
+            $table->foreign('country_id')->references('id')->on('mst_countries')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('province_id')->references('id')->on('mst_provinces')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('district_id')->references('id')->on('mst_districts')->cascadeOnDelete()->cascadeOnUpdate();
+        
         });
 
         Schema::create('mst_sup_status', function (Blueprint $table) {

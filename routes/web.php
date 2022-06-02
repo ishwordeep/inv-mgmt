@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/admin/dashboard');
 });
 Route::get('api/province/{country_id}', [ProvinceApiController::class, 'index']);
 Route::get('api/district/{province_id}', [DistrictApiController::class, 'index']);

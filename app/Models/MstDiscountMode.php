@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use App\Base\BaseModel;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class MstDiscountMode extends Model
+class MstDiscountMode extends BaseModel
 {
     use CrudTrait;
 

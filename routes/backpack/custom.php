@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\MstItemCrudController;
+use App\Models\MstItem;
 use Illuminate\Support\Facades\Route;
 
 // --------------------------
@@ -38,4 +40,10 @@ Route::group([
     Route::crud('mst-brand', 'MstBrandCrudController');
     Route::crud('mst-item', 'MstItemCrudController');
     Route::crud('user', 'UserCrudController');
+
+
+    //API
+    Route::get('api/subCategoryEntity/{category_id}', [MstItemCrudController::class, 'getSubCategoryAPI']);
+
+
 }); // this should be the absolute last line of this file

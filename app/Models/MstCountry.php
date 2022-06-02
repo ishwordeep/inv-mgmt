@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use App\Base\BaseModel;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class MstCountry extends Model
+class MstCountry extends BaseModel
 {
     use CrudTrait;
 

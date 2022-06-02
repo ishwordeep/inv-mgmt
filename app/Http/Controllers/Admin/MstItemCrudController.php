@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Base\BaseCrudController;
 use App\Http\Requests\MstItemRequest;
+use App\Models\MstCategory;
+use App\Models\MstSubcategory;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Illuminate\Http\Request;
+
 
 /**
  * Class MstItemCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class MstItemCrudController extends CrudController
+class MstItemCrudController extends BaseCrudController
 {
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -78,27 +79,41 @@ class MstItemCrudController extends CrudController
     {
         CRUD::setValidation(MstItemRequest::class);
 
-        CRUD::field('id');
-        CRUD::field('code');
-        CRUD::field('name_en');
-        CRUD::field('name_lc');
-        CRUD::field('description');
-        CRUD::field('category_id');
-        CRUD::field('subcategory_id');
-        CRUD::field('supplier_id');
-        CRUD::field('brand_id');
-        CRUD::field('unit_id');
-        CRUD::field('stock_alert_minimum');
-        CRUD::field('tax_vat');
-        CRUD::field('discount_mode_id');
-        CRUD::field('is_taxable');
-        CRUD::field('is_nonclaimable');
-        CRUD::field('is_active');
-        CRUD::field('created_by');
-        CRUD::field('updated_by');
-        CRUD::field('deleted_by');
-        CRUD::field('created_at');
-        CRUD::field('updated_at');
+
+
+
+      
+        $fields = [
+            $this->addReadOnlyCodeField(),
+            $this->addNameEnField(),
+            $this->addNameLcField(),
+            $this->addDescriptionField(),
+            $this->addCategoryField(),
+            [
+                'label'     => 'Sub Category',
+                'type'      => 'select2_from_ajax',
+                'method' => 'GET',
+                'name'      => 'subcategory_id', // the column that contains the ID of that connected entity;
+                'model'     => MstSubcategory::class,
+                'entity'    => 'subCategoryEntity', // the method that defines the relationship in your Model
+                'attribute' => 'name_en', // foreign key attribute that is shown to user
+                'data_source' => url("admin/api/subCategoryEntity/category_id"), //api/modelsmallname/tableid from which state is taken
+                'minimum_input_length' => 0,
+                'dependencies' => ["category_id"],
+                'wrapper' => [
+                    'class' => 'form-group col-md-4',
+                ],
+                'attributes' => [
+                    'placeholder' => 'Select Category first',
+                ]
+            ],
+
+
+       
+            $this->addDescriptionField(),
+            $this->addIsActiveField(),
+        ];
+        $this->crud->addFields(array_filter($fields));
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
@@ -116,5 +131,33 @@ class MstItemCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    public function getSubCategoryAPI(Request $request, $value)
+    {
+        $search_term = $request->input('q');
+        $form = collect($request->input('form'))->pluck('value', 'name');
+        $page = $request->input('page');
+        $options = MstSubcategory::query(); //model ma query gareko
+        // if no category has been selected, show no options
+        if (!data_get($form, $value)) { //countryvanne table ma search gareko using id
+            return [];
+        }
+        // if a category has been selected, only show articles in that category
+        if (data_get($form, $value)) {
+            if ($form[$value] != 8) {
+                $category = MstCategory::find($form[$value]);
+                $options = $options->where('category_id', $category->id);
+            }
+        }
+        // if a search term has been given, filter results to match the search term
+        if ($search_term) {
+            //  dd($search_term);
+            $options = $options->where('name_en', 'ILIKE', "%$search_term%"); //k tannalako state ho tesaile
+        }
+
+        // dd($options->get());
+
+        return $options->paginate(10);
     }
 }

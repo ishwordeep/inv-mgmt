@@ -55,7 +55,13 @@ class MstBatchNoCrudController extends BaseCrudController
     {
         CRUD::setValidation(MstBatchNoRequest::class);
 
-        
+         $fields = [
+            $this->addReadOnlyCodeField(),
+            $this->addNameField(),
+            $this->addSequenceCodeField(),
+            $this->addIsActiveField(),
+        ];
+        $this->crud->addFields(array_filter($fields));
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

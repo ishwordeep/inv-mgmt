@@ -72,20 +72,16 @@ class MstOrganizationCrudController extends BaseCrudController
             $this->addCountryField(),
             $this->addProvinceField(),
             $this->addDistrictField(),
-
+            $this->addAddressField(),
+            $this->addEmailField(),
+            $this->addPhoneField(),
             [
-                'name'        => 'user_level', // the name of the db column
-                'label'       => 'User Level', // the input label
-                'type'        => 'radio',
-                'default'     =>2,
-                'options'     => [
-                    // the key will be stored in the db, the value will be shown as label; 
-                    1 => "Organization User",
-                    2 => "Store User"
-                ],
-                // optional
-                'inline'      => true, // show the radios all on the same line?
-            ],
+				'name' => 'logo',
+				'type' => 'image',
+				'label' => 'Logo',
+				'disk'   => 'uploads',
+			],
+            $this->addDescriptionField(),
             $this->addIsActiveField(),
         ];
         $this->crud->addFields(array_filter($fields));

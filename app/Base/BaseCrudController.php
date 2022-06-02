@@ -7,6 +7,7 @@ use App\Base\Operations\ShowOperation;
 use App\Base\Operations\CreateOperation;
 use App\Base\Operations\DeleteOperation;
 use App\Base\Operations\UpdateOperation;
+use App\Models\MstCategory;
 use App\Models\MstCountry;
 use App\Models\MstDistrict;
 use App\Models\MstProvince;
@@ -143,6 +144,31 @@ class BaseCrudController extends CrudController
             ],
         ];
     }
+    protected function addSequenceCodeField()
+    {
+        return [
+            'name' => 'sequence_code',
+            'type' => 'text',
+            'label' => 'Sequence Code',
+            'wrapper' => [
+                'class' => 'form-group col-md-4',
+            ],
+        ];
+    }
+    protected function addCategoryField()
+    {
+        return[
+            'name'  => 'category_id',
+            'label' => 'Category',
+            'type' => 'select2',
+            'entity' => 'categoryEntity',
+            'attribute' => 'name_en',
+            'model' => MstCategory::class,
+            'wrapper' => [
+                'class' => 'form-group col-md-4',
+            ],
+        ];
+    }
 
     public function addIsActiveField()
     {
@@ -222,11 +248,22 @@ class BaseCrudController extends CrudController
         ];
     }
 
+    protected function addAddressField()
+    {
+        return [
+            'name' => 'address',
+            'label' => 'Address',
+            'type' => 'text',
+            'wrapper' => [
+                'class' => 'form-group col-md-6',
+            ],
+        ];
+    }
     protected function addDescriptionField()
     {
         return [
             'name' => 'description',
-            'label' => trans('common.description'),
+            'label' => 'Description',
             'type' => 'textarea',
             'wrapper' => [
                 'class' => 'form-group col-md-12',

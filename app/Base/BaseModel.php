@@ -2,9 +2,11 @@
 
 namespace App\Base;
 
+use App\Models\MstCategory;
 use App\Models\MstCountry;
 use App\Models\MstDistrict;
 use App\Models\MstProvince;
+use App\Models\MstSubcategory;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Support\Facades\DB;
@@ -70,6 +72,12 @@ class BaseModel extends Model
 
     public function districtEntity(){
         return $this->belongsTo(MstDistrict::class,'district_id','id');
+    }
+    public function categoryEntity(){
+        return $this->belongsTo(MstCategory::class,'category_id','id');
+    }
+    public function subCategoryEntity(){
+        return $this->belongsTo(MstSubcategory::class,'subcategory_id','id');
     }
 
 }
