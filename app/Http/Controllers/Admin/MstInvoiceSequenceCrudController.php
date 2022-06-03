@@ -35,16 +35,13 @@ class MstInvoiceSequenceCrudController extends BaseCrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('id');
-        CRUD::column('code');
-        CRUD::column('name');
-        CRUD::column('sequence_code');
-        CRUD::column('is_active');
-        CRUD::column('created_by');
-        CRUD::column('updated_by');
-        CRUD::column('deleted_by');
-        CRUD::column('created_at');
-        CRUD::column('updated_at');
+        $columns = [
+            $this->addRowNumberColumn(),
+            $this->addCodeColumn(),
+            $this->addNameColumn(),
+            $this->addIsActiveColumn(),
+        ];
+        $this->crud->addColumns(array_filter($columns));
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:

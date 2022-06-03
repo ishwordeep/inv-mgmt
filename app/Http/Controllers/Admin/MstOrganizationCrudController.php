@@ -14,7 +14,7 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
  */
 class MstOrganizationCrudController extends BaseCrudController
 {
-  
+
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
      * 
@@ -35,18 +35,31 @@ class MstOrganizationCrudController extends BaseCrudController
      */
     protected function setupListOperation()
     {
-        
-        CRUD::column('code');
-        CRUD::column('name_en');
-        CRUD::column('name_lc');
-        CRUD::column('country_id');
-        CRUD::column('province_id');
-        CRUD::column('district_id');
-        CRUD::column('address');
-        CRUD::column('email');
-        CRUD::column('phone_no');
-        CRUD::column('is_active');
-
+        $columns = [
+            $this->addRowNumberColumn(),
+            $this->addCodeColumn(),
+            $this->addNameEnColumn(),
+            $this->addNameLcColumn(),
+            [
+                'name'      => 'logo', // The db column name
+                'label'     => 'Logo', // Table column heading
+                'type'      => 'image',
+                // 'prefix' => 'folder/subfolder/',
+                // image from a different disk (like s3 bucket)
+                'disk'   => 'uploads', 
+                // optional width/height if 25px is not ok with you
+                'height' => '30px',
+                'width'  => '30px',
+            ],
+            // $this->addCountryColumn(),
+            // $this->addProvinceColumn(),
+            // $this->addDistrictColumn(),
+            $this->addAddressColumn(),
+            $this->addEmailColumn(),
+            $this->addPhoneColumn(),
+            $this->addIsActiveColumn(),
+        ];
+        $this->crud->addColumns(array_filter($columns));
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -76,11 +89,11 @@ class MstOrganizationCrudController extends BaseCrudController
             $this->addEmailField(),
             $this->addPhoneField(),
             [
-				'name' => 'logo',
-				'type' => 'image',
-				'label' => 'Logo',
-				'disk'   => 'uploads',
-			],
+                'name' => 'logo',
+                'type' => 'image',
+                'label' => 'Logo',
+                'disk'   => 'uploads',
+            ],
             $this->addDescriptionField(),
             $this->addIsActiveField(),
         ];

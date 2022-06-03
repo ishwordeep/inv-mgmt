@@ -35,9 +35,27 @@ class UserCrudController extends BaseCrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('name');
-        CRUD::column('email');
-        CRUD::column('password');
+       
+        $columns = [
+            $this->addRowNumberColumn(),
+            $this->addCodeColumn(),
+            $this->addNameColumn(),
+            [
+                'name' => 'user_level',
+                'label' => 'User Level',
+                'type' => 'radio',
+                'options' =>
+                [
+                    1 => "System User",
+                    2 => "Organization User",
+                    3 => "Store User",
+                ],
+            ],
+            $this->addEmailColumn(),
+            $this->addPhoneColumn(),
+            $this->addIsActiveColumn(),
+        ];
+        $this->crud->addColumns(array_filter($columns));
     }
 
     /**
@@ -60,11 +78,11 @@ class UserCrudController extends BaseCrudController
                 'name'        => 'user_level', // the name of the db column
                 'label'       => 'User Level', // the input label
                 'type'        => 'radio',
-                'default'     =>2,
+                'default'     =>3,
                 'options'     => [
                     // the key will be stored in the db, the value will be shown as label; 
-                    1 => "Organization User",
-                    2 => "Store User"
+                    2 => "Organization User",
+                    3 => "Store User"
                 ],
                 // optional
                 'inline'      => true, // show the radios all on the same line?

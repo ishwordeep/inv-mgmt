@@ -37,7 +37,16 @@ class MstSupStatusCrudController extends BaseCrudController
     protected function setupListOperation()
     {
         
-
+        $columns = [
+            $this->addRowNumberColumn(),
+            $this->addCodeColumn(),
+            $this->addNameEnColumn(),
+            $this->addNameLcColumn(),
+          
+         
+            $this->addIsActiveColumn(),
+        ];
+        $this->crud->addColumns(array_filter($columns));
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - CRUD::column('price')->type('number');

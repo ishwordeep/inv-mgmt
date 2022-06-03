@@ -36,6 +36,13 @@ class MstStockAdjustmentNoCrudController extends BaseCrudController
      */
     protected function setupListOperation()
     {
+        $columns = [
+            $this->addRowNumberColumn(),
+            $this->addCodeColumn(),
+            $this->addNameColumn(),
+            $this->addIsActiveColumn(),
+        ];
+        $this->crud->addColumns(array_filter($columns));
         
 
         /**

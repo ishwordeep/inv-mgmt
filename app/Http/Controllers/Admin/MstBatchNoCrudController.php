@@ -36,7 +36,14 @@ class MstBatchNoCrudController extends BaseCrudController
      */
     protected function setupListOperation()
     {
-        
+        $columns = [
+            $this->addRowNumberColumn(),
+            $this->addCodeColumn(),
+            $this->addNameColumn(),
+            $this->addSequenceColumn(),
+            $this->addIsActiveColumn(),
+        ];
+        $this->crud->addColumns(array_filter($columns));
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:

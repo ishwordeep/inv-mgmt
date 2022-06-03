@@ -35,21 +35,31 @@ class MstStoreCrudController extends BaseCrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('id');
-        CRUD::column('code');
-        CRUD::column('name_en');
-        CRUD::column('name_lc');
-        CRUD::column('address');
-        CRUD::column('email');
-        CRUD::column('phone_no');
-        CRUD::column('logo');
-        CRUD::column('description');
-        CRUD::column('is_active');
-        CRUD::column('created_by');
-        CRUD::column('updated_by');
-        CRUD::column('deleted_by');
-        CRUD::column('created_at');
-        CRUD::column('updated_at');
+        $columns = [
+            $this->addRowNumberColumn(),
+            $this->addCodeColumn(),
+            $this->addNameEnColumn(),
+            $this->addNameLcColumn(),
+            [
+                'name'      => 'logo', // The db column name
+                'label'     => 'Logo', // Table column heading
+                'type'      => 'image',
+                // 'prefix' => 'folder/subfolder/',
+                // image from a different disk (like s3 bucket)
+                'disk'   => 'uploads', 
+                // optional width/height if 25px is not ok with you
+                'height' => '30px',
+                'width'  => '30px',
+            ],
+            // $this->addCountryColumn(),
+            // $this->addProvinceColumn(),
+            // $this->addDistrictColumn(),
+            $this->addAddressColumn(),
+            $this->addEmailColumn(),
+            $this->addPhoneColumn(),
+            $this->addIsActiveColumn(),
+        ];
+        $this->crud->addColumns(array_filter($columns));
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:

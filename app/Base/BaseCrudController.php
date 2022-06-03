@@ -11,6 +11,7 @@ use App\Models\MstCategory;
 use App\Models\MstCountry;
 use App\Models\MstDistrict;
 use App\Models\MstProvince;
+use App\Models\MstStore;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 
@@ -157,7 +158,7 @@ class BaseCrudController extends CrudController
     }
     protected function addCategoryField()
     {
-        return[
+        return [
             'name'  => 'category_id',
             'label' => 'Category',
             'type' => 'select2',
@@ -270,4 +271,149 @@ class BaseCrudController extends CrudController
             ],
         ];
     }
+
+    // ############### COLUMNS ###############################
+    protected function addRowNumberColumn()
+    {
+        return [
+            'name' => 'row_number',
+            'type' => 'row_number',
+            'label' => 'S.N.',
+        ];
+    }
+    protected function addCodeColumn()
+    {
+        return [
+            'name' => 'code',
+            'label' => 'Code',
+            'type' => 'text',
+        ];
+    }
+    protected function addNameColumn()
+    {
+        return [
+            'name' => 'name',
+            'label' => 'Name',
+            'type' => 'text',
+        ];
+    }
+    protected function addNameEnColumn()
+    {
+        return [
+            'name' => 'name_en',
+            'label' => 'Name En',
+            'type' => 'text',
+        ];
+    }
+
+    protected function addNameLcColumn()
+    {
+        return [
+            'name' => 'name_lc',
+            'label' => 'Name Lc',
+            'type' => 'text',
+        ];
+    }
+    protected function addCountryColumn()
+    {
+        return  [
+            'name' => 'country_id',
+            'type' => 'select',
+            'entity' => 'countryEntity',
+            'attribute' => 'name_en',
+            'model' => MstCountry::class,
+            'label' => 'Country',
+        ];
+    }
+    protected function addProvinceColumn()
+    {
+        return [
+            'name' => 'province_id',
+            'type' => 'select',
+            'entity' => 'provinceEntity',
+            'attribute' => 'name_en',
+            'model' => MstProvince::class,
+            'label' => 'Province',
+        ];
+    }
+    protected function addDistrictColumn()
+    {
+        return  [
+            'name' => 'district_id',
+            'type' => 'select',
+            'entity' => 'districtEntity',
+            'attribute' => 'name_en',
+            'model' => MstDistrict::class,
+            'label' => 'District',
+        ];
+    }
+    public function addAddressColumn()
+    {
+        return [
+            'name' => 'address',
+            'label' => 'Address',
+            'type' => 'text',
+        ];
+    }
+    protected function addCategoryColumn()
+    {
+        return  [
+            'name' => 'category_id',
+            'type' => 'select',
+            'entity' => 'categoryEntity',
+            'attribute' => 'name_en',
+            'model' => MstCategory::class,
+            'label' => 'Category',
+        ];
+    }
+    public function addEmailColumn()
+    {
+        return [
+            'name' => 'email',
+            'label' => 'Email',
+            'type' => 'text',
+        ];
+    }
+    public function addPhoneColumn()
+    {
+        return [
+            'name' => 'phone',
+            'label' => 'Phone',
+            'type' => 'text',
+        ];
+    }
+    public function addIsActiveColumn()
+    {
+        return [
+            'name' => 'is_active',
+            'label' => 'Is Active',
+            'type' => 'radio',
+            'options' =>
+            [
+                1 => 'Yes',
+                0 => 'No',
+            ],
+        ];
+    }
+   
+    public function addStoreColumn()
+    {
+        return [
+            'name' => 'store_id',
+            'type' => 'select',
+            'entity' => 'storeEntity',
+            'attribute' => 'name_en',
+            'model' => MstStore::class,
+            'label' => 'Store',
+        ];
+    }
+    public function addSequenceColumn()
+    {
+        return [
+            'name' => 'sequence_code',
+            'type' => 'text',
+            'label' => 'Sequence Code',
+        ];
+    }
+
 }
