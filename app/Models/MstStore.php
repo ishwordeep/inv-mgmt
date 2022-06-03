@@ -23,7 +23,23 @@ class MstStore extends BaseModel
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
-    // protected $fillable = [];
+    protected $fillable = [
+        'code',
+        'name_en',
+        'name_lc',
+        'country_id',
+        'province_id',
+        'district_id',
+        'address',
+        'email',
+        'phone',
+        'logo',
+        'description',
+        'is_active',
+        'created_by',
+        'updated_by',
+        'deleted_by'
+    ];
     // protected $hidden = [];
     // protected $dates = [];
 

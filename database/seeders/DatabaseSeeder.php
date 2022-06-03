@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(MasterSeeder::class);
 
         DB::table('users')->insert([
-            array('id' => 1, 'code'=>'sys','name' => 'System Admin', 'email' => 'super@gmail.com','user_level'=>0,'password' => \Hash::make('123456'),'created_at'=>$now),
+            array('id' => 1, 'code'=>'sys','name' => 'System Admin', 'email' => 'super@gmail.com','user_level'=>1,'password' => \Hash::make('123456'),'created_at'=>$now),
         ]);
     }
 }

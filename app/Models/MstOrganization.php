@@ -23,7 +23,22 @@ class MstOrganization extends BaseModel
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
-    // protected $fillable = [];
+    protected $fillable = [
+        'code',
+        'name_en',
+        'name_lc',
+        'country_id',
+        'province_id',
+        'district_id',
+        'address',
+        'email',
+        'phone',
+        'description',
+        'is_active',
+        'created_by',
+        'updated_by',
+        'deleted_by'
+    ];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -42,7 +57,7 @@ class MstOrganization extends BaseModel
         $destination_path = "InventoryManagement\Logo";
 
         // if the image was erased
-        if ($value==null) {
+        if ($value == null) {
             // delete the image from disk
             \Storage::disk($disk)->delete($this->{$attribute_name});
 
@@ -51,18 +66,17 @@ class MstOrganization extends BaseModel
         }
 
         // if a base64 was sent, store it in the db
-        if (Str::startsWith($value, 'data:image'))
-        {
+        if (Str::startsWith($value, 'data:image')) {
             // 0. Make the image
             // $image = \Image::make($value)->encode('jpg', 90);
             $raw_image = \Image::make($value);
             //get image extension. if its jpeg, remove e.
-            $ext = str_replace('e','',substr($raw_image->mime(),6));
-            $image = $raw_image->encode($ext,90);
+            $ext = str_replace('e', '', substr($raw_image->mime(), 6));
+            $image = $raw_image->encode($ext, 90);
             // 1. Generate a filename.
-            $filename = md5($value.time()).'.'.$ext;
+            $filename = md5($value . time()) . '.' . $ext;
             // 2. Store the image on disk.
-            \Storage::disk($disk)->put($destination_path.'/'.$filename, $image->stream());
+            \Storage::disk($disk)->put($destination_path . '/' . $filename, $image->stream());
 
             // 3. Delete the previous image, if there was one.
             \Storage::disk($disk)->delete($this->{$attribute_name});
@@ -71,7 +85,7 @@ class MstOrganization extends BaseModel
             // but first, remove "public/" from the path, since we're pointing to it
             // from the root folder; that way, what gets saved in the db
             // is the public URL (everything that comes after the domain name)
-            $this->attributes[$attribute_name] = $destination_path.'/'.$filename;
+            $this->attributes[$attribute_name] = $destination_path . '/' . $filename;
             // $public_destination_path = Str::replaceFirst('public/', '', $destination_path);
             // $this->attributes[$attribute_name] = '/'.$public_destination_path.'/'.$filename;
         }

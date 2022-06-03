@@ -20,7 +20,7 @@ class MstBatchNo extends BaseModel
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
-    // protected $fillable = [];
+    protected $fillable = ['code','name','sequence_code','is_active','created_by','updated_by','deleted_by'];
     // protected $hidden = [];
     // protected $dates = [];
 

@@ -338,7 +338,7 @@ class CreateMasterMigrationsTable extends Migration
             $table->unsignedSmallInteger('supplier_id');
             $table->unsignedSmallInteger('brand_id');
             $table->unsignedSmallInteger('unit_id');
-            $table->string('stock_alert_minimum')->nullable();
+            $table->integer('stock_alert_minimum')->nullable();
             $table->string('tax_vat')->nullable();
             $table->unsignedSmallInteger('discount_mode_id')->nullable();
             $table->boolean('is_taxable')->default(false);

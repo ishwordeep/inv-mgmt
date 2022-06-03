@@ -20,7 +20,7 @@ class MstBrand extends BaseModel
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
-    // protected $fillable = [];
+    protected $fillable = ['code','name_en','name_lc','description','is_active','created_by','updated_by','deleted_by'];
     // protected $hidden = [];
     // protected $dates = [];
 
