@@ -24,8 +24,10 @@ class MstReturnReasonRequest extends FormRequest
      */
     public function rules()
     {
+        $id_check = $this->request->get('id') ? ",".$this->request->get('id') : "";
         return [
-            // 'name' => 'required|min:5|max:255'
+            'name_en' => 'required|max:100|unique:mst_return_reasons,name_en'.$id_check,
+            'name_lc' => 'required|max:100|unique:mst_return_reasons,name_lc'.$id_check,
         ];
     }
 
@@ -37,7 +39,8 @@ class MstReturnReasonRequest extends FormRequest
     public function attributes()
     {
         return [
-            //
+            'name_en' => 'Name En',
+            'name_lc' => 'Name Lc',
         ];
     }
 
@@ -49,7 +52,9 @@ class MstReturnReasonRequest extends FormRequest
     public function messages()
     {
         return [
-            //
+            'required' => 'The :attribute field is required.',
+            'unique' => 'The :attribute has already been taken.',
+            'max' => 'The :attribute must not be greater than :max.',
         ];
     }
 }

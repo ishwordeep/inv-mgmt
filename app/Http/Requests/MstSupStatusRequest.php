@@ -24,8 +24,10 @@ class MstSupStatusRequest extends FormRequest
      */
     public function rules()
     {
+        $id_check = $this->request->get('id') ? ",".$this->request->get('id') : "";
         return [
-            // 'name' => 'required|min:5|max:255'
+            'name_en' => 'required|max:100|unique:mst_sup_status,name_en'.$id_check,
+            'name_lc' => 'required|max:100|unique:mst_sup_status,name_lc'.$id_check,
         ];
     }
 
@@ -37,7 +39,8 @@ class MstSupStatusRequest extends FormRequest
     public function attributes()
     {
         return [
-            //
+            'name_en' => 'Name En',
+            'name_lc' => 'Name Lc',
         ];
     }
 

@@ -72,11 +72,7 @@ class BaseCrudController extends CrudController
             'name' => 'name_en',
             'label' => 'Name En',
             'type' => 'text',
-            'attributes' => [
-                'id' => 'name-en',
-                'required' => 'required',
-                'max-lenght' => 200,
-            ],
+            
             'wrapper' => [
                 'class' => 'form-group col-md-6',
             ],
@@ -88,10 +84,7 @@ class BaseCrudController extends CrudController
             'name' => 'name',
             'label' => 'Name',
             'type' => 'text',
-            'attributes' => [
-                'required' => 'required',
-                'max-lenght' => 200,
-            ],
+            
             'wrapper' => [
                 'class' => 'form-group col-md-6',
             ],
@@ -103,10 +96,7 @@ class BaseCrudController extends CrudController
             'name' => 'name_lc',
             'label' => 'Name Lc',
             'type' => 'text',
-            'attributes' => [
-                'required' => 'required',
-                'max-lenght' => 200,
-            ],
+           
             'wrapper' => [
                 'class' => 'form-group col-md-6',
             ],

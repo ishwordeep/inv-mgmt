@@ -24,8 +24,12 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
+        $id_check = $this->request->get('id') ? ",".$this->request->get('id') : "";
         return [
-            // 'name' => 'required|min:5|max:255'
+            'name' => 'required|max:100|unique:users,name'.$id_check,
+            'email' => 'required|max:100|unique:users,email'.$id_check,
+            'password' => 'required',
+            'user_level'=>'required'
         ];
     }
 
@@ -37,7 +41,10 @@ class UserRequest extends FormRequest
     public function attributes()
     {
         return [
-            //
+            'name' => 'Name',
+            'email' => 'Email',
+            'password' => 'Password',
+            'user_level' => 'User Level',
         ];
     }
 
@@ -49,7 +56,9 @@ class UserRequest extends FormRequest
     public function messages()
     {
         return [
-            //
+            'required' => 'The :attribute field is required.',
+            'unique' => 'The :attribute has already been taken.',
+            'max' => 'The :attribute must not be greater than :max.',
         ];
     }
 }

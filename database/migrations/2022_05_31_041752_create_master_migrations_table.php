@@ -150,10 +150,10 @@ class CreateMasterMigrationsTable extends Migration
             $table->unsignedInteger('country_id');
             $table->unsignedInteger('province_id');
             $table->unsignedInteger('district_id');
-            $table->string('address');
-            $table->string('email');
-            $table->string('contact_person');
-            $table->string('phone')->unique();
+            $table->string('address')->nullable();
+            $table->string('email')->nullable();
+            $table->string('contact_person')->nullable();
+            $table->string('phone')->unique()->nullable();
             $table->text('description')->nullable();
 
             $table->boolean('is_active')->default(true);
@@ -228,9 +228,9 @@ class CreateMasterMigrationsTable extends Migration
             $table->unsignedInteger('province_id')->nullable();
             $table->unsignedInteger('district_id')->nullable();
 
-            $table->string('address');
-            $table->string('email')->unique();
-            $table->string('phone')->unique();
+            $table->string('address')->nullable();
+            $table->string('email')->unique()->nullable();
+            $table->string('phone')->unique()->nullable();
             $table->string('logo')->nullable();
             $table->string('description')->nullable();
 
@@ -336,8 +336,8 @@ class CreateMasterMigrationsTable extends Migration
             $table->unsignedSmallInteger('category_id');
             $table->unsignedSmallInteger('subcategory_id');
             $table->unsignedSmallInteger('supplier_id');
-            $table->unsignedSmallInteger('brand_id');
-            $table->unsignedSmallInteger('unit_id');
+            $table->unsignedSmallInteger('brand_id')->nullable();
+            $table->unsignedSmallInteger('unit_id')->nullable();
             $table->integer('stock_alert_minimum')->nullable();
             $table->string('tax_vat')->nullable();
             $table->unsignedSmallInteger('discount_mode_id')->nullable();
