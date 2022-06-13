@@ -4,8 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Base\BaseCrudController;
 use App\Http\Requests\MstItemRequest;
+use App\Models\MstBrand;
 use App\Models\MstCategory;
+use App\Models\MstDiscountMode;
 use App\Models\MstSubcategory;
+use App\Models\MstSupplier;
+use App\Models\MstUnit;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Illuminate\Http\Request;
@@ -40,27 +44,30 @@ class MstItemCrudController extends BaseCrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('id');
-        CRUD::column('code');
-        CRUD::column('name_en');
-        CRUD::column('name_lc');
-        CRUD::column('description');
-        CRUD::column('category_id');
-        CRUD::column('subcategory_id');
-        CRUD::column('supplier_id');
-        CRUD::column('brand_id');
-        CRUD::column('unit_id');
-        CRUD::column('stock_alert_minimum');
-        CRUD::column('tax_vat');
-        CRUD::column('discount_mode_id');
-        CRUD::column('is_taxable');
-        CRUD::column('is_nonclaimable');
-        CRUD::column('is_active');
-        CRUD::column('created_by');
-        CRUD::column('updated_by');
-        CRUD::column('deleted_by');
-        CRUD::column('created_at');
-        CRUD::column('updated_at');
+        
+        // CRUD::column('category_id');
+        // CRUD::column('subcategory_id');
+        // CRUD::column('supplier_id');
+        // CRUD::column('brand_id');
+        // CRUD::column('unit_id');
+        // CRUD::column('stock_alert_minimum');
+        // CRUD::column('tax_vat');
+        // CRUD::column('discount_mode_id');
+        // CRUD::column('is_taxable');
+        // CRUD::column('is_nonclaimable');
+        // CRUD::column('is_active');
+       
+        $columns = [
+            $this->addRowNumberColumn(),
+            $this->addCodeColumn(),
+            $this->addNameEnColumn(),
+            $this->addNameLcColumn(),
+            $this->addCategoryColumn(),
+            $this->addSubCategoryColumn(),
+            $this->addIsActiveColumn(),
+        ];
+        $this->crud->addColumns(array_filter($columns));
+
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -107,10 +114,99 @@ class MstItemCrudController extends BaseCrudController
                     'placeholder' => 'Select Category first',
                 ]
             ],
-
-
-       
+            [
+                'name'  => 'supplier_id',
+                'label' => 'Supplier',
+                'type' => 'select2',
+                'entity' => 'supplierEntity',
+                'attribute' => 'name_en',
+                'model' => MstSupplier::class,
+                'wrapper' => [
+                    'class' => 'form-group col-md-4',
+                ],
+            ],
+            [
+                'name'  => 'brand_id',
+                'label' => 'Brand',
+                'type' => 'select2',
+                'entity' => 'brandEntity',
+                'attribute' => 'name_en',
+                'model' => MstBrand::class,
+                'wrapper' => [
+                    'class' => 'form-group col-md-4',
+                ],
+            ],
+            [
+                'name'  => 'unit_id',
+                'label' => 'Unit',
+                'type' => 'select2',
+                'entity' => 'unitEntity',
+                'attribute' => 'name_en',
+                'model' => MstUnit::class,
+                'wrapper' => [
+                    'class' => 'form-group col-md-4',
+                ],
+            ],
+            [
+                'name'  => 'discount_mode_id',
+                'label' => 'Discount Mode',
+                'type' => 'select2',
+                'entity' => 'discountModeEntity',
+                'attribute' => 'name_en',
+                'model' => MstDiscountMode::class,
+                'wrapper' => [
+                    'class' => 'form-group col-md-4',
+                ],
+            ],
+            [
+                'name'  => 'stock_alert_minimum',
+                'label' => 'Stock Minimum Alert',
+                'type' => 'number',
+              
+                'wrapper' => [
+                    'class' => 'form-group col-md-4',
+                ],
+            ],
+            [
+                'name'  => 'tax_vat',
+                'label' => 'Tax/Vat',
+                'type' => 'number',
+                'wrapper' => [
+                    'class' => 'form-group col-md-4',
+                ],
+            ],
             $this->addDescriptionField(),
+            [
+                'name' => 'is_taxable',
+                'label' => 'Is Taxable',
+                'type' => 'radio',
+                'default' => 1,
+                'inline' => true,
+                'wrapper' => [
+                    'class' => 'form-group col-md-4',
+                ],
+                'options' =>
+                [
+                    1 => 'Yes',
+                    0 => 'No',
+                ],
+            ],
+            [
+                'name' => 'is_nonclaimable',
+                'label' => 'Is Non-claimable',
+                'type' => 'radio',
+                'default' => 1,
+                'inline' => true,
+                'wrapper' => [
+                    'class' => 'form-group col-md-4',
+                ],
+                'options' =>
+                [
+                    1 => 'Yes',
+                    0 => 'No',
+                ],
+            ],
+            
             $this->addIsActiveField(),
         ];
         $this->crud->addFields(array_filter($fields));

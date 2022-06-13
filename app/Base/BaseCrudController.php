@@ -12,6 +12,7 @@ use App\Models\MstCountry;
 use App\Models\MstDistrict;
 use App\Models\MstProvince;
 use App\Models\MstStore;
+use App\Models\MstSubcategory;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 
@@ -354,6 +355,17 @@ class BaseCrudController extends CrudController
             'attribute' => 'name_en',
             'model' => MstCategory::class,
             'label' => 'Category',
+        ];
+    }
+    protected function addSubCategoryColumn()
+    {
+        return  [
+            'name' => 'subcategory_id',
+            'type' => 'select',
+            'entity' => 'subCategoryEntity',
+            'attribute' => 'name_en',
+            'model' => MstSubcategory::class,
+            'label' => 'Sub Category',
         ];
     }
     public function addEmailColumn()

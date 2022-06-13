@@ -2,11 +2,15 @@
 
 namespace App\Base;
 
+use App\Models\MstBrand;
 use App\Models\MstCategory;
 use App\Models\MstCountry;
+use App\Models\MstDiscountMode;
 use App\Models\MstDistrict;
 use App\Models\MstProvince;
 use App\Models\MstSubcategory;
+use App\Models\MstSupplier;
+use App\Models\MstUnit;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Support\Facades\DB;
@@ -78,6 +82,20 @@ class BaseModel extends Model
     }
     public function subCategoryEntity(){
         return $this->belongsTo(MstSubcategory::class,'subcategory_id','id');
+    }
+
+
+    public function supplierEntity(){
+        return $this->belongsTo(MstSupplier::class,'supplier_id','id');
+    }
+    public function brandEntity(){
+        return $this->belongsTo(MstBrand::class,'brand_id','id');
+    }
+    public function unitEntity(){
+        return $this->belongsTo(MstUnit::class,'unit_id','id');
+    }
+    public function discountModeEntity(){
+        return $this->belongsTo(MstDiscountMode::class,'discount_mode_id','id');
     }
 
 }
