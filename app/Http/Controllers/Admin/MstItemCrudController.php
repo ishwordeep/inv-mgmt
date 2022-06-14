@@ -92,6 +92,7 @@ class MstItemCrudController extends BaseCrudController
       
         $fields = [
             $this->addReadOnlyCodeField(),
+            $this->addPlainHtml(),
             $this->addNameEnField(),
             $this->addNameLcField(),
             $this->addDescriptionField(),

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Base\BaseCrudController;
 use App\Http\Requests\UserRequest;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class UserCrudController
@@ -101,5 +102,106 @@ class UserCrudController extends BaseCrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+    public function store()
+    {
+        $this->crud->hasAccessOrFail('create');
+        $user = backpack_user();
+
+        $request = $this->crud->validateRequest();
+        $request->request->set('created_by', $user->id);
+        $request->request->set('updated_by', $user->id);
+
+
+
+        //save full_name, email and password for sending email
+        // $email_details = [
+        //     'full_name' => $request->name,
+        //     'email' => $request->email,
+        //     'password' => $request->password,
+        // ];
+
+
+        //encrypt password
+        $request = $this->handlePasswordInput($request);
+
+      
+        DB::beginTransaction();
+        try {
+            $item = $this->crud->create($request->except(['save_action', '_token', '_method', 'http_referrer']));
+
+            // if ($item && env('SEND_MAIL_NOTIFICATION') == TRUE) {
+            //     $this->send_mail($email_details);
+            // }
+
+            // $this->client_user->notify(new TicketCreatedNotification($item));
+
+            \Alert::success(trans('backpack::crud.insert_success'))->flash();
+
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollback();
+            dd($th);
+        }
+
+        // save the redirect choice for next time
+        $this->crud->setSaveAction();
+
+        return $this->crud->performSaveAction($item->getKey());
+    }
+
+
+    public function update()
+    {
+        $this->crud->hasAccessOrFail('update');
+        $user = backpack_user();
+
+        // execute the FormRequest authorization and validation, if one is required
+        $request = $this->crud->validateRequest();
+
+        //save full_name, email and password for sending email
+        // $email_details = [
+        //     'full_name' => $request->name,
+        //     'email' => $request->email,
+        //     'password' => $request->password,
+        // ];
+        //encrypt password
+        $request = $this->handlePasswordInput($request);
+
+        DB::beginTransaction();
+        try {
+            $item = $this->crud->update(
+                $request->get($this->crud->model->getKeyName()),
+                $request->except(['save_action', '_token', '_method', 'http_referrer'])
+            );
+
+            // if($item && env('SEND_MAIL_NOTIFICATION') == TRUE){
+            //     $this->send_mail($email_details);
+            // }
+            \Alert::success(trans('backpack::crud.update_success'))->flash();
+
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollback();
+        }
+        // save the redirect choice for next time
+        $this->crud->setSaveAction();
+
+        return $this->crud->performSaveAction($item->getKey());
+    }
+
+    /**
+     * Handle password input fields.
+     */
+    protected function handlePasswordInput($request)
+    {
+        // Encrypt password if specified.
+        if ($request->input('password')) {
+            $request->request->set('password', \Hash::make($request->input('password')));
+        } else {
+            $request->request->remove('password');
+        }
+
+        return $request;
     }
 }
