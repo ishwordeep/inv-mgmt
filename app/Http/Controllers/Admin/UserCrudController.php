@@ -88,6 +88,8 @@ class UserCrudController extends BaseCrudController
                 // optional
                 'inline'      => true, // show the radios all on the same line?
             ],
+
+            $this->addStoreField(),
             $this->addIsActiveField(),
         ];
         $this->crud->addFields(array_filter($fields));
@@ -107,6 +109,7 @@ class UserCrudController extends BaseCrudController
     {
         $this->crud->hasAccessOrFail('create');
         $user = backpack_user();
+       
 
         $request = $this->crud->validateRequest();
         $request->request->set('created_by', $user->id);
@@ -129,7 +132,6 @@ class UserCrudController extends BaseCrudController
         DB::beginTransaction();
         try {
             $item = $this->crud->create($request->except(['save_action', '_token', '_method', 'http_referrer']));
-
             // if ($item && env('SEND_MAIL_NOTIFICATION') == TRUE) {
             //     $this->send_mail($email_details);
             // }

@@ -25,7 +25,10 @@ class User extends Authenticatable
         'password',
         'user_level',
         'phone',
-        'is_active'
+        'is_active',
+        'created_by',
+        'updated_by'
+        
     ];
 
     /**
@@ -46,4 +49,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function storeEntity(){
+        return $this->belongsTo(MstStore::class,'store_id','id');
+    }
 }

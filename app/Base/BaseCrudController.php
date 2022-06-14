@@ -263,6 +263,17 @@ class BaseCrudController extends CrudController
         ];
     }
 
+    public function addStoreField()
+    {
+        return [
+            'name' => 'store_id',
+            'type' => 'select',
+            'entity' => 'storeEntity',
+            'attribute' => 'name_en',
+            'model' => MstStore::class,
+            'label' => 'Store',
+        ];
+    }
     // ############### COLUMNS ###############################
     protected function addRowNumberColumn()
     {

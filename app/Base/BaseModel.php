@@ -8,6 +8,7 @@ use App\Models\MstCountry;
 use App\Models\MstDiscountMode;
 use App\Models\MstDistrict;
 use App\Models\MstProvince;
+use App\Models\MstStore;
 use App\Models\MstSubcategory;
 use App\Models\MstSupplier;
 use App\Models\MstUnit;
@@ -87,6 +88,9 @@ class BaseModel extends Model
 
     public function supplierEntity(){
         return $this->belongsTo(MstSupplier::class,'supplier_id','id');
+    }
+    public function storeEntity(){
+        return $this->belongsTo(MstStore::class,'store_id','id');
     }
     public function brandEntity(){
         return $this->belongsTo(MstBrand::class,'brand_id','id');
