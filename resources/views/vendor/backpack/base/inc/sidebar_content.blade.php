@@ -27,7 +27,6 @@
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-category') }}'><i class='nav-icon la la-question'></i>  Categories</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-subcategory') }}'><i class='nav-icon la la-question'></i>  Subcategories</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-supplier') }}'><i class='nav-icon la la-question'></i>  Suppliers</a></li>
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-batch-no') }}'><i class='nav-icon la la-question'></i>  Batch No</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-store') }}'><i class='nav-icon la la-question'></i>  Stores</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-brand') }}'><i class='nav-icon la la-question'></i>  Brands</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-item') }}'><i class='nav-icon la la-question'></i>  Items</a></li>
@@ -39,6 +38,7 @@
     <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-question"></i><span>Sequences</span></span></a>
     <ul class="nav-dropdown-items">
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-invoice-sequence') }}'><i class='nav-icon la la-question'></i>  Invoice Sequences</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-batch-no') }}'><i class='nav-icon la la-question'></i>  Batch No</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-po-sequence') }}'><i class='nav-icon la la-question'></i>  Po Sequences</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-purchase-return-sequence') }}'><i class='nav-icon la la-question'></i>  PR Sequences</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-stock-adjustment-no') }}'><i class='nav-icon la la-question'></i>  Stock Adjustment No</a></li>

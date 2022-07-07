@@ -147,9 +147,9 @@ class CreateMasterMigrationsTable extends Migration
             $table->string('name_en')->unique();
             $table->string('name_lc')->unique()->nullable();
 
-            $table->unsignedInteger('country_id');
-            $table->unsignedInteger('province_id');
-            $table->unsignedInteger('district_id');
+            $table->unsignedInteger('country_id')->nullable();
+            $table->unsignedInteger('province_id')->nullable();
+            $table->unsignedInteger('district_id')->nullable();
             $table->string('address')->nullable();
             $table->string('email')->nullable();
             $table->string('contact_person')->nullable();
@@ -188,7 +188,7 @@ class CreateMasterMigrationsTable extends Migration
             $table->string('sequence_code')->unique();
 
             $table->boolean('is_active')->default(true);
-            $table->unsignedSmallInteger('created_by');
+            $table->unsignedSmallInteger('created_by')->nullable();
             $table->unsignedSmallInteger('updated_by')->nullable();
             $table->unsignedSmallInteger('deleted_by')->nullable();
             $table->timestamps();
@@ -202,7 +202,7 @@ class CreateMasterMigrationsTable extends Migration
             $table->string('sequence_code')->unique();
 
             $table->boolean('is_active')->default(true);
-            $table->unsignedSmallInteger('created_by');
+            $table->unsignedSmallInteger('created_by')->nullable();
             $table->unsignedSmallInteger('updated_by')->nullable();
             $table->unsignedSmallInteger('deleted_by')->nullable();
             $table->timestamps();
@@ -214,7 +214,7 @@ class CreateMasterMigrationsTable extends Migration
             $table->string('sequence_code')->unique();
 
             $table->boolean('is_active')->default(true);
-            $table->unsignedSmallInteger('created_by');
+            $table->unsignedSmallInteger('created_by')->nullable();
             $table->unsignedSmallInteger('updated_by')->nullable();
             $table->unsignedSmallInteger('deleted_by')->nullable();
             $table->timestamps();
@@ -235,7 +235,7 @@ class CreateMasterMigrationsTable extends Migration
             $table->string('description')->nullable();
 
             $table->boolean('is_active')->default(true);
-            $table->unsignedSmallInteger('created_by');
+            $table->unsignedSmallInteger('created_by')->nullable();
             $table->unsignedSmallInteger('updated_by')->nullable();
             $table->unsignedSmallInteger('deleted_by')->nullable();
             $table->timestamps();
@@ -268,7 +268,7 @@ class CreateMasterMigrationsTable extends Migration
             $table->string('name_lc')->unique()->nullable();
 
             $table->boolean('is_active')->default(true);
-            $table->unsignedSmallInteger('created_by');
+            $table->unsignedSmallInteger('created_by')->nullable();
             $table->unsignedSmallInteger('updated_by')->nullable();
             $table->unsignedSmallInteger('deleted_by')->nullable();
             $table->timestamps();
@@ -282,7 +282,7 @@ class CreateMasterMigrationsTable extends Migration
             $table->string('description')->nullable();
             $table->boolean('is_active')->default(true);
 
-            $table->unsignedSmallInteger('created_by');
+            $table->unsignedSmallInteger('created_by')->nullable();
             $table->unsignedSmallInteger('updated_by')->nullable();
             $table->unsignedSmallInteger('deleted_by')->nullable();
             $table->timestamps();
@@ -294,7 +294,7 @@ class CreateMasterMigrationsTable extends Migration
             $table->string('sequence_code')->unique()->unique()->nullable();
 
             $table->boolean('is_active')->default(true);
-            $table->unsignedSmallInteger('created_by');
+            $table->unsignedSmallInteger('created_by')->nullable();
             $table->unsignedSmallInteger('updated_by')->nullable();
             $table->unsignedSmallInteger('deleted_by')->nullable();
             $table->timestamps();
@@ -307,7 +307,7 @@ class CreateMasterMigrationsTable extends Migration
             $table->string('sequence_code')->unique()->nullable();
 
             $table->boolean('is_active')->default(true);
-             $table->unsignedSmallInteger('created_by');
+             $table->unsignedSmallInteger('created_by')->nullable();
             $table->unsignedSmallInteger('updated_by')->nullable();
             $table->unsignedSmallInteger('deleted_by')->nullable();
             $table->timestamps();
@@ -345,7 +345,7 @@ class CreateMasterMigrationsTable extends Migration
             $table->boolean('is_nonclaimable')->default(false);
 
             $table->boolean('is_active')->default(true);
-            $table->unsignedSmallInteger('created_by');
+            $table->unsignedSmallInteger('created_by')->nullable();
             $table->unsignedSmallInteger('updated_by')->nullable();
             $table->unsignedSmallInteger('deleted_by')->nullable();
             $table->timestamps();

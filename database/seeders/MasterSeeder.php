@@ -21,6 +21,7 @@ class MasterSeeder extends Seeder
         $this->mstProvinces();
         $this->mstDistricts();
         $this->mstGenders();
+        $this->discountMode();
     }
     
     private function mstCountries()
@@ -142,5 +143,16 @@ class MasterSeeder extends Seeder
             ]
         );
         DB::statement("SELECT SETVAL('mst_genders_id_seq',1000)");
+    }
+    private function discountMode()
+    {
+        DB::table('mst_discount_modes')->insert(
+            [
+                array('id' => 1, 'code' => 'p', 'name_en' => 'Percentage', 'name_lc' => 'Percentage','created_at'=>$this->time ),
+                array('id' => 2, 'code' => 'n', 'name_en' => 'NRS', 'name_lc' => 'NRS','created_at'=>$this->time),
+               
+            ]
+        );
+        DB::statement("SELECT SETVAL('mst_discount_modes_id_seq',1000)");
     }
 }

@@ -17,9 +17,8 @@ class DatabaseSeeder extends Seeder
     {
         $now = Carbon::now()->toDateTimeString();
         $this->call(MasterSeeder::class);
+        $this->call(TestDataSeeder::class);
 
-        DB::table('users')->insert([
-            array('id' => 1, 'code'=>'sys','name' => 'System Admin', 'email' => 'super@gmail.com','user_level'=>1,'password' => \Hash::make('123456'),'created_at'=>$now),
-        ]);
+       
     }
 }
