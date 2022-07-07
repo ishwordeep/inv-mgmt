@@ -47,3 +47,5 @@
 
 
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('user') }}'><i class='nav-icon la la-question'></i> Users</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('stock-entry') }}'><i class='nav-icon la la-question'></i> Stock entries</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('stock-item') }}'><i class='nav-icon la la-question'></i> Stock items</a></li>

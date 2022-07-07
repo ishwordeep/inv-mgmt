@@ -46,4 +46,6 @@ Route::group([
     Route::get('api/subCategoryEntity/{category_id}', [MstItemCrudController::class, 'getSubCategoryAPI']);
 
 
+    Route::crud('stock-entry', 'StockEntryCrudController');
+    Route::crud('stock-item', 'StockItemCrudController');
 }); // this should be the absolute last line of this file
