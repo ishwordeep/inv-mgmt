@@ -24,7 +24,7 @@ class MstCategoryCrudController extends BaseCrudController
     {
         CRUD::setModel(\App\Models\MstCategory::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/mst-category');
-        CRUD::setEntityNameStrings('mst category', 'mst categories');
+        CRUD::setEntityNameStrings('', 'Categories');
     }
 
     /**

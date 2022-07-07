@@ -192,6 +192,7 @@ class BaseCrudController extends CrudController
             'wrapper' => [
                 'class' => 'form-group col-md-4',
             ],
+            'default'=>1
         ];
     }
 

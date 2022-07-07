@@ -25,7 +25,7 @@ class MstPurchaseReturnSequenceCrudController extends BaseCrudController
     {
         CRUD::setModel(\App\Models\MstPurchaseReturnSequence::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/mst-purchase-return-sequence');
-        CRUD::setEntityNameStrings('mst purchase return sequence', 'mst purchase return sequences');
+        CRUD::setEntityNameStrings('', 'PR Sequences');
     }
 
     /**

@@ -24,7 +24,7 @@ class MstDiscountModeCrudController extends BaseCrudController
     {
         CRUD::setModel(\App\Models\MstDiscountMode::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/mst-discount-mode');
-        CRUD::setEntityNameStrings('mst discount mode', 'mst discount modes');
+        CRUD::setEntityNameStrings('', 'Discount Modes');
     }
 
     /**

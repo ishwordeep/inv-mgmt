@@ -33,7 +33,7 @@ class MstItemCrudController extends BaseCrudController
     {
         CRUD::setModel(\App\Models\MstItem::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/mst-item');
-        CRUD::setEntityNameStrings('mst item', 'mst items');
+        CRUD::setEntityNameStrings('', 'Items');
     }
 
     /**

@@ -16,14 +16,14 @@
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-district') }}'><i class='nav-icon la la-question'></i>  Districts</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-gender') }}'><i class='nav-icon la la-question'></i>  Genders</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-sup-status') }}'><i class='nav-icon la la-question'></i>  Status</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-discount-mode') }}'><i class='nav-icon la la-question'></i>  Discount Modes</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-payment-mode') }}'><i class='nav-icon la la-question'></i>  Payment Modes</a></li>
     </ul>
 </li>
 <li class="nav-item nav-dropdown">
     <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-question"></i><span>Primary Master</span></span></a>
     <ul class="nav-dropdown-items">
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-unit') }}'><i class='nav-icon la la-question'></i>  units</a></li>
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-discount-mode') }}'><i class='nav-icon la la-question'></i>  Discount Modes</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-unit') }}'><i class='nav-icon la la-question'></i>  Units</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-category') }}'><i class='nav-icon la la-question'></i>  Categories</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-subcategory') }}'><i class='nav-icon la la-question'></i>  Subcategories</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-supplier') }}'><i class='nav-icon la la-question'></i>  Suppliers</a></li>

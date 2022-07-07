@@ -25,7 +25,7 @@ class MstSupStatusCrudController extends BaseCrudController
     {
         CRUD::setModel(\App\Models\MstSupStatus::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/mst-sup-status');
-        CRUD::setEntityNameStrings('mst sup status', 'mst sup statuses');
+        CRUD::setEntityNameStrings('', 'Status');
     }
 
     /**

@@ -26,7 +26,7 @@ class MstDistrictCrudController extends BaseCrudController
     {
         CRUD::setModel(\App\Models\MstDistrict::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/mst-district');
-        CRUD::setEntityNameStrings('mst district', 'mst districts');
+        CRUD::setEntityNameStrings('', 'Districts');
     }
 
     /**

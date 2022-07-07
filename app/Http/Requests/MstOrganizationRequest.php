@@ -24,11 +24,16 @@ class MstOrganizationRequest extends FormRequest
      */
     public function rules()
     {
-        $id_check = $this->request->get('id') ? ",".$this->request->get('id') : "";
+        $id_check = $this->request->get('id') ? "," . $this->request->get('id') : "";
         return [
-            'name_en' => 'required|max:100|unique:mst_organizations,_en'.$id_check,
-            'name_lc' => 'required|max:100|unique:mst_organizations,_lc'.$id_check,
-            
+            'name_en' => 'required|max:100|unique:mst_organizations,name_en' . $id_check,
+            'name_lc' => 'required|max:100|unique:mst_organizations,name_lc' . $id_check,
+            'country_id' => 'required',
+            'province_id' => 'required',
+            'district_id' => 'required',
+            'phone' => 'required',
+            'email' => 'required',
+
         ];
     }
 
@@ -42,6 +47,9 @@ class MstOrganizationRequest extends FormRequest
         return [
             'name_en' => 'Name En',
             'name_lc' => 'Name Lc',
+            'district_id' => 'District',
+            'province_id' => 'Province',
+            'country_id' => 'Country',
         ];
     }
 

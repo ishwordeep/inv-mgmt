@@ -24,7 +24,7 @@ class MstUnitCrudController extends BaseCrudController
     {
         CRUD::setModel(\App\Models\MstUnit::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/mst-unit');
-        CRUD::setEntityNameStrings('mst unit', 'mst units');
+        CRUD::setEntityNameStrings('', 'Units');
     }
 
     /**

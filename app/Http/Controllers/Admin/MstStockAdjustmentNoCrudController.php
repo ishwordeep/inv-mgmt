@@ -25,7 +25,7 @@ class MstStockAdjustmentNoCrudController extends BaseCrudController
     {
         CRUD::setModel(\App\Models\MstStockAdjustmentNo::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/mst-stock-adjustment-no');
-        CRUD::setEntityNameStrings('mst stock adjustment no', 'mst stock adjustment nos');
+        CRUD::setEntityNameStrings('', 'Stock Adjustment Numbers');
     }
 
     /**

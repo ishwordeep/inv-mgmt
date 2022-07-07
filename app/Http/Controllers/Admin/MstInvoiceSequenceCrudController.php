@@ -24,7 +24,7 @@ class MstInvoiceSequenceCrudController extends BaseCrudController
     {
         CRUD::setModel(\App\Models\MstInvoiceSequence::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/mst-invoice-sequence');
-        CRUD::setEntityNameStrings('mst invoice sequence', 'mst invoice sequences');
+        CRUD::setEntityNameStrings('', 'Invoice Sequences');
     }
 
     /**

@@ -25,7 +25,7 @@ class MstBatchNoCrudController extends BaseCrudController
     {
         CRUD::setModel(\App\Models\MstBatchNo::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/mst-batch-no');
-        CRUD::setEntityNameStrings('mst batch no', 'mst batch nos');
+        CRUD::setEntityNameStrings('', 'Batch Number');
     }
 
     /**

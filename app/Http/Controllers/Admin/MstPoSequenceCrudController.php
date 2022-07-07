@@ -25,7 +25,7 @@ class MstPoSequenceCrudController extends BaseCrudController
     {
         CRUD::setModel(\App\Models\MstPoSequence::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/mst-po-sequence');
-        CRUD::setEntityNameStrings('mst po sequence', 'mst po sequences');
+        CRUD::setEntityNameStrings('', 'PO Sequences');
     }
 
     /**

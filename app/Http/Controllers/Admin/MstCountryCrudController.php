@@ -25,7 +25,7 @@ class MstCountryCrudController extends BaseCrudController
     {
         CRUD::setModel(\App\Models\MstCountry::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/mst-country');
-        CRUD::setEntityNameStrings('mst country', 'mst countries');
+        CRUD::setEntityNameStrings('', 'Countries');
     }
 
     /**

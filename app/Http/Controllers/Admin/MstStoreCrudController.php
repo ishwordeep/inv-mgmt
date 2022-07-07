@@ -24,7 +24,7 @@ class MstStoreCrudController extends BaseCrudController
     {
         CRUD::setModel(\App\Models\MstStore::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/mst-store');
-        CRUD::setEntityNameStrings('mst store', 'mst stores');
+        CRUD::setEntityNameStrings('', 'Stores');
     }
 
     /**

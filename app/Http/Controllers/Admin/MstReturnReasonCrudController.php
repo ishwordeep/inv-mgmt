@@ -25,7 +25,7 @@ class MstReturnReasonCrudController extends BaseCrudController
     {
         CRUD::setModel(\App\Models\MstReturnReason::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/mst-return-reason');
-        CRUD::setEntityNameStrings('mst return reason', 'mst return reasons');
+        CRUD::setEntityNameStrings('', 'Return Reasons');
     }
 
     /**

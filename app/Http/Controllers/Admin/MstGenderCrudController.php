@@ -23,7 +23,7 @@ class MstGenderCrudController extends BaseCrudController
     {
         CRUD::setModel(\App\Models\MstGender::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/mst-gender');
-        CRUD::setEntityNameStrings('mst gender', 'mst genders');
+        CRUD::setEntityNameStrings('', 'Genders');
     }
 
     /**

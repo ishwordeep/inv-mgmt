@@ -25,7 +25,7 @@ class MstPaymentModeCrudController extends BaseCrudController
     {
         CRUD::setModel(\App\Models\MstPaymentMode::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/mst-payment-mode');
-        CRUD::setEntityNameStrings('mst payment mode', 'mst payment modes');
+        CRUD::setEntityNameStrings('', 'Payment Modes');
     }
 
     /**
