@@ -1,5 +1,3 @@
-<!-- This file is used to store topbar (left) items -->
-{{-- @include(backpack_view('inc.main_header')) --}}
-{{-- <li class="nav-item px-3"><a class="nav-link" href="#">Dashboard</a></li>
-<li class="nav-item px-3"><a class="nav-link" href="#">Users</a></li>
-<li class="nav-item px-3"><a class="nav-link" href="#">Settings</a></li> --}}
+<div class="col ml-2 text-white">
+    @yield('header')
+</div>

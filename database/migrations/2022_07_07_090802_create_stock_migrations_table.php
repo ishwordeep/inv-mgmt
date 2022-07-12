@@ -17,7 +17,7 @@ class CreateStockMigrationsTable extends Migration
             $table->id();
             $table->unsignedInteger('store_id');
             $table->timestamp('entry_date')->nullable();
-            $table->string('adjustment_no')->nullable();
+            $table->string('batch_no')->nullable();
             $table->unsignedSmallInteger('created_by')->nullable();
             $table->unsignedSmallInteger('approved_by')->nullable();
             $table->text('remarks')->nullable();

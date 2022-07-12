@@ -28,7 +28,20 @@ class StockEntryCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\StockEntry::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/stock-entry');
-        CRUD::setEntityNameStrings('stock entry', 'stock entries');
+        CRUD::setEntityNameStrings('', 'Stock Entries');
+    }
+     public function create()
+    {
+        $this->crud->hasAccessOrFail('create');
+
+        // prepare the fields you need to show
+        $this->data['crud'] = $this->crud;
+        $this->data['saveAction'] = $this->crud->getSaveAction();
+        $this->data['title'] = $this->crud->getTitle() ?? trans('backpack::crud.add').' '.$this->crud->entity_name;
+
+        // load the view from /resources/views/vendor/backpack/crud/ if it exists, otherwise load the one in the package
+        return view('customViews.stockEntries', $this->data);
+
     }
 
     /**
@@ -37,65 +50,14 @@ class StockEntryCrudController extends CrudController
      * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
      * @return void
      */
-    protected function setupListOperation()
-    {
-        CRUD::column('id');
-        CRUD::column('store_id');
-        CRUD::column('entry_date');
-        CRUD::column('adjustment_no');
-        CRUD::column('created_by');
-        CRUD::column('approved_by');
-        CRUD::column('remarks');
-        CRUD::column('gross_total');
-        CRUD::column('total_discount');
-        CRUD::column('flat_discount');
-        CRUD::column('taxable_amount');
-        CRUD::column('total_tax');
-        CRUD::column('net_amount');
-        CRUD::column('status_id');
-        CRUD::column('created_at');
-        CRUD::column('updated_at');
-
-        /**
-         * Columns can be defined using the fluent syntax or array syntax:
-         * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']); 
-         */
-    }
-
+   
     /**
      * Define what happens when the Create operation is loaded.
      * 
      * @see https://backpackforlaravel.com/docs/crud-operation-create
      * @return void
      */
-    protected function setupCreateOperation()
-    {
-        CRUD::setValidation(StockEntryRequest::class);
-
-        CRUD::field('id');
-        CRUD::field('store_id');
-        CRUD::field('entry_date');
-        CRUD::field('adjustment_no');
-        CRUD::field('created_by');
-        CRUD::field('approved_by');
-        CRUD::field('remarks');
-        CRUD::field('gross_total');
-        CRUD::field('total_discount');
-        CRUD::field('flat_discount');
-        CRUD::field('taxable_amount');
-        CRUD::field('total_tax');
-        CRUD::field('net_amount');
-        CRUD::field('status_id');
-        CRUD::field('created_at');
-        CRUD::field('updated_at');
-
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number'])); 
-         */
-    }
+    
 
     /**
      * Define what happens when the Update operation is loaded.
@@ -103,8 +65,5 @@ class StockEntryCrudController extends CrudController
      * @see https://backpackforlaravel.com/docs/crud-operation-update
      * @return void
      */
-    protected function setupUpdateOperation()
-    {
-        $this->setupCreateOperation();
-    }
+   
 }
