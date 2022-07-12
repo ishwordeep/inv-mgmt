@@ -42,12 +42,12 @@
   <footer class="{{ config('backpack.base.footer_class') }}">
     @include(backpack_view('inc.footer'))
   </footer>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
   @yield('before_scripts')
   @stack('before_scripts')
 
   @include(backpack_view('inc.scripts'))
-  <script src="{{asset('js/nepali.datepicker.v2.2.min.js')}}"></script>
   @yield('after_scripts')
   @stack('after_scripts')
 </body>

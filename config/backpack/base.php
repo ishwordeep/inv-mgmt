@@ -42,6 +42,7 @@ return [
 
     // CSS files that are loaded in all pages, using Laravel's asset() helper
     'styles' => [
+        // 'css/vendor.css',
         'packages/backpack/base/css/bundle.css', // has primary color electric purple (backpack default)
         // 'packages/backpack/base/css/blue-bundle.css', // has primary color blue
 
@@ -120,8 +121,9 @@ return [
 
     // JS files that are loaded in all pages, using Laravel's asset() helper
     'scripts' => [
+        'js/vendor.js',
         // Backstrap includes jQuery, Bootstrap, CoreUI, PNotify, Popper
-        'packages/backpack/base/js/bundle.js',
+        // 'packages/backpack/base/js/bundle.js',
 
         // examples (everything inside the bundle, loaded from CDN)
         // 'https://code.jquery.com/jquery-3.4.1.min.js',
@@ -140,7 +142,7 @@ return [
 
     // JS files that are loaded in all pages, using Laravel's mix() helper
     'mix_scripts' => [// file_path => manifest_directory_path
-        // 'js/app.js' => '',
+        'js/app.js' => '',
     ],
 
     // -------------

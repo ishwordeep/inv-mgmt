@@ -6,8 +6,9 @@
 
 {{-- Header Content --}}
 @section('content')
+{{-- <form id="stockEntryForm" action="{{ url($crud->route) }}" method="POST"> --}}
 <form id="stockEntryForm" action="{{ url($crud->route) }}" method="POST">
-    @csrf
+
     <div class="card main-container ">
         <div class="row m-3">
 
@@ -116,14 +117,19 @@
                     </td>
                     <td>
                         <div class="input-group" style="width:5rem;">
-                            <i class="las la-plus p-1 text- " aria-hidden="true"></i></i>
-                            <i class="las la-trash p-1 text-danger" data-cntr="1" id="" aria-hidden="true"></i>
+                            <i class="las la-trash p-1 text-danger destroyRepeater" aria-hidden="true"></i>
                         </div>
                     </td>
                 </tr>
+
             </tbody>
         </table>
+        <div>
+            <button type="button" class="btn btn-primary btn-sm " id="addRepeater"><i class="las la-plus p-1 text-white  bg-primary"aria-hidden="true"></i>Add More Item</button>
+            {{-- <i class="las la-plus p-1 text-white  bg-primary" id="addRepeater" aria-hidden="true">Add</i> --}}
+        </div>
     </div>
+
     <div class="main-container card">
         <div class="row m-3">
             <div class="col-md-6 col-sm-12">
@@ -138,38 +144,38 @@
                         <tr>
                             <th class="bg-primary text-white">Gross Total</th>
                             <td>
-                                <input id="" type="numner" name="" class="form-control" readonly>
+                                <input id="" type="numner" name="" class="form-control">
                             </td>
                         </tr>
                         <tr>
                             <th class="bg-primary text-white">Total Discount</th>
                             <td>
-                                <input id="" type="number" name="" class="form-control" readonly>
+                                <input id="" type="number" name="" class="form-control">
                             </td>
                         </tr>
                         <tr>
                             <th class="bg-primary text-white">Taxable Amount</th>
                             <td>
-                                <input id="" type="number" name="" class="form-control" readonly>
+                                <input id="" type="number" name="" class="form-control">
                             </td>
 
                         </tr>
                         <tr>
                             <th class="bg-primary text-white">Tax Total</th>
                             <td>
-                                <input id="" type="number" name="" class="form-control" readonly>
+                                <input id="" type="number" name="" class="form-control">
                             </td>
                         </tr>
                         <tr>
                             <th class="bg-primary text-white">Other Charges</th>
                             <td>
-                                <input id="" type="number" name="" class="form-control" readonly>
+                                <input id="" type="number" name="" class="form-control">
                             </td>
                         </tr>
                         <tr>
                             <th class="bg-primary text-white">Net Amount</th>
                             <td>
-                                <input id="" type="number" name="" class="form-control bg-secondary" readonly>
+                                <input id="" type="number" name="" class="form-control bg-secondary">
                             </td>
                         </tr>
                     </tbody>
