@@ -4,48 +4,125 @@
     @include('customViews.partialViews.header_content');
 @endsection --}}
 
+{{-- Header Content --}}
 @section('content')
-    <form id="stockEntryForm" action="{{ url($crud->route) }}" method="POST">
-        @csrf
-        <div class="card main-container ">
-            <div class="row m-3">
+<form id="stockEntryForm" action="{{ url($crud->route) }}" method="POST">
+    @csrf
+    <div class="card main-container ">
+        <div class="row m-3">
 
-                <div class=" col-sm-4">
-                    <div class="input-group mb-3">
-                        <label class="input-group-text" for="inputGroupSelect01">Options</label>
-                        <select class="form-select"  id="inputGroupSelect01">
-                          <option selected>Choose...</option>
-                          <option value="1">one</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
-                        </select>
-                      </div>
+            <div class=" col-sm-4">
+                <div class="input-group mb-3" >
+                    <label class="input-group-text" for="inputGroupSelect01">Store</label>
+                    <select class="form-select" id="inputGroupSelect01" style="min-width: 200px;">
+                        <option selected>Choose...</option>
+                        <option value="1">one</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
                 </div>
+            </div>
 
-                <div class=" col-sm-4 ">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">Entry Date</span>
-                        <input type="date" id="stockDateAD" name='entry_date' value="" class="form-control"
-                            placeholder="Entry Date">
-                    </div>
+            <div class=" col-sm-4 ">
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Entry Date</span>
+                    <input type="date" id="stockDateAD" name='entry_date' value="" class="form-control" placeholder="Entry Date">
                 </div>
-               
+            </div>
 
-                <div class=" col-sm-4 ">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">Item Wise Discount</span>
 
-                        <input type="checkbox" checked="true" name="" id="" class="">
-                    </div>
+            <div class=" col-sm-4 ">
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Item Wise Discount</span>
+
+                    <input type="checkbox" checked="true" name="" id="" class="">
                 </div>
-            </div>            
+            </div>
         </div>
+    </div>
 
-        {{-- End of upper form filter design? --}}
-        <div class="table-responsive">
-
-        </div>
-
-
-    </form>
+    {{-- Item Entry Table --}}
+    <div class="table-responsive">
+        <table class="table" id="repeaterTable" style="min-width: 1000px;">
+            <thead>
+                <tr class="text-white" style="background-color: #192840">
+                    <th scope="col">S.N.</th>
+                    <th scope="col">Item Name</th>
+                    <th scope="col">Add Qty</th>
+                    <th scope="col">Free Qty</th>
+                    <th scope="col">Total Qty</th>
+                    <th scope="col">Expiry Date </th>
+                    <th scope="col">Unit Cost </th>
+                    <th scope="col">Unit Sales</th>
+                    <th scope="col">Discount</th>
+                    <th scope="col">Tax/vat</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col" style="width: 6rem">Action</th>
+                </tr>
+            </thead>
+            <tbody id="stock-table">
+                <tr>
+                    <td>1</td>
+                    <td>
+                        <div class="input-group">
+                            <input type="text" class="form-control p-1" name="" placeholder="Search item..." id='' size="1" style="width:10rem;">
+                            <input type="hidden" name="" class="">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="number" class="form-control p-1" id="" placeholder="Add Qty" name="" size="1" style="width:5rem;">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="number" class="form-control p-1" id="" placeholder="Free Qty" name="" size="1" style="width:5rem;">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="number" class="form-control p-1" id="" placeholder="Total Qty" name="" size="1" style="width:5rem;">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="date" class="form-control p-1" id="" placeholder="Expiry Date" name="" size="1" style="width:7rem;">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="number" class="form-control p-1" id="" placeholder="Unit Cost" name="" size="1" style="width:5rem;">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="number" class="form-control p-1" id="" placeholder="Unit Sales" name="" size="1" style="width:5rem;">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="number" class="form-control p-1" id="" placeholder="Discount" name="" size="1" style="width:5rem;">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="number" class="form-control p-1" id="" placeholder="Tax/vat" name="" size="1" style="width:5rem;">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="number" class="form-control p-1" id="" placeholder="Total Amount" name="" size="1" style="width:5rem;">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group" style="width:5rem;">
+                            <i class="las la-plus p-1 text- " aria-hidden="true"></i></i>
+                            <i class="las la-trash p-1 text-danger" data-cntr="1" id="" aria-hidden="true"></i>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</form>
 @endsection
