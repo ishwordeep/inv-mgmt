@@ -12,7 +12,7 @@
         <div class="row m-3">
 
             <div class=" col-sm-4">
-                <div class="input-group mb-3" >
+                <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">Store</label>
                     <select class="form-select" id="inputGroupSelect01" style="min-width: 200px;">
                         <option selected>Choose...</option>
@@ -42,7 +42,7 @@
     </div>
 
     {{-- Item Entry Table --}}
-    <div class="table-responsive">
+    <div class="table-responsive card">
         <table class="table" id="repeaterTable" style="min-width: 1000px;">
             <thead>
                 <tr class="text-white" style="background-color: #192840">
@@ -123,6 +123,59 @@
                 </tr>
             </tbody>
         </table>
+    </div>
+    <div class="main-container card">
+        <div class="row m-3">
+            <div class="col-md-6 col-sm-12">
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Remarks</span>
+                    <textarea class="form-control comment" name="comments" placeholder="Remarks" rows="5"></textarea>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <table class="table table-sm table-bordered">
+                    <tbody>
+                        <tr>
+                            <th class="bg-primary text-white">Gross Total</th>
+                            <td>
+                                <input id="" type="numner" name="" class="form-control" readonly>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="bg-primary text-white">Total Discount</th>
+                            <td>
+                                <input id="" type="number" name="" class="form-control" readonly>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="bg-primary text-white">Taxable Amount</th>
+                            <td>
+                                <input id="" type="number" name="" class="form-control" readonly>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <th class="bg-primary text-white">Tax Total</th>
+                            <td>
+                                <input id="" type="number" name="" class="form-control" readonly>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="bg-primary text-white">Other Charges</th>
+                            <td>
+                                <input id="" type="number" name="" class="form-control" readonly>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="bg-primary text-white">Net Amount</th>
+                            <td>
+                                <input id="" type="number" name="" class="form-control bg-secondary" readonly>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </form>
 @endsection
