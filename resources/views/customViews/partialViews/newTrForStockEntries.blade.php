@@ -53,7 +53,15 @@
     </td>
     <td>
         <div class="input-group" style="width:5rem;">
-            <i class="las la-trash p-1 text-danger destroyRepeater" aria-hidden="true"></i>
+            <i class="las la-trash p-1 text-danger destroyRepeater " aria-hidden="true"></i>
         </div>
     </td>
 </tr>
+<script>
+    $(".destroyRepeater").click(function() {
+        // console.log('Hello',$(this).closest("tr")[0])
+        $(this).closest("tr")[0].remove();
+
+    });
+
+</script>

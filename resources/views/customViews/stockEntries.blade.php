@@ -126,7 +126,6 @@
         </table>
         <div>
             <button type="button" class="btn btn-primary btn-sm " id="addRepeater"><i class="las la-plus p-1 text-white  bg-primary"aria-hidden="true"></i>Add More Item</button>
-            {{-- <i class="las la-plus p-1 text-white  bg-primary" id="addRepeater" aria-hidden="true">Add</i> --}}
         </div>
     </div>
 

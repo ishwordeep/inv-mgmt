@@ -22,6 +22,7 @@ Route::get('api/province/{country_id}', [ProvinceApiController::class, 'index'])
 Route::get('api/district/{province_id}', [DistrictApiController::class, 'index']);
 
 Route::get('load-new-tr-stock-entries',function(){
-    return view("customViews/partialViews/newTrForStockEntries");
+    $check="hello";
+    return view("customViews/partialViews/newTrForStockEntries")->with('check',$check);
 });
 

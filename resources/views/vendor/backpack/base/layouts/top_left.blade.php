@@ -42,10 +42,10 @@
   <footer class="{{ config('backpack.base.footer_class') }}">
     @include(backpack_view('inc.footer'))
   </footer>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
+  
   @yield('before_scripts')
   @stack('before_scripts')
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
   @include(backpack_view('inc.scripts'))
   @yield('after_scripts')

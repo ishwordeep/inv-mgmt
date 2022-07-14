@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     $("#addRepeater").click(function () {
         $.ajax({
             type: "GET",
@@ -8,6 +7,10 @@ $(document).ready(function () {
                 $("#stock-table").append(response);
             },
         });
+    });
+
+    $(".destroyRepeater").click(function () {
+        $(this).closest("tr")[0].remove();
     });
 
 });
