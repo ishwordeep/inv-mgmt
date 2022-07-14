@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\DistrictApiController;
 use App\Http\Controllers\ProvinceApiController;
+use Illuminate\Http\Client\Request;
+use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,8 +23,8 @@ Route::get('/', function () {
 Route::get('api/province/{country_id}', [ProvinceApiController::class, 'index']);
 Route::get('api/district/{province_id}', [DistrictApiController::class, 'index']);
 
-Route::get('load-new-tr-stock-entries',function(){
-    $check="hello";
-    return view("customViews/partialViews/newTrForStockEntries")->with('check',$check);
+Route::get('load-new-tr-stock-entries',function(HttpRequest $req){
+    $invType=$req->type;
+    return view("customViews/partialViews/newTrForInv",compact('invType'));
 });
 

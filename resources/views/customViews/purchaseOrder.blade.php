@@ -1,10 +1,10 @@
 <style>
-    #stock-table {
+    #po-table {
         counter-reset: serial-number;
         /* Set the serial number counter to 0 */
     }
 
-    #stock-table td:first-child:before {
+    #po-table td:first-child:before {
         counter-increment: serial-number;
         /* Increment the serial number counter */
         content: counter(serial-number);
@@ -28,8 +28,41 @@
 
             <div class=" col-sm-4">
                 <div class="input-group mb-3">
-                    <label class="input-group-text" for="inputGroupSelect01">Store</label>
-                    <select class="form-select form-control" id="inputGroupSelect01" style="min-width: 200px;">
+                    <label class="input-group-text" for="inputGroupSelect01" style="min-width: 100px; ">PO Type</label>
+                    <select class="form-select form-control" id="inputGroupSelect01" style="min-width: 150px; ">
+                        <option selected>Choose...</option>
+                        <option value="1">one</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+            </div>
+            <div class=" col-sm-4">
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputGroupSelect01" style="min-width: 100px;">Supplier</label>
+                    <select class="form-select form-control" id="inputGroupSelect01" style="min-width: 150px;">
+                        <option selected>Choose...</option>
+                        <option value="1">one</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+            </div>
+            <div class=" col-sm-4">
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputGroupSelect01" style="min-width: 100px;">Requested Store</label>
+                    <select class="form-select form-control" id="inputGroupSelect01" style="min-width: 150px;">
+                        <option selected>Choose...</option>
+                        <option value="1">one</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+            </div>
+            <div class=" col-sm-4">
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputGroupSelect01" style="min-width: 100px;">Store</label>
+                    <select class="form-select form-control" id="inputGroupSelect01" style="min-width: 150px;">
                         <option selected>Choose...</option>
                         <option value="1">one</option>
                         <option value="2">Two</option>
@@ -40,19 +73,17 @@
 
             <div class=" col-sm-4 ">
                 <div class="input-group mb-3">
-                    <span class="input-group-text">Entry Date</span>
-                    <input type="date" id="stockDateAD" name='entry_date' value="" class="form-control" placeholder="Entry Date">
+                    <label class="input-group-text" for="stockDateAD" style="min-width: 100px;">PO Date</label>
+                    <input type="date" id="stockDateAD" name='entry_date' value="" class="form-control" placeholder="Entry Date" style="min-width: 150px;">
                 </div>
             </div>
-
-
             <div class=" col-sm-4 ">
                 <div class="input-group mb-3">
-                    <span class="input-group-text">Item Wise Discount</span>
-
-                    <input type="checkbox" checked="true" name="" id="" class="form-control">
+                    <label class="input-group-text" for="expectedDateAD" style="min-width: 100px;">Expected Delivery</label>
+                    <input type="date" id="expectedDateAD" name='entry_date' value="" class="form-control" placeholder="Entry Date" style="min-width: 150px;">
                 </div>
             </div>
+
         </div>
     </div>
 
@@ -62,12 +93,12 @@
             <thead>
                 @include('customViews.partialViews.tableHeaderForInv')
             </thead>
-            <tbody id="stock-table">
-                @include('customViews.partialViews.newTrForInv')
+            <tbody id="po-table">
+               @include('customViews.partialViews.newTrForInv')
             </tbody>
         </table>
         <div>
-            <button type="button" class="btn btn-primary btn-sm " id="addRepeaterToStockEntry"><i class="las la-plus p-1 text-white  bg-primary" aria-hidden="true"></i>Add More Item</button>
+            <button type="button" class="btn btn-primary btn-sm " id="addRepeaterToPO"><i class="las la-plus p-1 text-white  bg-primary" aria-hidden="true"></i>Add More Item</button>
         </div>
     </div>
 
@@ -90,19 +121,6 @@
                         </tr>
                         <tr>
                             <th class="bg-primary text-white">Total Discount</th>
-                            <td>
-                                <input id="" type="number" name="" class="form-control">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="bg-primary text-white">Taxable Amount</th>
-                            <td>
-                                <input id="" type="number" name="" class="form-control">
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <th class="bg-primary text-white">Tax Total</th>
                             <td>
                                 <input id="" type="number" name="" class="form-control">
                             </td>

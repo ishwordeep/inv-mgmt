@@ -94,14 +94,13 @@ class CreateMasterMigrationsTable extends Migration
             $table->unsignedInteger('updated_by')->nullable();
             $table->unsignedInteger('deleted_by')->nullable();
             $table->timestamps();
-
         });
 
         Schema::create('mst_discount_modes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('code',20)->unique();
-            $table->string('name_en',100)->unique();
-            $table->string('name_lc',100)->unique();
+            $table->string('code', 20)->unique();
+            $table->string('name_en', 100)->unique();
+            $table->string('name_lc', 100)->unique();
 
             $table->boolean('is_active')->default(true);
             $table->unsignedInteger('created_by')->nullable();
@@ -122,7 +121,6 @@ class CreateMasterMigrationsTable extends Migration
             $table->unsignedInteger('updated_by')->nullable();
             $table->unsignedInteger('deleted_by')->nullable();
             $table->timestamps();
-
         });
 
         Schema::create('mst_subcategories', function (Blueprint $table) {
@@ -192,7 +190,6 @@ class CreateMasterMigrationsTable extends Migration
             $table->unsignedSmallInteger('updated_by')->nullable();
             $table->unsignedSmallInteger('deleted_by')->nullable();
             $table->timestamps();
-
         });
 
         Schema::create('mst_po_sequences', function (Blueprint $table) {
@@ -243,7 +240,6 @@ class CreateMasterMigrationsTable extends Migration
             $table->foreign('country_id')->references('id')->on('mst_countries')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreign('province_id')->references('id')->on('mst_provinces')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreign('district_id')->references('id')->on('mst_districts')->cascadeOnDelete()->cascadeOnUpdate();
-        
         });
 
         Schema::create('mst_sup_status', function (Blueprint $table) {
@@ -307,7 +303,7 @@ class CreateMasterMigrationsTable extends Migration
             $table->string('sequence_code')->unique()->nullable();
 
             $table->boolean('is_active')->default(true);
-             $table->unsignedSmallInteger('created_by')->nullable();
+            $table->unsignedSmallInteger('created_by')->nullable();
             $table->unsignedSmallInteger('updated_by')->nullable();
             $table->unsignedSmallInteger('deleted_by')->nullable();
             $table->timestamps();
@@ -357,13 +353,18 @@ class CreateMasterMigrationsTable extends Migration
             $table->foreign('unit_id')->references('id')->on('mst_units')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreign('discount_mode_id')->references('id')->on('mst_discount_modes')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreign('brand_id')->references('id')->on('mst_brands')->cascadeOnDelete()->cascadeOnUpdate();
-
         });
-        
+        Schema::create('purchase_order_types', function (Blueprint $table) {
 
-
-        
-
+            $table->increments('id');
+            $table->string('name_en');
+            $table->string('name_lc')->nullable();
+            $table->string('description')->nullable();
+            $table->boolean('is_active')->default(true);
+            $table->unsignedInteger('created_by')->nullable();
+            $table->unsignedInteger('updated_by')->nullable();
+            $table->timestamps();
+        });
     }
 
     /**

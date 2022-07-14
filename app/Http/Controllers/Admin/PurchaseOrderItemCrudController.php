@@ -3,16 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Base\BaseCrudController;
-use App\Http\Requests\StockItemRequest;
+use App\Http\Requests\PurchaseOrderItemRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class StockItemCrudController
+ * Class PurchaseOrderItemCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class StockItemCrudController extends BaseCrudController
+class PurchaseOrderItemCrudController extends BaseCrudController
 {
     
 
@@ -23,9 +23,9 @@ class StockItemCrudController extends BaseCrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\StockItem::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/stock-item');
-        CRUD::setEntityNameStrings('stock item', 'stock items');
+        CRUD::setModel(\App\Models\PurchaseOrderItem::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/purchase-order-item');
+        CRUD::setEntityNameStrings('purchase order item', 'purchase order items');
     }
 
     /**
@@ -36,20 +36,7 @@ class StockItemCrudController extends BaseCrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('id');
-        CRUD::column('stock_id');
-        CRUD::column('item_id');
-        CRUD::column('add_qty');
-        CRUD::column('free_qty');
-        CRUD::column('total_qty');
-        CRUD::column('expiry_date');
-        CRUD::column('unit_cost_price');
-        CRUD::column('unit_sales_price');
-        CRUD::column('discount');
-        CRUD::column('tax_vat');
-        CRUD::column('amount');
-        CRUD::column('created_at');
-        CRUD::column('updated_at');
+        
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -66,22 +53,9 @@ class StockItemCrudController extends BaseCrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(StockItemRequest::class);
+        CRUD::setValidation(PurchaseOrderItemRequest::class);
 
-        CRUD::field('id');
-        CRUD::field('stock_id');
-        CRUD::field('item_id');
-        CRUD::field('add_qty');
-        CRUD::field('free_qty');
-        CRUD::field('total_qty');
-        CRUD::field('expiry_date');
-        CRUD::field('unit_cost_price');
-        CRUD::field('unit_sales_price');
-        CRUD::field('discount');
-        CRUD::field('tax_vat');
-        CRUD::field('amount');
-        CRUD::field('created_at');
-        CRUD::field('updated_at');
+        
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
