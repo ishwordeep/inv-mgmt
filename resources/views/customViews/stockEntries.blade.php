@@ -182,5 +182,13 @@
             </div>
         </div>
     </div>
+
+    <div class="main-container mb-4">
+        <div class="d-flex justify-content-end">
+            <button id="" type="submit" class="btn btn-primary  mr-1">Save</button>
+            <button id="" type="submit" class="btn btn-success  mr-1">Approve</button>
+            <button id="" class="btn btn-danger  mr-1">Cancel</button>
+        </div>
+    </div>
 </form>
 @endsection
