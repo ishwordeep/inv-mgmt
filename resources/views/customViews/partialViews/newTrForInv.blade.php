@@ -51,7 +51,7 @@
             <input type="number" class="form-control p-1" id="" placeholder="Tax/vat" name="" size="1" style="width:5rem;">
         </div>
     </td>
-    
+
     <td>
         <div class="input-group">
             <input type="number" class="form-control p-1" id="" placeholder="Unit Sales" name="" size="1" style="width:5rem;">
@@ -65,13 +65,19 @@
     </td>
     <td>
         <div class="input-group" style="width:5rem;">
-            <i class="las la-trash p-1 text-danger destroyRepeater" aria-hidden="true"></i>
+            <i class="las la-trash p-1 text-danger destroyRepeater d-none" aria-hidden="true"></i>
         </div>
     </td>
 </tr>
 <script>
     $(".destroyRepeater").click(function() {
-        // console.log('Hello',$(this).closest("tr")[0])
+        let test = '';
+        let currentInvType = $(this).closest('tbody').attr('id')
+        test = "#" + currentInvType + " tr"
+        let NumberOfRows = $(test).length;
+        if (NumberOfRows === 2) {
+            $('.destroyRepeater').addClass('d-none');
+        }
         $(this).closest("tr")[0].remove();
     });
 

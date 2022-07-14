@@ -22,6 +22,7 @@ class MasterSeeder extends Seeder
         $this->mstDistricts();
         $this->mstGenders();
         $this->discountMode();
+        $this->purchaseTypes();
     }
     
     private function mstCountries()
@@ -153,6 +154,14 @@ class MasterSeeder extends Seeder
                
             ]
         );
+        DB::statement("SELECT SETVAL('mst_discount_modes_id_seq',1000)");
+    }
+    private function purchaseTypes()
+    {
+        DB::table('purchase_order_types')->insert([
+            ['id' => 1, 'name_en' => 'Regular PO', 'name_lc' => ' Regular PO', 'is_active' => 'true', 'created_at' =>$this->time],
+            ['id' => 2, 'name_en' => 'Stock Transfer PO', 'name_lc' => ' Stock Transfer PO', 'is_active' => 'true', 'created_at' =>$this->time],
+        ]);
         DB::statement("SELECT SETVAL('mst_discount_modes_id_seq',1000)");
     }
 }
