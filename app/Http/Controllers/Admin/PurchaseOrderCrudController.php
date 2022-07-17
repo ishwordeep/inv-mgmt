@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\MstStore;
+use App\Models\MstSupplier;
+use Illuminate\Http\Request;
+use App\Models\PurchaseOrder;
 use App\Base\BaseCrudController;
+use App\Models\PurchaseOrderType;
 use App\Http\Requests\PurchaseOrderRequest;
+use App\Models\MstItem;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
-use Illuminate\Http\Request;
 
 /**
  * Class PurchaseOrderCrudController
@@ -15,7 +20,7 @@ use Illuminate\Http\Request;
  */
 class PurchaseOrderCrudController extends BaseCrudController
 {
-   
+
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -27,6 +32,7 @@ class PurchaseOrderCrudController extends BaseCrudController
         CRUD::setModel(\App\Models\PurchaseOrder::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/purchase-order');
         CRUD::setEntityNameStrings('purchase order', 'purchase orders');
+        $this->user = backpack_user();
     }
 
     /**
@@ -73,14 +79,37 @@ class PurchaseOrderCrudController extends BaseCrudController
      */
     public function create()
     {
+        $filtered_items=[];
         $this->crud->hasAccessOrFail('create');
+        $items = MstItem::where('is_active', 'true')->get(['id', 'name_en']);
 
-        // prepare the fields you need to show
+        foreach ($items as $item) {
+            array_push($filtered_items, [
+                'id' => $item->id,
+                'name' => $item->name_en
+            ]);
+        }
+        $this->data['item_lists'] = $filtered_items;
         $this->data['invType'] = 'addRepeaterToPO';
         $this->data['crud'] = $this->crud;
         $this->data['saveAction'] = $this->crud->getSaveAction();
         $this->data['title'] = $this->crud->getTitle() ?? trans('backpack::crud.add') . ' ' . $this->crud->entity_name;
 
+        $this->data['po_types'] = PurchaseOrderType::whereIsActive(true)->select('id', 'name_en')->get();
+        $this->data['suppliers'] = MstSupplier::whereIsActive(true)->select('id', 'name_en')->get();
+
+        if ($this->user->user_level === config('users.user_level.store_user')) {
+            $stores = MstStore::whereIsActive(true)->whereId($this->user->store_id)->select('id', 'name_en')->get();
+            $requested_stores = MstStore::whereIsActive(true)->where('id', '<>', $this->user->store_id)->select('id', 'name_en')->get();
+        } else {
+            $stores = MstStore::whereIsActive(true)->select('id', 'name_en')->get();
+            $requested_stores = MstStore::whereIsActive(true)->select('id', 'name_en')->get();
+        }
+
+
+
+        $this->data['stores'] = $stores;
+        $this->data['requested_stores'] = $requested_stores;
         // load the view from /resources/views/vendor/backpack/crud/ if it exists, otherwise load the one in the package
         return view('customViews.purchaseOrder', $this->data);
     }

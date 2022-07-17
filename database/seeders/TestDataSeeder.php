@@ -75,6 +75,7 @@ class TestDataSeeder extends Seeder
     private function supplier(){
         DB::table('mst_suppliers')->insert([
             array('id' => 1, 'code'=>'0','name_en' => 'Government Ltd','name_lc' => 'Government Ltd'),
+            array('id' => 2, 'code'=>'12','name_en' => 'Hello Ltd','name_lc' => 'hello Ltd'),
            
         ]);
         DB::statement("SELECT SETVAL('mst_suppliers_id_seq',100)");

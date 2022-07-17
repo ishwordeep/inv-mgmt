@@ -1,6 +1,4 @@
-
-$(document).ready(function () {
-    let newTrForPO='<tr>'+
+let newTrForPO='<tr>'+
     '<td></td>'+
     '<td>'+
         '<div class="input-group">'+
@@ -53,60 +51,7 @@ $(document).ready(function () {
     '</td>'+
     '<td>'+
         '<div class="input-group" style="width:5rem;">'+
-           ' <i class="las la-trash p-1 text-danger destroyRepeater " aria-hidden="true"></i>'+
+           ' <i class="las la-trash p-1 text-danger destroyRepeater d-none" aria-hidden="true"></i>'+
         '</div>'+
     '</td>'+
     '</tr>';
-   
-
-    $("#addRepeaterToStockEntry,#addRepeaterToPO").click(function () {
-        let currentId = $(this).attr("id");
-        $("#po-table").append(newTrForPO);
-        $(".destroyRepeater").removeClass("d-none");
-    });
-    $(".destroyRepeater").click(function () {
-        $(this).closest("tr")[0].remove();
-    });
-
-    // Autocomplete
-    let availableTags = [{
-        id: ""
-        , text: "Search an item.."
-    , }, ];
-    let all_items = '[{"id":1,"name":"Item1"},{"id":2,"name":"Item2"},{"id":3,"name":"Item3"}]'
-    JSON.parse(all_items).forEach(function(item, index) {
-        availableTags.push({
-            id: item.id
-            , label: item.name
-        , });
-    });
-
-    $(".inv_item").autocomplete({
-        source: availableTags
-        , minLength: 1
-        , select: function(event, ui) {
-            // let present = checkIfItemExist(ui.item.id);
-            let present = false;
-            if (present) {
-                Swal.fire({
-                    title: "Item Already Exits !"
-                    , confirmButtonText: "OK"
-                , }).then((result) => {
-                    /* Read more about isConfirmed, isDenied below */
-                    if (result.isConfirmed) {
-                        $("#po_item_name-" + dataCntr).val("");
-
-                        return;
-                    }
-                });
-            } else {
-                $(this).attr("data-cntr", 5);
-                $(this).closest('tr').find('input').attr('data-cntr', 999);
-
-            }
-        }
-    });
-
-
-    // End Autocomplete
-});

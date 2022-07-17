@@ -41,6 +41,7 @@ class BaseCrudController extends CrudController
             $this->setupConfigurationForCurrentOperation();
             return $next($request);
         });
+        
         // parent::__construct();
     }
 

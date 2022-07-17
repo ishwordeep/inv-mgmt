@@ -12,6 +12,7 @@
     }
 
 </style>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 @extends(backpack_view('blank'))
 
 {{-- @section('header')
@@ -28,48 +29,51 @@
 
             <div class=" col-sm-4">
                 <div class="input-group mb-3">
-                    <label class="input-group-text" for="inputGroupSelect01" style="min-width: 100px; ">PO Type</label>
-                    <select class="form-select form-control" id="inputGroupSelect01" style="min-width: 150px; ">
-                        <option selected>Choose...</option>
-                        <option value="1">one</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    <label class="input-group-text" for="po_type" style="min-width: 100px; ">PO Type</label>
+                    <select class="form-select form-control" id="po_type" style="min-width: 150px; ">
+                        @foreach($po_types as $type)
+                        <option value={{$type->id}}>{{$type->name_en}}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
             <div class=" col-sm-4">
                 <div class="input-group mb-3">
-                    <label class="input-group-text" for="inputGroupSelect01" style="min-width: 100px;">Supplier</label>
-                    <select class="form-select form-control" id="inputGroupSelect01" style="min-width: 150px;">
-                        <option selected>Choose...</option>
-                        <option value="1">one</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    <label class="input-group-text" for="supplier" style="min-width: 100px;">Supplier</label>
+                    <select class="form-select form-control" id="supplier" style="min-width: 150px;" disabled>
+                        <option val='' disabled>--Select--</option>
+                        @foreach($suppliers as $supplier)
+                        <option value={{$supplier->id}}>{{$supplier->name_en}}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
-            <div class=" col-sm-4">
-                <div class="input-group mb-3">
-                    <label class="input-group-text" for="inputGroupSelect01" style="min-width: 100px;">Requested Store</label>
-                    <select class="form-select form-control" id="inputGroupSelect01" style="min-width: 150px;">
-                        <option selected>Choose...</option>
-                        <option value="1">one</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
-                </div>
-            </div>
+
+
             <div class=" col-sm-4">
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01" style="min-width: 100px;">Store</label>
                     <select class="form-select form-control" id="inputGroupSelect01" style="min-width: 150px;">
-                        <option selected>Choose...</option>
-                        <option value="1">one</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        @foreach($stores as $store)
+                        <option value={{$store->id}}>{{$store->name_en}}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
+
+            <div class=" col-sm-4">
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="requested_store" style="min-width: 100px;">Requested Store</label>
+                    <select class="form-select form-control" id="requested_store" style="min-width: 150px;" disabled>
+                        <option val='' disabled>--Select--</option>
+                        @foreach($requested_stores as $store)
+                        <option value={{$store->id}}>{{$store->name_en}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
+
 
             <div class=" col-sm-4 ">
                 <div class="input-group mb-3">
@@ -94,7 +98,65 @@
                 @include('customViews.partialViews.tableHeaderForInv')
             </thead>
             <tbody id="po-table">
-               @include('customViews.partialViews.newTrForInv')
+                <tr>
+                    <td></td>
+                    <td>
+                        <div class="input-group">
+                            <input type="text" class="form-control p-1 inv_item" data-cntr='' name="" placeholder="Search item..." id='' size="1" style="width:10rem;">
+                            <input type="hidden" name="" class="">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="number" class="form-control p-1" data-cntr='' id="" placeholder="Add Qty" name="" size="1" style="width:5rem;">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="number" class="form-control p-1" data-cntr='' id="" placeholder="Free Qty" name="" size="1" style="width:5rem;">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="number" class="form-control p-1" data-cntr='' id="" placeholder="Total Qty" name="" size="1" style="width:5rem;">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="date" class="form-control p-1" data-cntr='' id="" placeholder="Expiry Date" name="" size="1" style="width:7rem;">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="number" class="form-control p-1" data-cntr='' id="" placeholder="Unit Cost" name="" size="1" style="width:5rem;">
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class="input-group">
+                            <select class="form-select form-control" data-cntr='' id="inputGroupSelect01" style="min-width: 73px;">
+                                <option value="2">%</option>
+                                <option value="3">NRS</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="number" class="form-control p-1" data-cntr='' id="" placeholder="Discount" name="" size="1" style="width:5rem;">
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class="input-group">
+                            <input type="number" class="form-control p-1" data-cntr='' id="" placeholder="Total Amount" name="" size="1" style="width:5rem;">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group" style="width:5rem;">
+                            <i class="las la-trash p-1 text-danger destroyRepeater d-none" aria-hidden="true"></i>
+                        </div>
+                    </td>
+                </tr>
             </tbody>
         </table>
         <div>
@@ -151,4 +213,8 @@
         </div>
     </div>
 </form>
+@endsection
+
+@section('after_scripts')
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 @endsection
