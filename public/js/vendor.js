@@ -118,10 +118,20 @@ $(document).ready(function () {
                 $(currentObj).find('.Discount').attr("id", "Discount-" + ui.item.id).attr('name','discount['+ui.item.id+']');
                 $(currentObj).find('.TotalAmount').attr("id", "TotalAmount-" + ui.item.id).attr('name','item_amount['+ui.item.id+']');
 
+                enableFieldsForPO(ui.item.id)
                 $('#inv_item_hidden-'+ui.item.id).val(ui.item.id);
             }
         }
     });
+    
+    function enableFieldsForPO(row){
+        $('#AddQty-'+row).prop("disabled", false)
+        $('#FreeQty-'+row).prop("disabled", false)
+        $('#ExpiryDate-'+row).prop("disabled", false)
+        $('#UnitCost-'+row).prop("disabled", false)
+        $('#DiscountMode-'+row).prop("disabled", false)
+        $('#Discount-'+row).prop("disabled", false)
+    }
 
 
     // End Autocomplete

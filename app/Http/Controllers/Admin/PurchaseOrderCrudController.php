@@ -36,7 +36,7 @@ class PurchaseOrderCrudController extends BaseCrudController
     {
         CRUD::setModel(\App\Models\PurchaseOrder::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/purchase-order');
-        CRUD::setEntityNameStrings('purchase order', 'purchase orders');
+        CRUD::setEntityNameStrings('', 'Purchase Orders');
         $this->user = backpack_user();
     }
 
@@ -173,7 +173,7 @@ class PurchaseOrderCrudController extends BaseCrudController
                 // Alert::success(trans('backpack::crud.insert_success'))->flash();
                 return response()->json([
                     'status' => true,
-                    'url' => backpack_url('/purchase-order'),
+                    'url' => backpack_url('/purchase-order/'. $POId->id.'/show'),
                 ]);
             } catch (\Throwable $th) {
                 DB::rollback();

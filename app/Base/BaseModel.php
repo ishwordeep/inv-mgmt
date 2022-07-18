@@ -109,5 +109,8 @@ class BaseModel extends Model
     public function discountModeEntity(){
         return $this->belongsTo(MstDiscountMode::class,'discount_mode_id','id');
     }
+    public function requestedStoreEntity(){
+        return $this->belongsTo(MstStore::class,'requested_store_id','id');
+    }
 
 }
