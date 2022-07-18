@@ -7,10 +7,12 @@ use App\Models\MstCategory;
 use App\Models\MstCountry;
 use App\Models\MstDiscountMode;
 use App\Models\MstDistrict;
+use App\Models\MstItem;
 use App\Models\MstProvince;
 use App\Models\MstStore;
 use App\Models\MstSubcategory;
 use App\Models\MstSupplier;
+use App\Models\MstSupStatus;
 use App\Models\MstUnit;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
@@ -97,6 +99,12 @@ class BaseModel extends Model
     }
     public function unitEntity(){
         return $this->belongsTo(MstUnit::class,'unit_id','id');
+    }
+    public function itemEntity(){
+        return $this->belongsTo(MstItem::class,'item_id','id');
+    }
+    public function statusEntity(){
+        return $this->belongsTo(MstSupStatus::class,'status_id','id');
     }
     public function discountModeEntity(){
         return $this->belongsTo(MstDiscountMode::class,'discount_mode_id','id');

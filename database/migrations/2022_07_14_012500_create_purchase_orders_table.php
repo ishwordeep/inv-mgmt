@@ -21,7 +21,7 @@ class CreatePurchaseOrdersTable extends Migration
             $table->string('po_number')->nullable();
             $table->string('po_date')->nullable();
             $table->string('expected_delivery')->nullable();
-            $table->string('approved_by')->nullable();
+            $table->unsignedBigInteger('approved_by')->nullable();
             $table->float('gross_amt')->nullable();
             $table->float('discount_amt')->nullable();
             $table->float('net_amt')->nullable();
@@ -35,6 +35,7 @@ class CreatePurchaseOrdersTable extends Migration
 
             $table->timestamps();
 
+            $table->foreign('approved_by')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreign('created_by')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreign('store_id')->references('id')->on('mst_stores')->onDelete('restrict')->onUpdate('cascade');
             $table->foreign('supplier_id')->references('id')->on('mst_suppliers')->onDelete('restrict')->onUpdate('cascade');

@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use App\Base\BaseModel;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class PurchaseOrder extends Model
+class PurchaseOrder extends BaseModel
 {
     use CrudTrait;
 
@@ -34,6 +35,12 @@ class PurchaseOrder extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+    public function purchaseItemsEntity(){
+        return $this->hasMany(PurchaseOrderItem::class,'po_id','id');
+    }
+    public function approvedByEntity(){
+        return $this->belongsTo(User::class,'approved_by','id');
+    }
 
     /*
     |--------------------------------------------------------------------------

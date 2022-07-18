@@ -185,6 +185,26 @@ class PurchaseOrderCrudController extends BaseCrudController
             }
         }
     }
+    public function show($id)
+    {
+        $this->crud->hasAccessOrFail('show');
+        // get entry ID from Request (makes sure its the last ID for nested resources)
+        $id = $this->crud->getCurrentEntryId() ?? $id;
+        $data = [];
+        // get the info for that entry (include softDeleted items if the trait is used)
+        if ($this->crud->get('show.softDeletes') && in_array('Illuminate\Database\Eloquent\SoftDeletes', class_uses($this->crud->model))) {
+            $data['entry'] = $this->crud->getModel()->withTrashed()->findOrFail($id);
+        } else {
+            $data['entry'] = $this->crud->getEntry($id);
+        }
+        $data['items'] = $data['entry']->purchaseItemsEntity;
+        $data['crud'] = $this->crud;
+        return view('customViews.purchaseOrderShow', [
+            'entry' => $data['entry'],
+            'items' => $data['items'],
+            'crud' => $data['crud'],
+        ]);
+    }
 
     /**
      * Define what happens when the Update operation is loaded.
