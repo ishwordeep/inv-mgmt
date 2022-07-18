@@ -10,6 +10,11 @@ use App\Base\BaseCrudController;
 use App\Models\PurchaseOrderType;
 use App\Http\Requests\PurchaseOrderRequest;
 use App\Models\MstItem;
+use App\Models\MstPoSequence;
+use App\Models\MstSupStatus;
+use App\Models\PurchaseOrderItem;
+use Illuminate\Support\Facades\DB;
+
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -79,7 +84,7 @@ class PurchaseOrderCrudController extends BaseCrudController
      */
     public function create()
     {
-        $filtered_items=[];
+        $filtered_items = [];
         $this->crud->hasAccessOrFail('create');
         $items = MstItem::where('is_active', 'true')->get(['id', 'name_en']);
 
@@ -112,6 +117,73 @@ class PurchaseOrderCrudController extends BaseCrudController
         $this->data['requested_stores'] = $requested_stores;
         // load the view from /resources/views/vendor/backpack/crud/ if it exists, otherwise load the one in the package
         return view('customViews.purchaseOrder', $this->data);
+    }
+    public function store()
+    {
+        $this->crud->hasAccessOrFail('create');
+        $request = $this->crud->validateRequest();
+        // dd($request->all());
+        if (isset($request)) {
+            $purchaseOrderDetails = $request->only([
+                'status_id',
+                'po_type_id',
+                'supplier_id',
+                'store_id',
+                'requested_store_id',
+                'expected_delivery',
+                'approved_by',
+                'gross_amt',
+                'discount_amt',
+                'tax_amt',
+                'net_amt',
+                'comments',
+            ]);
+
+            if ($request->status_id === MstSupStatus::APPROVED) {
+                if (!$this->user->is_po_approver) abort(401);
+
+                $latestId =PurchaseOrder::latest()->where('status_id', MstSupStatus::APPROVED)->count() ?? 0;
+                $purchaseOrderDetails['po_number'] = (MstPoSequence::first()->sequence_code) . ($latestId + 1);
+                $purchaseOrderDetails['po_date'] = 2079/12/12;//add current date
+                $purchaseOrderDetails['approved_by'] = $this->user->id;
+            }
+
+            DB::beginTransaction();
+            try {
+                $POId = PurchaseOrder::create($purchaseOrderDetails);
+
+                foreach ($request->inv_item_hidden as $key => $val) {
+                    $itemArray = [
+                        'po_id' => $POId->id,
+                        'purchase_qty' => $request->purchase_qty[$key],
+                        'free_qty' => $request->free_qty[$key],
+                        'total_qty' => $request->total_qty[$key],
+                        'discount_mode_id' => $request->discount_mode_id[$key],
+                        'discount' => $request->discount[$key],
+                        'purchase_price' => $request->purchase_price[$key],
+                        'item_amount' => $request->item_amount[$key],
+                        'item_id' => $request->inv_item_hidden[$key],
+                        'expiry_date' => $request->expiry_date[$key],
+                    ];
+                    PurchaseOrderItem::create($itemArray);
+                }
+
+                DB::commit();
+
+                // Alert::success(trans('backpack::crud.insert_success'))->flash();
+                return response()->json([
+                    'status' => true,
+                    'url' => backpack_url('/purchase-order'),
+                ]);
+            } catch (\Throwable $th) {
+                DB::rollback();
+
+                return response()->json([
+                    'status' => false,
+                    'message' => $th->getMessage()
+                ], 404);
+            }
+        }
     }
 
     /**

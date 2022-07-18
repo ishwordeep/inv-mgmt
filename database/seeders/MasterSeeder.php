@@ -23,6 +23,7 @@ class MasterSeeder extends Seeder
         $this->mstGenders();
         $this->discountMode();
         $this->purchaseTypes();
+        $this->mstSupStatus();
     }
     
     private function mstCountries()
@@ -163,5 +164,16 @@ class MasterSeeder extends Seeder
             ['id' => 2, 'name_en' => 'Stock Transfer PO', 'name_lc' => ' Stock Transfer PO', 'is_active' => 'true', 'created_at' =>$this->time],
         ]);
         DB::statement("SELECT SETVAL('mst_discount_modes_id_seq',1000)");
+    }
+    private function mstSupStatus()
+    {
+        DB::table('mst_sup_status')->insert([
+            array('id' => 1, 'code' => '1', 'name_en' => 'created', 'created_at' => $this->time),
+            array('id' => 2, 'code' => '2', 'name_en' => 'approved', 'created_at' => $this->time),
+            array('id' => 3, 'code' => '3', 'name_en' => 'cancelled', 'created_at' => $this->time),
+            
+        ]);
+
+        DB::statement("SELECT SETVAL('mst_sup_status_id_seq',100)");
     }
 }

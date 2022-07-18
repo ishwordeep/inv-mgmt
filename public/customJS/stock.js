@@ -100,13 +100,59 @@ $(document).ready(function () {
                     }
                 });
             } else {
-                $(this).attr("data-cntr", 5);
-                $(this).closest('tr').find('input').attr('data-cntr', 999);
+                // $(this).attr("data-cntr", 5);
+                let currentObj=$(this).closest('tr');
+                $(this).closest('tr').find('input,select').attr('data-cntr', ui.item.id);
 
+                //set Name
+                $(currentObj).find('.inv_item').attr("id", "inv_item-" + ui.item.id).attr('name','inv_item['+ui.item.id+']');
+                $(currentObj).find('.inv_item_hidden').attr("id", "inv_item_hidden-" + ui.item.id).attr('name','inv_item_hidden['+ui.item.id+']');
+                $(currentObj).find('.AddQty').attr("id", "AddQty-" + ui.item.id).attr('name','purchase_qty['+ui.item.id+']');
+                $(currentObj).find('.FreeQty').attr("id", "FreeQty-" + ui.item.id).attr('name','free_qty['+ui.item.id+']');
+                $(currentObj).find('.TotalQty').attr("id", "TotalQty-" + ui.item.id).attr('name','total_qty['+ui.item.id+']');
+                $(currentObj).find('.ExpiryDate').attr("id", "ExpiryDate-" + ui.item.id).attr('name','expiry_date['+ui.item.id+']');
+                $(currentObj).find('.UnitCost').attr("id", "UnitCost-" + ui.item.id).attr('name','purchase_price['+ui.item.id+']');
+                $(currentObj).find('.DiscountMode').attr("id", "DiscountMode-" + ui.item.id).attr('name','discount_mode_id['+ui.item.id+']');
+                $(currentObj).find('.Discount').attr("id", "Discount-" + ui.item.id).attr('name','discount['+ui.item.id+']');
+                $(currentObj).find('.TotalAmount').attr("id", "TotalAmount-" + ui.item.id).attr('name','item_amount['+ui.item.id+']');
+
+                $('#inv_item_hidden-'+ui.item.id).val(ui.item.id);
             }
         }
     });
 
 
     // End Autocomplete
+    $('#save').on('click', function() {
+        $('#status').val(1);
+    });
+    $('#approve').on('click', function() {
+        $('#status').val(2);
+    });
+    $('#cancel').on('click', function() {
+        $('#status').val(3);
+    });
+    // Save Action
+    $('#purchaseOrderForm').validate({
+        submitHandler: function(form) {
+            Swal.fire({
+                title: 'Are you sure?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, save it!'
+            }).then((confirmResponse) => {
+                if (confirmResponse.isConfirmed) {
+                    let data = $('#purchaseOrderForm').serialize();
+                    let url = form.action;
+                    axios.post(url, data).then((response) => {
+                        window.location.href = response.data.url;
+                    }, (error) => {
+                        swal("Error !", error.response.data.message, "error")
+                    });
+                }
+            });
+        }
+    });
 });

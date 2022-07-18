@@ -30,6 +30,9 @@ class MstSupStatus extends BaseModel
         'updated_by',
         'deleted_by'
     ];
+    const CREATED = 1;
+    const APPROVED = 2;
+    const CANCELLED = 3;
     // protected $hidden = [];
     // protected $dates = [];
 

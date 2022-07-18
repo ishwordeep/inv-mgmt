@@ -24,8 +24,6 @@ class CreatePurchaseOrdersTable extends Migration
             $table->string('approved_by')->nullable();
             $table->float('gross_amt')->nullable();
             $table->float('discount_amt')->nullable();
-            $table->float('tax_amt')->nullable();
-            $table->float('other_charges')->nullable();
             $table->float('net_amt')->nullable();
             $table->string('comments')->nullable();
             $table->unsignedBigInteger('store_id');
@@ -35,9 +33,7 @@ class CreatePurchaseOrdersTable extends Migration
             $table->unsignedBigInteger('status_id');
             $table->unsignedInteger('created_by')->nullable();
 
-
             $table->timestamps();
-
 
             $table->foreign('created_by')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreign('store_id')->references('id')->on('mst_stores')->onDelete('restrict')->onUpdate('cascade');
@@ -55,11 +51,10 @@ class CreatePurchaseOrdersTable extends Migration
             $table->unsignedBigInteger('discount_mode_id')->nullable();
             $table->float('discount')->nullable();
             $table->float('purchase_price')->nullable();
-            $table->float('tax_vat')->nullable();
-            $table->float('sales_price')->nullable();
             $table->float('item_amount')->nullable();
             $table->unsignedBigInteger('item_id')->nullable();
             $table->unsignedInteger('created_by')->nullable();
+            $table->string('expiry_date')->nullable();
 
 
 
