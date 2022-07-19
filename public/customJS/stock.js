@@ -53,7 +53,7 @@ $(document).ready(function () {
     '</td>'+
     '<td>'+
         '<div class="input-group" style="width:5rem;">'+
-           ' <i class="las la-trash p-1 text-danger destroyRepeater " aria-hidden="true"></i>'+
+           ' <i class="las la-trash p-1 text-danger destroyRepeater " aria-hidden="true" onclick="destroyRepeater()"></i>'+
         '</div>'+
     '</td>'+
     '</tr>';
@@ -121,7 +121,6 @@ $(document).ready(function () {
         }
     });
 
-
     // End Autocomplete
     $('#save').on('click', function() {
         $('#status').val(1);
@@ -156,3 +155,7 @@ $(document).ready(function () {
         }
     });
 });
+
+function destroyRepeater(){
+    $('.destroyRepeater').closest("tr")[0].remove();
+}

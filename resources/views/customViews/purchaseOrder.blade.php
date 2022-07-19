@@ -151,9 +151,9 @@
                 </tr>
             </tbody>
         </table>
-        <div>
-            <button type="button" class="btn btn-primary btn-sm " id="addRepeaterToPO"><i class="las la-plus p-1 text-white  bg-primary" aria-hidden="true"></i>Add More Item</button>
-        </div>
+    </div>
+    <div>
+        <button type="button" class="btn btn-primary btn-sm" id="addRepeaterToPO"><i class="las la-plus p-1 text-white  bg-primary" aria-hidden="true"></i>Add More Item</button>
     </div>
 
     <div class="main-container card">
