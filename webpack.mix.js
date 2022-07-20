@@ -30,6 +30,7 @@ mix.js("resources/js/app.js", "public/js")
         "public/packages/backpack/base/js/bundle.js",
         "public/customJS/stock.js",
         "public/customJS/po.js",
+        "public/customJS/numericals.js",
       
     ],
     "public/js/vendor.js"
