@@ -1,7 +1,5 @@
 
 $(document).ready(function () {
-
-
     $("#addRepeaterToStockEntry,#addRepeaterToPO").click(function () {
         repeater()
     });
@@ -26,7 +24,10 @@ $(document).ready(function () {
         id: ""
         , text: "Search an item.."
     , }, ];
-    let all_items = '[{"id":1,"name":"Item1"},{"id":2,"name":"Item2"},{"id":3,"name":"Item3"}]'
+    
+    // let all_items = '[{"id":1,"name":"Item1"},{"id":2,"name":"Item2"},{"id":3,"name":"Item3"}]'
+    let all_items ="<?php echo ($item_lists)?>";
+
     JSON.parse(all_items).forEach(function(item, index) {
         availableTags.push({
             id: item.id
@@ -55,6 +56,8 @@ $(document).ready(function () {
                 $(currentObj).find('.UnitCost').attr("id", "UnitCost-" + ui.item.id).attr('name','purchase_price['+ui.item.id+']');
                 $(currentObj).find('.DiscountMode').attr("id", "DiscountMode-" + ui.item.id).attr('name','discount_mode_id['+ui.item.id+']');
                 $(currentObj).find('.Discount').attr("id", "Discount-" + ui.item.id).attr('name','discount['+ui.item.id+']');
+                $(currentObj).find('.TaxVat').attr("id", "TaxVat-" + ui.item.id).attr('name','taxvat['+ui.item.id+']');//stock entries
+                $(currentObj).find('.UnitSale').attr("id", "UnitSale-" + ui.item.id).attr('name','unit_sale['+ui.item.id+']');//stock entries
                 $(currentObj).find('.TotalAmount').attr("id", "TotalAmount-" + ui.item.id).attr('name','item_amount['+ui.item.id+']');
 
                 enableFieldsForPO(ui.item.id)
@@ -99,6 +102,8 @@ $(document).ready(function () {
                     $(currentObj).find('.UnitCost').attr("id", "UnitCost-" + ui.item.id).attr('name','purchase_price['+ui.item.id+']');
                     $(currentObj).find('.DiscountMode').attr("id", "DiscountMode-" + ui.item.id).attr('name','discount_mode_id['+ui.item.id+']');
                     $(currentObj).find('.Discount').attr("id", "Discount-" + ui.item.id).attr('name','discount['+ui.item.id+']');
+                    $(currentObj).find('.TaxVat').attr("id", "TaxVat-" + ui.item.id).attr('name','taxvat['+ui.item.id+']');//stock entries
+                    $(currentObj).find('.UnitSale').attr("id", "UnitSale-" + ui.item.id).attr('name','unit_sale['+ui.item.id+']');//stock entries
                     $(currentObj).find('.TotalAmount').attr("id", "TotalAmount-" + ui.item.id).attr('name','item_amount['+ui.item.id+']');
     
                     enableFieldsForPO(ui.item.id)
@@ -115,6 +120,8 @@ $(document).ready(function () {
         $('#UnitCost-'+row).prop("disabled", false)
         $('#DiscountMode-'+row).prop("disabled", false)
         $('#Discount-'+row).prop("disabled", false)
+        $('#TaxVat-'+row).prop("disabled", false)
+        $('#UnitSale-'+row).prop("disabled", false)
     }
 
 
