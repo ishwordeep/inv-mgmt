@@ -3,7 +3,8 @@
 
 $(document).ready(function () {
     $("#addRepeaterToStockEntry,#addRepeaterToPO").click(function () {
-        repeater()
+       
+        repeater($(this).attr('id'))
     });
     $(".destroyRepeater").click(function () {
         destroyRepeaterFunction(this)
@@ -27,8 +28,8 @@ $(document).ready(function () {
         , text: "Search an item.."
     , }, ];
     
-    // let all_items = '[{"id":1,"name":"Item1"},{"id":2,"name":"Item2"},{"id":3,"name":"Item3"}]'
-    let all_items ="<?php echo ($item_lists)?>";
+    let all_items = '[{"id":1,"name":"Item1"},{"id":2,"name":"Item2"},{"id":3,"name":"Item3"}]'
+    // let all_items ="<?php echo ($item_lists)?>";
 
     JSON.parse(all_items).forEach(function(item, index) {
         availableTags.push({
@@ -75,10 +76,18 @@ $(document).ready(function () {
     }
 
     
-    function repeater(){
-        let tr = $('#repeaterRow').clone(true);
-        tr.removeAttr('class');
-        $('#po-table').append(tr);
+    function repeater(type){
+       
+        if(type==='addRepeaterToStockEntry'){
+            let tr = $('#repeaterRowStock').clone(true);
+            tr.removeAttr('class');
+            $('#stock-table').append(tr);
+        }
+        if(type==='addRepeaterToPO'){
+            let tr = $('#repeaterRowPO').clone(true);
+            tr.removeAttr('class');
+            $('#po-table').append(tr);
+        }
         
         $(".destroyRepeater").removeClass("d-none");
         let str=(tr).find('.inv_item');
@@ -164,6 +173,16 @@ $(document).ready(function () {
             });
         }
     });
+
+    $('#itemWiseDiscount').on('change',function(){
+        if($(this).is(':checked')){
+            $('#bulkDiscount').prop("disabled", true)
+        }
+        else{
+            $('#bulkDiscount').prop("disabled", false)
+        }
+    })
+
 });
 
 $(document).ready(function () {
