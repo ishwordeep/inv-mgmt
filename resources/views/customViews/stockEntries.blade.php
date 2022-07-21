@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 @extends(backpack_view('blank'))
 
+
 {{-- @section('header')
     @include('customViews.partialViews.header_content');
 @endsection --}}
@@ -29,8 +30,9 @@
             <div class=" col-sm-4 ">
                 <div class="input-group mb-3">
                     <span class="input-group-text">PO Number</span>
-                    <input type="text" id="" name='' value="" class="form-control" placeholder="PO Number">
-                    <button class="btn btn-success">Fetch</button>
+                    <input type="text" class="form-control" id="purchase_order_number" name="purchase_order_id" placeholder="PO NO">
+
+                    <button class="btn btn-success" type="button" id="fetch_by_po_num_btn">Fetch</button>
 
                 </div>
             </div>

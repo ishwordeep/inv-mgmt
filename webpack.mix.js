@@ -28,6 +28,7 @@ mix.js("resources/js/app.js", "public/js")
 .scripts(
     [
         "public/packages/backpack/base/js/bundle.js",
+        "public/customJS/common.js",
         "public/customJS/stock.js",
         "public/customJS/po.js",
         "public/customJS/numericals.js",

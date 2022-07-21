@@ -41,25 +41,7 @@ class StockEntryCrudController extends BaseCrudController
         return view('customViews.stockEntries', $this->data);
     }
 
-    /**
-     * Define what happens when the List operation is loaded.
-     * 
-     * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
-     * @return void
-     */
-
-    /**
-     * Define what happens when the Create operation is loaded.
-     * 
-     * @see https://backpackforlaravel.com/docs/crud-operation-create
-     * @return void
-     */
-
-
-    /**
-     * Define what happens when the Update operation is loaded.
-     * 
-     * @see https://backpackforlaravel.com/docs/crud-operation-update
-     * @return void
-     */
+   public function fetchPurchaseOrderDetails($po_num){
+    dd("ok");
+   }
 }
