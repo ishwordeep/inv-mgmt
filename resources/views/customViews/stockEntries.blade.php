@@ -24,7 +24,7 @@
 @section('content')
 {{-- <form id="stockEntryForm" action="{{ url($crud->route) }}" method="POST"> --}}
 <form id="stockEntryForm" action="{{ url($crud->route) }}" method="POST">
-
+   @csrf
     <div class="card main-container ">
         <div class="row m-3">
             <div class=" col-sm-4 ">
@@ -72,13 +72,26 @@
                 </div>
             </div>
 
+            <div class=" col-sm-4 ">
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Invoice Number</span>
+                    <input type="text" class="form-control" id="invoice_number" name="invoice_number" placeholder="Invoice Number">
+                </div>
+            </div>
+            <div class=" col-sm-4 ">
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Invoice Date</span>
+                    <input type="date" class="form-control" id="invoice_date" name="invoice_date" placeholder="Invoice Date">
+                </div>
+            </div>
+
            
 
             <div class=" col-sm-4 ">
                 <div class="input-group mb-3">
                     <span class="input-group-text">Item Wise Discount</span>
 
-                    <input type="checkbox" checked="true" name="" id="itemWiseDiscount" class="form-control">
+                    <input type="checkbox" checked="true" name="itemWiseDiscount" id="itemWiseDiscount" class="form-control">
                 </div>
             </div>
             <div class=" col-sm-4 ">
@@ -303,9 +316,12 @@
 
     <div class="main-container mb-4">
         <div class="d-flex justify-content-end">
-            <button id="" type="submit" class="btn btn-primary  mr-1">Save</button>
-            <button id="" type="submit" class="btn btn-success  mr-1">Approve</button>
-            <button id="" class="btn btn-danger  mr-1">Cancel</button>
+            <div class="d-flex justify-content-end">
+                <input id="status" type="hidden" name="status_id" value="">
+                <button id="save" type="submit" class="btn btn-primary  mr-1">Save</button>
+                <button id="approve" type="submit" class="btn btn-success  mr-1">Approve</button>
+                <button id="cancel" class="btn btn-danger  mr-1">Cancel</button>
+            </div>
         </div>
     </div>
 </form>
@@ -314,5 +330,7 @@
 @section('after_scripts')
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 @endsection

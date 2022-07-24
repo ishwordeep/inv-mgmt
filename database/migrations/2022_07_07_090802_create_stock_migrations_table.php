@@ -15,7 +15,10 @@ class CreateStockMigrationsTable extends Migration
     {
         Schema::create('stock_entries', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('store_id');
+            $table->unsignedInteger('store_id')->nullable();
+            $table->string('invoice_number')->nullable();
+            $table->string('invoice_date')->nullable();
+            $table->string('stock_adjustment_number')->nullable();
             $table->timestamp('entry_date')->nullable();
             $table->string('batch_no')->nullable();
             $table->unsignedSmallInteger('created_by')->nullable();
@@ -45,6 +48,7 @@ class CreateStockMigrationsTable extends Migration
             $table->timestamp('expiry_date')->nullable();
             $table->unsignedFloat('unit_cost_price')->nullable();
             $table->unsignedFloat('unit_sales_price')->nullable();
+            $table->integer('discount_mode_id')->nullable();
             $table->unsignedFloat('discount')->nullable();
             $table->unsignedInteger('tax_vat')->nullable();
             $table->unsignedFloat('amount')->nullable();
@@ -52,6 +56,33 @@ class CreateStockMigrationsTable extends Migration
             $table->timestamps();
             $table->foreign('item_id')->references('id')->on('mst_items')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreign('stock_id')->references('id')->on('stock_entries')->cascadeOnDelete()->cascadeOnUpdate();
+        });
+        Schema::create('batch_details', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedSmallInteger('store_id')->nullable();
+            $table->unsignedSmallInteger('item_id')->nullable();
+            $table->tinyText('batch_no')->nullable();
+            $table->integer('batch_qty')->nullable();
+            $table->float('batch_price')->nullable();
+
+            $table->foreign('store_id')->references('id')->on('mst_stores')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('item_id')->references('id')->on('mst_items')->cascadeOnDelete()->cascadeOnUpdate();
+
+            $table->unsignedSmallInteger('created_by');
+            $table->timestamps();
+        });
+        Schema::create('item_details', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedSmallInteger('store_id')->nullable();
+            $table->unsignedSmallInteger('item_id')->nullable();
+            $table->integer('item_qty')->nullable();
+
+            $table->foreign('store_id')->references('id')->on('mst_stores')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('item_id')->references('id')->on('mst_items')->cascadeOnDelete()->cascadeOnUpdate();
+
+            $table->unsignedSmallInteger('created_by');
+            
+            $table->timestamps();
         });
     }
 
