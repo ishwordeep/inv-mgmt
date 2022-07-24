@@ -114,11 +114,11 @@
                             <input type="number" class="form-control p-1 TotalQty" data-cntr='' id="" placeholder="Total Qty" name="" size="1" style="width:5rem;" readonly>
                         </div>
                     </td>
-                    <td>
+                    {{-- <td>
                         <div class="input-group">
                             <input type="date" class="form-control p-1 ExpiryDate" data-cntr='' id="" placeholder="Expiry Date" name="" size="1" style="width:7rem;"disabled>
                         </div>
-                    </td>
+                    </td> --}}
                     <td>
                         <div class="input-group">
                             <input type="number" class="form-control p-1 UnitCost" data-cntr='' id="" placeholder="Unit Cost" name="" size="1" style="width:5rem;"disabled>
@@ -174,11 +174,11 @@
                             <input type="number" class="form-control p-1 TotalQty" data-cntr='' id="" placeholder="Total Qty" name="" size="1" style="width:5rem;" readonly>
                         </div>
                     </td>
-                    <td>
+                    {{-- <td>
                         <div class="input-group">
                             <input type="date" class="form-control p-1 ExpiryDate" data-cntr='' id="" placeholder="Expiry Date" name="" size="1" style="width:7rem;"disabled>
                         </div>
-                    </td>
+                    </td> --}}
                     <td>
                         <div class="input-group">
                             <input type="number" class="form-control p-1 UnitCost" data-cntr='' id="" placeholder="Unit Cost" name="" size="1" style="width:5rem;"disabled>

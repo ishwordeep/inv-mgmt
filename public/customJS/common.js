@@ -14,7 +14,7 @@ $(document).ready(function () {
         test = "#" + currentInvType + " tr";
         let NumberOfRows = $(test).length;
         // here 3 because,one column is hidden
-        if (NumberOfRows === 3) {
+        if (NumberOfRows === 3) {~
             $('.destroyRepeater').addClass('d-none');
         }
         $(obj).closest("tr")[0].remove();
@@ -75,22 +75,24 @@ $(document).ready(function () {
 
     
     function repeater(type){
-       
         if(type==='addRepeaterToStockEntry'){
             let tr = $('#repeaterRowStock').clone(true);
             tr.removeAttr('class');
+            console.log(tr)
             $('#stock-table').append(tr);
         }
         if(type==='addRepeaterToPO'){
             let tr = $('#repeaterRowPO').clone(true);
             tr.removeAttr('class');
+            alert(type)
+
             $('#po-table').append(tr);
         }
         
         $(".destroyRepeater").removeClass("d-none");
-        let str=(tr).find('.inv_item');
+        // let str=(tr).find('.inv_item');
 
-        $(str).autocomplete({
+        $('.inv_item').autocomplete({
             source: availableTags,
             minLength: 1,
             select: function(event, ui) {

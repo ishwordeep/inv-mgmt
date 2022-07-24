@@ -16,7 +16,7 @@ $(document).ready(function () {
         test = "#" + currentInvType + " tr";
         let NumberOfRows = $(test).length;
         // here 3 because,one column is hidden
-        if (NumberOfRows === 3) {
+        if (NumberOfRows === 3) {~
             $('.destroyRepeater').addClass('d-none');
         }
         $(obj).closest("tr")[0].remove();
@@ -77,22 +77,24 @@ $(document).ready(function () {
 
     
     function repeater(type){
-       
         if(type==='addRepeaterToStockEntry'){
             let tr = $('#repeaterRowStock').clone(true);
             tr.removeAttr('class');
+            console.log(tr)
             $('#stock-table').append(tr);
         }
         if(type==='addRepeaterToPO'){
             let tr = $('#repeaterRowPO').clone(true);
             tr.removeAttr('class');
+            alert(type)
+
             $('#po-table').append(tr);
         }
         
         $(".destroyRepeater").removeClass("d-none");
-        let str=(tr).find('.inv_item');
+        // let str=(tr).find('.inv_item');
 
-        $(str).autocomplete({
+        $('.inv_item').autocomplete({
             source: availableTags,
             minLength: 1,
             select: function(event, ui) {
@@ -189,12 +191,14 @@ $(document).ready(function () {
     $('#fetch_by_po_num_btn').click(function(){
         
        
-        let url = "{{ route('get-purchase-order-details',':po_num') }}"
+        // let url = "{{ route('get-purchase-order-details',':po_num') }}"
+        // let po_num=$('#purchase_order_number').val();
+        // url = url.replace(':po_num', po_num);
+        
         let po_num=$('#purchase_order_number').val();
-        url = url.replace(':po_num', po_num);
+        url ="http://inv_mgmt.test/admin/get-podetails/"+po_num;
         console.log("URL::",url)
         $.get(url).then(function(response) {
-            debugger;
             if(response.nodata==='nodata'){
                 Swal.fire("No Data Found")
             }else{
@@ -202,16 +206,16 @@ $(document).ready(function () {
 
                 
                 let pod=response.pod;
-                $('#inv-qty-header').remove();
-                $('#action-header').remove();
+                // $('#inv-qty-header').remove();
+                // $('#action-header').remove();
                 
                
 
-                $("#grn_type").val(pod.purchase_order_type_id).attr('disabled','disabled');
-                $("#store").val(pod.store_id).attr('disabled','disabled');
-                $("#supplier").val(pod.supplier_id).attr('disabled','disabled');
-                $("#grn-table-body").html(response.view);
-                $("#po_date").val(pod.po_date.slice(0,10)).attr('disabled','disabled');
+                // $("#grn_type").val(pod.purchase_order_type_id).attr('disabled','disabled');
+                // $("#store").val(pod.store_id).attr('disabled','disabled');
+                // $("#supplier").val(pod.supplier_id).attr('disabled','disabled');
+                $("#stock-table").html(response.view)
+                // $("#po_date").val(pod.po_date.slice(0,10)).attr('disabled','disabled');
 
             }
        

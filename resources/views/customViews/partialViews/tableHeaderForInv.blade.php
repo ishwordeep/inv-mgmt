@@ -5,7 +5,9 @@
     <th scope="col">Add Qty</th>
     <th scope="col">Free Qty</th>
     <th scope="col">Total Qty</th>
+    @if($invType==='addRepeaterToStockEntry')
     <th scope="col">Expiry Date </th>
+    @endif
     <th scope="col">Unit Cost </th>
     <th scope="col">Disc Mode</th>
     <th scope="col">Discount</th>
