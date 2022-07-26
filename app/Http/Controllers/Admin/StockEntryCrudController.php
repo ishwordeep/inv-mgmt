@@ -10,6 +10,8 @@ use App\Models\PurchaseOrderItem;
 use Illuminate\Support\Facades\DB;
 use App\Models\MstStockAdjustmentNo;
 use App\Http\Requests\StockEntryRequest;
+use App\Models\BatchDetail;
+use App\Models\ItemDetail;
 use App\Models\MstBatchNo;
 use App\Models\StockEntry;
 use App\Models\StockItem;
@@ -118,8 +120,8 @@ class StockEntryCrudController extends BaseCrudController
 
                     $itemArr['batch_no'] = MstBatchNo::first()->sequence_code . '-' . $stock->id;
 
-                    // $this->saveItemQtyDetails();
-                    // $this->saveBatchQtyDetails();
+                    $this->saveItemQtyDetails();
+                    $this->saveBatchQtyDetails($itemArr);
                 }
 
                 $stockItem = StockItem::create($itemArr);
@@ -138,12 +140,47 @@ class StockEntryCrudController extends BaseCrudController
             ]);
         }
     }
-    private function saveBatchQtyDetails(){
-        dd("Batch qty function");
-    }
-    private function saveItemQtyDetails(){
-        dd("item qty function");
+    private function saveBatchQtyDetails($itemArr)
+    {
+        $arr = [
+            'store_id' => $this->user->store_id,
+            'item_id' => $itemArr['item_id'],
+            'created_by' => $this->user->id,
+        ];
 
+
+        $flag = false;
+
+        $arr['batch_no'] = $itemArr['batch_no'];
+        $arr['batch_qty'] = $itemArr['total_qty'];
+        $arr['batch_price'] = $itemArr['unit_cost_price'];
+
+        BatchDetail::create($arr);
+    }
+    private function saveItemQtyDetails($itemArr)
+    {
+        $arr = [
+            'store_id' => $this->user->store_id,
+            'item_id' => $itemArr['mst_item_id'],
+            'created_by' => $this->user->id,
+        ];
+
+
+       
+            $arr['item_qty'] = $itemArr['total_qty'];
+            $existingItemQty =ItemDetail::where([
+                'store_id' => $this->user->store_id,
+                'item_id' => $itemArr['item_id'],
+            ])->first();
+
+            $flag = $existingItemQty ?? false;
+       
+        if ($flag) {
+            $flag->item_qty = $arr['item_qty']+$existingItemQty->item_qty;
+            $flag->save();
+        } else {
+            ItemDetail::create($arr);
+        }
     }
 
     public function fetchPurchaseOrderDetails($po_num)

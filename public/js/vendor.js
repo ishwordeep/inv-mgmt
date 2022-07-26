@@ -144,6 +144,7 @@ $(document).ready(function () {
     });
 
     $('#save').on('click', function() {
+        checkIfAtleastOneItem($(this))
         $('#status').val(1);
     });
     $('#approve').on('click', function() {
@@ -152,6 +153,13 @@ $(document).ready(function () {
     $('#cancel').on('click', function() {
         $('#status').val(3);
     });
+
+    function checkIfAtleastOneItem(obj){
+        let cuurentTable=$(obj).closest('form').children('tr').each(function( index ) {
+            debugger;
+          });
+        debugger;
+    }
     // Save Action
     $('#purchaseOrderForm').validate({
         submitHandler: function(form) {
@@ -166,6 +174,7 @@ $(document).ready(function () {
                 if (confirmResponse.isConfirmed) {
                     let data = $('#purchaseOrderForm').serialize();
                     let url = form.action;
+                    debugger;
                     axios.post(url, data).then((response) => {
                         window.location.href = response.data.url;
                     }, (error) => {
@@ -188,6 +197,7 @@ $(document).ready(function () {
                 if (confirmResponse.isConfirmed) {
                     let data = $('#stockEntryForm').serialize();
                     let url = form.action;
+                    debugger;
                     axios.post(url, data).then((response) => {
                         window.location.href = response.data.url;
                     }, (error) => {
