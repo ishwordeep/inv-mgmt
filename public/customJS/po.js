@@ -1,9 +1,4 @@
 $(document).ready(function () {
-
-
-
-
-    
     $("#po_type").change(function () {
         let val = $(this).find(":selected").val();
         $("#supplier").prop('selectedIndex',0);

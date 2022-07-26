@@ -33,6 +33,7 @@ class StockEntryCrudController extends BaseCrudController
 
         // prepare the fields you need to show
         $this->data['invType'] ='addRepeaterToStockEntry';
+        dd($data);
         $this->data['crud'] = $this->crud;
         $this->data['saveAction'] = $this->crud->getSaveAction();
         $this->data['title'] = $this->crud->getTitle() ?? trans('backpack::crud.add') . ' ' . $this->crud->entity_name;

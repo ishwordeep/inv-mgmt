@@ -12,7 +12,7 @@
     }
     
     </style>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"> -->
 @extends(backpack_view('blank'))
 
 {{-- @section('header')
@@ -310,7 +310,9 @@
 @endsection
 
 @section('after_scripts')
-<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<!-- <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
-
+<script type="text/javascript"> 
+        all_items = '<?= json_encode($item_lists)?>'; 
+</script>
 @endsection

@@ -1,9 +1,9 @@
 
 $(document).ready(function () {
     $("#addRepeaterToStockEntry,#addRepeaterToPO").click(function () {
-       
         repeater($(this).attr('id'))
     });
+
     $(".destroyRepeater").click(function () {
         destroyRepeaterFunction(this)
     });
@@ -22,26 +22,28 @@ $(document).ready(function () {
 
     // Autocomplete
     let availableTags = [{
-        id: ""
-        , text: "Search an item.."
-    , }, ];
+        'id': "", 
+        'text': "Search an item..", 
+    }, ];
     
-    // let all_items = '[{"id":1,"name":"Item1"},{"id":2,"name":"Item2"},{"id":3,"name":"Item3"}]'
-    let all_items ="<?php echo ($item_lists)?>";
+    // let all_items = '[{"id":1,"name":"Item1"},{"id":2,"name":"Item2"},{"id":3,"name":"Item3"}]';
+    if(typeof all_items == 'undefined'){
+        all_items = [];
+    }
 
     JSON.parse(all_items).forEach(function(item, index) {
         availableTags.push({
-            id: item.id
-            , label: item.name
-        , });
+            'id': item.id, 
+            'label': item.name, 
+        });
     });
+
     $(".inv_item").autocomplete({
         source: availableTags, 
         minLength: 1,
         select: function(event, ui) {
             let present = false;
             if (present) {
-                debugger;
             } else {
                 // $(this).attr("data-cntr", 5);
                 let currentObj=$(this).closest('tr');
@@ -96,7 +98,6 @@ $(document).ready(function () {
             select: function(event, ui) {
                 let present = false;
                 if (present) {
-                    debugger;
                 } else {
                     let currentObj=$(this).closest('tr');
                     $(this).closest('tr').find('input,select').attr('data-cntr', ui.item.id);
@@ -136,7 +137,6 @@ $(document).ready(function () {
 
     // End Autocomplete
     $('.AddQty').on('keyup', function() {
-        debugger;
     });
 
     $('#save').on('click', function() {

@@ -11,27 +11,21 @@ const mix = require('laravel-mix');
  |
  */
 
-// mix.js('resources/js/app.js', 'public/js')
-//     .postCss('resources/css/app.css', 'public/css', [
-//         //
-//     ]);
-
-
-    
 mix.js("resources/js/app.js", "public/js")
 .styles(
     [
-        
+        "public/packages/jquery-ui-dist/jquery-ui.min.css"
     ],
     "public/css/vendor.css"
 )
 .scripts(
     [
+        "public/js/jquery.min.js",
         "public/packages/backpack/base/js/bundle.js",
-        "public/customJS/stock.js",
+        "public/packages/jquery-ui-dist/jquery-ui.min.js",
         "public/customJS/po.js",
         "public/customJS/numericals.js",
-      
+        "public/customJS/stock.js",
     ],
     "public/js/vendor.js"
 )
