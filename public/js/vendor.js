@@ -199,7 +199,7 @@ $(document).ready(function () {
                     let url = form.action;
                     debugger;
                     axios.post(url, data).then((response) => {
-                        window.location.href = response.data.url;
+                        window.location.href = response.data.route;
                     }, (error) => {
                         swal("Error !", error.response.data.message, "error")
                     });
