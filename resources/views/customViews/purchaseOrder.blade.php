@@ -297,6 +297,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
     <script type="text/javascript"> 
         all_items = '<?= json_encode($item_lists)?>'; 
+        action = '<?= $action ?>';
     </script>
-    <!-- <script src="{{ asset('customJS/stock.js') }}"></script> -->
 @endsection

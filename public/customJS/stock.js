@@ -86,16 +86,15 @@ $(document).ready(function () {
     }, ];
     
     // let all_items = '[{"id":1,"name":"Item1"},{"id":2,"name":"Item2"},{"id":3,"name":"Item3"}]';
-    if(typeof all_items == 'undefined'){
-        all_items = [];
+    if(typeof all_items != 'undefined'){
+        JSON.parse(all_items).forEach(function(item, index) {
+            availableTags.push({
+                'id': item.id, 
+                'label': item.name, 
+            });
+        });
     }
 
-    JSON.parse(all_items).forEach(function(item, index) {
-        availableTags.push({
-            'id': item.id, 
-            'label': item.name, 
-        });
-    });
 
     $(".inv_item").autocomplete({
         source: availableTags, 
@@ -128,7 +127,6 @@ $(document).ready(function () {
         }
     });
 
-<<<<<<< HEAD
 
 
     function autocompleteFunction(){
@@ -195,8 +193,6 @@ $(document).ready(function () {
     }
 
 
-=======
->>>>>>> purchase-order
     // End Autocomplete
     $('.AddQty').on('keyup', function() {
     });
@@ -210,6 +206,7 @@ $(document).ready(function () {
     $('#cancel').on('click', function() {
         $('#status').val(3);
     });
+
     // Save Action
     $('#purchaseOrderForm').validate({
         submitHandler: function(form) {
