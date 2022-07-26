@@ -10,10 +10,11 @@ const mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
-
+  
 mix.js("resources/js/app.js", "public/js")
 .styles(
     [
+        "public/packages/backpack/base/css/bundle.css", 
         "public/packages/jquery-ui-dist/jquery-ui.min.css"
     ],
     "public/css/vendor.css"
