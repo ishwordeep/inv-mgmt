@@ -80,7 +80,7 @@
                 
                 <div class="col-lg-3 col-md-4">
                     <div class="mb-3">
-                        <span class="me-1" style="font-weight: bold;">PO Date: </span> <span>{{$entry->po_date?dateToString($entry->po_date):'n/a'}}</span>
+                        <span class="me-1" style="font-weight: bold;">PO Date: </span> <span>{{$entry->po_date?$entry->po_date:'n/a'}}</span>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4">

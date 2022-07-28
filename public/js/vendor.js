@@ -43,7 +43,7 @@ $(document).ready(function () {
         select: function(event, ui) {
             let present = false;
             if (present) {
-                debugger;
+                alert("Iam present")
             } else {
                 // $(this).attr("data-cntr", 5);
                 let currentObj=$(this).closest('tr');
@@ -100,7 +100,7 @@ $(document).ready(function () {
             select: function(event, ui) {
                 let present = false;
                 if (present) {
-                    debugger;
+                    alert("I am present");
                 } else {
                     let currentObj=$(this).closest('tr');
                     $(this).closest('tr').find('input,select').attr('data-cntr', ui.item.id);
@@ -140,7 +140,7 @@ $(document).ready(function () {
 
     // End Autocomplete
     $('.AddQty').on('keyup', function() {
-        debugger;
+        // debugger;
     });
 
     $('#save').on('click', function() {
@@ -155,10 +155,10 @@ $(document).ready(function () {
     });
 
     function checkIfAtleastOneItem(obj){
-        let cuurentTable=$(obj).closest('form').children('tr').each(function( index ) {
-            debugger;
-          });
-        debugger;
+        // let cuurentTable=$(obj).closest('form').children('tr').each(function( index ) {
+        //     debugger;
+        //   });
+        // debugger;
     }
     // Save Action
     $('#purchaseOrderForm').validate({
@@ -174,7 +174,6 @@ $(document).ready(function () {
                 if (confirmResponse.isConfirmed) {
                     let data = $('#purchaseOrderForm').serialize();
                     let url = form.action;
-                    debugger;
                     axios.post(url, data).then((response) => {
                         window.location.href = response.data.url;
                     }, (error) => {
@@ -184,29 +183,29 @@ $(document).ready(function () {
             });
         }
     });
-    $('#stockEntryForm').validate({
-        submitHandler: function(form) {
-            Swal.fire({
-                title: 'Are you sure?',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, save it!'
-            }).then((confirmResponse) => {
-                if (confirmResponse.isConfirmed) {
-                    let data = $('#stockEntryForm').serialize();
-                    let url = form.action;
-                    debugger;
-                    axios.post(url, data).then((response) => {
-                        window.location.href = response.data.route;
-                    }, (error) => {
-                        swal("Error !", error.response.data.message, "error")
-                    });
-                }
-            });
-        }
-    });
+    // $('#stockEntryForm').validate({
+    //     submitHandler: function(form) {
+    //         Swal.fire({
+    //             title: 'Are you sure?',
+    //             icon: 'warning',
+    //             showCancelButton: true,
+    //             confirmButtonColor: '#3085d6',
+    //             cancelButtonColor: '#d33',
+    //             confirmButtonText: 'Yes, save it!'
+    //         }).then((confirmResponse) => {
+    //             if (confirmResponse.isConfirmed) {
+    //                 let data = $('#stockEntryForm').serialize();
+    //                 let url = form.action;
+    //                 axios.post(url, data).then((response) => {
+    //                     window.location.href = response.data.route;
+    //                 }, (error) => {
+    //                     debugger;
+    //                     swal("Error !", error.response.data.message, "error")
+    //                 });
+    //             }
+    //         });
+    //     }
+    // });
 
     
 

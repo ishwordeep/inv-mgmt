@@ -55,10 +55,11 @@ class StockEntryCrudController extends BaseCrudController
     }
     public function store()
     {
+        // dd("ok");
         $this->crud->hasAccessOrFail('create');
 
         $request = $this->crud->validateRequest();
-        // dd($request->all());
+        dd($request->all());
 
         $stockInput = $request->only([
             'store_id',
@@ -106,7 +107,7 @@ class StockEntryCrudController extends BaseCrudController
                     'stock_id' => $stock->id,
                     'item_id' => $request->itemStockHidden[$key],
                     'add_qty' => $request->add_qty[$key],
-                    'free_qty' => !$this->multiple_barcode ? $request->free_item[$key] : null,
+                    'free_qty' => $request->free_item[$key],
                     'total_qty' => $request->total_qty[$key],
                     'discount_mode_id' => $request->total_qty[$key],
                     'discount' => isset($itemDiscount) ? $itemDiscount : (isset($request->discount[$key]) ? $request->discount[$key] : null),

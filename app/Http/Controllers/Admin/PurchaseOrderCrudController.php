@@ -49,7 +49,7 @@ class PurchaseOrderCrudController extends BaseCrudController
 
     protected function setupListOperation()
     {
-        CRUD::column('id');
+       
         CRUD::column('po_number');
         CRUD::column('po_date');
         CRUD::column('expected_delivery');
@@ -64,10 +64,7 @@ class PurchaseOrderCrudController extends BaseCrudController
         CRUD::column('supplier_id');
         CRUD::column('po_type_id');
         CRUD::column('requested_store_id');
-        CRUD::column('status_id');
-        CRUD::column('created_by');
-        CRUD::column('created_at');
-        CRUD::column('updated_at');
+  
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -122,7 +119,6 @@ class PurchaseOrderCrudController extends BaseCrudController
     {
         $this->crud->hasAccessOrFail('create');
         $request = $this->crud->validateRequest();
-        // dd($request->all());
         if (isset($request)) {
             $purchaseOrderDetails = $request->only([
                 'status_id',
@@ -138,13 +134,14 @@ class PurchaseOrderCrudController extends BaseCrudController
                 'net_amt',
                 'comments',
             ]);
-
+            $request->status_id=(int)$request->status_id;
             if ($request->status_id === MstSupStatus::APPROVED) {
-                if (!$this->user->is_po_approver) abort(401);
-
-                $latestId =PurchaseOrder::latest()->where('status_id', MstSupStatus::APPROVED)->count() ?? 0;
-                $purchaseOrderDetails['po_number'] = (MstPoSequence::first()->sequence_code) . ($latestId + 1);
-                $purchaseOrderDetails['po_date'] = 2079/12/12;//add current date
+                // if (!$this->user->is_po_approver) abort(401);
+                
+                $latestId =PurchaseOrder::where('status_id', MstSupStatus::APPROVED)->count() ?? 0;
+                // dd($request->status_id,$latestId);
+                // $purchaseOrderDetails['po_number'] = (MstPoSequence::first()->sequence_code) . ($latestId + 1);
+                $purchaseOrderDetails['po_date'] = '2079/12/12';//add current date
                 $purchaseOrderDetails['approved_by'] = $this->user->id;
             }
 
@@ -157,13 +154,12 @@ class PurchaseOrderCrudController extends BaseCrudController
                         'po_id' => $POId->id,
                         'purchase_qty' => $request->purchase_qty[$key],
                         'free_qty' => $request->free_qty[$key],
-                        'total_qty' => $request->total_qty[$key],
+                        'total_qty' => $request->purchase_qty[$key]+$request->free_qty[$key],
                         'discount_mode_id' => $request->discount_mode_id[$key],
                         'discount' => $request->discount[$key],
                         'purchase_price' => $request->purchase_price[$key],
-                        'item_amount' => $request->item_amount[$key],
+                        'item_amount' =>312,
                         'item_id' => $request->inv_item_hidden[$key],
-                        'expiry_date' => $request->expiry_date[$key],
                     ];
                     PurchaseOrderItem::create($itemArray);
                 }
