@@ -25,6 +25,8 @@ mix.js("resources/js/app.js", "public/js")
         "public/packages/backpack/base/js/bundle.js",
         "public/packages/jquery-ui-dist/jquery-ui.min.js",
         "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js",
+        "public/customJS/common.js",
+        "public/customJS/stock.js",
         "public/customJS/po.js",
         "public/customJS/numericals.js",
         "public/customJS/stock.js",

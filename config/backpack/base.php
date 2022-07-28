@@ -24,7 +24,7 @@ return [
     // ----
 
     // Project name. Shown in the window title.
-    'project_name' => 'Dhanshar',
+    'project_name' => 'Dhansar',
 
     // When clicking on the admin panel's top-left logo/name,
     // where should the user be redirected?
@@ -121,7 +121,7 @@ return [
 
     // JS files that are loaded in all pages, using Laravel's asset() helper
     'scripts' => [
-        // 'https://code.jquery.com/jquery-3.4.1.min.js',
+        'https://code.jquery.com/jquery-3.4.1.min.js',
         'js/vendor.js',
         // Backstrap includes jQuery, Bootstrap, CoreUI, PNotify, Popper
         // 'packages/backpack/base/js/bundle.js',

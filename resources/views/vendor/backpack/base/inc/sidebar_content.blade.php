@@ -52,3 +52,5 @@
 
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('user') }}'><i class='nav-icon la la-question'></i> Users</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('purchase-order-type') }}'><i class='nav-icon la la-question'></i> Purchase order types</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('batch-detail') }}'><i class='nav-icon la la-question'></i> Batch details</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('item-detail') }}'><i class='nav-icon la la-question'></i> Item details</a></li>

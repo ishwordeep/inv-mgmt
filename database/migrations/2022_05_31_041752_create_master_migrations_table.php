@@ -296,6 +296,7 @@ class CreateMasterMigrationsTable extends Migration
             $table->timestamps();
         });
 
+        //It is sequence code for batch
         Schema::create('mst_batch_no', function (Blueprint $table) {
             $table->increments('id');
             $table->string('code')->unique()->nullable();

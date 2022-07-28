@@ -125,12 +125,12 @@
                                 placeholder="Total Qty" name="" size="1" style="width:5rem;" readonly>
                         </div>
                     </td>
-                    <td>
+                    {{-- <td>
                         <div class="input-group">
                             <input type="date" class="form-control p-1 ExpiryDate" data-cntr='' id=""
                                 placeholder="Expiry Date" name="" size="1" style="width:7rem;" disabled>
                         </div>
-                    </td>
+                    </td> --}}
                     <td>
                         <div class="input-group">
                             <input type="number" class="form-control p-1 UnitCost" data-cntr='' id=""
@@ -194,12 +194,12 @@
                                 placeholder="Total Qty" name="" size="1" style="width:5rem;" readonly>
                         </div>
                     </td>
-                    <td>
+                    {{-- <td>
                         <div class="input-group">
                             <input type="date" class="form-control p-1 ExpiryDate" data-cntr='' id=""
                                 placeholder="Expiry Date" name="" size="1" style="width:7rem;" disabled>
                         </div>
-                    </td>
+                    </td> --}}
                     <td>
                         <div class="input-group">
                             <input type="number" class="form-control p-1 UnitCost" data-cntr='' id=""
@@ -292,11 +292,18 @@
 @endsection
 
 @section('after_scripts')
-    <!-- <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('packages/jquery-ui-dist/jquery-ui.min.js') }}"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
-    <script type="text/javascript"> 
-        all_items = '<?= json_encode($item_lists)?>'; 
-        action = '<?= $action ?>';
-    </script>
+
+<script src="'https://code.jquery.com/jquery-3.4.1.min.js'"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+<script type="text/javascript"> 
+    all_items = '<?= json_encode($item_lists)?>'; 
+    JSON.parse(all_items).forEach(function(item, index) {
+        availableTags.push({
+            id: item.id
+            , label: item.name
+        , });
+    });
+   
+</script>
 @endsection

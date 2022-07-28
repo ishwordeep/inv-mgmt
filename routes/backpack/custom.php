@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\MstItemCrudController;
+use App\Http\Controllers\Admin\StockEntryCrudController;
 use App\Models\MstItem;
+use App\Models\StockEntry;
 use Illuminate\Support\Facades\Route;
 
 // --------------------------
@@ -40,15 +42,22 @@ Route::group([
     Route::crud('mst-brand', 'MstBrandCrudController');
     Route::crud('mst-item', 'MstItemCrudController');
     Route::crud('user', 'UserCrudController');
+    Route::crud('stock-entry', 'StockEntryCrudController');
+    Route::crud('stock-item', 'StockItemCrudController');
+    Route::crud('purchase-order', 'PurchaseOrderCrudController');
+    Route::crud('purchase-order-item', 'PurchaseOrderItemCrudController');
+    Route::crud('purchase-order-type', 'PurchaseOrderTypeCrudController');
+
+    //AJAX call
+    Route::get('get-podetails/{po_num}', [StockEntryCrudController::class,'fetchPurchaseOrderDetails'])->name('get-purchase-order-details');
+
 
 
     //API
     Route::get('api/subCategoryEntity/{category_id}', [MstItemCrudController::class, 'getSubCategoryAPI']);
 
 
-    Route::crud('stock-entry', 'StockEntryCrudController');
-    Route::crud('stock-item', 'StockItemCrudController');
-    Route::crud('purchase-order', 'PurchaseOrderCrudController');
-    Route::crud('purchase-order-item', 'PurchaseOrderItemCrudController');
-    Route::crud('purchase-order-type', 'PurchaseOrderTypeCrudController');
+  
+    Route::crud('batch-detail', 'BatchDetailCrudController');
+    Route::crud('item-detail', 'ItemDetailCrudController');
 }); // this should be the absolute last line of this file
