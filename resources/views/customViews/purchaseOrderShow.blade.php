@@ -74,7 +74,7 @@
              
                 <div class="col-lg-3 col-md-4">
                     <div class="mb-3">
-                        <span class="me-1" style="font-weight: bold;">PO Number: </span> <span>{{$entry->purchase_order_num??'n/a'}}</span>
+                        <span class="me-1" style="font-weight: bold;">PO Number: </span> <span>{{$entry->po_number??'n/a'}}</span>
                     </div>
                 </div>
                 
@@ -90,7 +90,7 @@
                 </div>
                 <div class="col-lg-3 col-md-4">
                     <div class="mb-3">
-                        <span class="me-1" style="font-weight: bold;">Approved By:</span> <span>{{$entry->approvedByEntity->name_en ?? 'n/a'}}</span>
+                        <span class="me-1" style="font-weight: bold;">Approved By:</span> <span>{{$entry->approvedByEntity->name ?? 'n/a'}}</span>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4">

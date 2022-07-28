@@ -140,7 +140,8 @@ class PurchaseOrderCrudController extends BaseCrudController
                 
                 $latestId =PurchaseOrder::where('status_id', MstSupStatus::APPROVED)->count() ?? 0;
                 // dd($request->status_id,$latestId);
-                // $purchaseOrderDetails['po_number'] = (MstPoSequence::first()->sequence_code) . ($latestId + 1);
+                $purchaseOrderDetails['po_number'] = (MstPoSequence::first()->sequence_code).($latestId + 1);
+                // dd((MstPoSequence::first()->sequence_code),$purchaseOrderDetails['po_number']);
                 $purchaseOrderDetails['po_date'] = '2079/12/12';//add current date
                 $purchaseOrderDetails['approved_by'] = $this->user->id;
             }
