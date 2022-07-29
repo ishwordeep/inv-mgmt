@@ -142,7 +142,7 @@ $(document).ready(function () {
         // url = url.replace(':po_num', po_num);
         
         let po_num=$('#purchase_order_number').val();
-        url ="http://inv-mgmt.test/admin/get-podetails/"+po_num;
+        url ="http://inv_mgmt.test/admin/get-podetails/"+po_num;
         console.log("URL::",url)
         $.get(url).then(function(response) {
             if(response.nodata==='nodata'){

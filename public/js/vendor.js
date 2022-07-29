@@ -33,15 +33,15 @@ $(document).ready(function () {
         , text: "Search an item.."
     , }, ];
     
-    let all_items = '[{"id":1,"name":"Item1"},{"id":2,"name":"Item2"},{"id":3,"name":"Item3"}]'
+    // let all_items = '[{"id":1,"name":"Item1"},{"id":2,"name":"Item2"},{"id":3,"name":"Item3"}]'
     // let all_items ="<?php echo ($item_lists)?>";
 
-    JSON.parse(all_items).forEach(function(item, index) {
-        availableTags.push({
-            id: item.id
-            , label: item.name
-        , });
-    });
+    // JSON.parse(all_items).forEach(function(item, index) {
+    //     availableTags.push({
+    //         id: item.id
+    //         , label: item.name
+    //     , });
+    // });
     $(".inv_item").autocomplete({
         source: availableTags, 
         minLength: 1,
@@ -85,13 +85,11 @@ $(document).ready(function () {
         if(type==='addRepeaterToStockEntry'){
             let tr = $('#repeaterRowStock').clone(true);
             tr.removeAttr('class');
-            console.log(tr)
             $('#stock-table').append(tr);
         }
         if(type==='addRepeaterToPO'){
             let tr = $('#repeaterRowPO').clone(true);
             tr.removeAttr('class');
-            alert(type)
 
             $('#po-table').append(tr);
         }
@@ -360,7 +358,7 @@ $(document).ready(function () {
         // url = url.replace(':po_num', po_num);
         
         let po_num=$('#purchase_order_number').val();
-        url ="http://inv-mgmt.test/admin/get-podetails/"+po_num;
+        url ="http://inv_mgmt.test/admin/get-podetails/"+po_num;
         console.log("URL::",url)
         $.get(url).then(function(response) {
             if(response.nodata==='nodata'){
@@ -640,7 +638,7 @@ $(document).ready(function () {
         // url = url.replace(':po_num', po_num);
         
         let po_num=$('#purchase_order_number').val();
-        url ="http://inv-mgmt.test/admin/get-podetails/"+po_num;
+        url ="http://inv_mgmt.test/admin/get-podetails/"+po_num;
         console.log("URL::",url)
         $.get(url).then(function(response) {
             if(response.nodata==='nodata'){
