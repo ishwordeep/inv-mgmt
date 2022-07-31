@@ -47,9 +47,9 @@
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('purchase-order') }}'><i class='nav-icon la la-question'></i> Purchase Orders</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('stock-entry') }}'><i class='nav-icon la la-question'></i> Stock Entries</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('sale') }}'><i class='nav-icon la la-question'></i> Sales</a></li>
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('purchase-order-item') }}'><i class='nav-icon la la-question'></i> PO Items</a></li>
+        {{-- <li class='nav-item'><a class='nav-link' href='{{ backpack_url('purchase-order-item') }}'><i class='nav-icon la la-question'></i> PO Items</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('stock-item') }}'><i class='nav-icon la la-question'></i> Stock Items</a></li>
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('sale-item') }}'><i class='nav-icon la la-question'></i> Sale items</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('sale-item') }}'><i class='nav-icon la la-question'></i> Sale items</a></li> --}}
     </ul>
 </li>
 
