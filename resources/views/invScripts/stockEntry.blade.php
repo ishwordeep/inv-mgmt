@@ -1,0 +1,36 @@
+<script>
+    $(document).ready(function() {
+           $('#fetch_by_po_num_btn').click(function(){
+        
+       
+        // let url = "{{ route('get-purchase-order-details',':po_num') }}"
+        // let po_num=$('#purchase_order_number').val();
+        // url = url.replace(':po_num', po_num);
+        
+        let po_num=$('#purchase_order_number').val();
+        url ="http://inv_mgmt.test/admin/get-podetails/"+po_num;
+        console.log("URL::",url)
+        $.get(url).then(function(response) {
+            if(response.nodata==='nodata'){
+                Swal.fire("No Data Found")
+            }else{
+                // debugger;
+
+                
+                let pod=response.pod;
+                // $('#inv-qty-header').remove();
+                // $('#action-header').remove();
+                
+               
+
+                // $("#grn_type").val(pod.purchase_order_type_id).attr('disabled','disabled');
+                // $("#store").val(pod.store_id).attr('disabled','disabled');
+                // $("#supplier").val(pod.supplier_id).attr('disabled','disabled');
+                $("#stock-table").html(response.view)
+                // $("#po_date").val(pod.po_date.slice(0,10)).attr('disabled','disabled');
+            }
+        });
+    });
+    });
+</script>
+@include('customViews.invScripts.common')

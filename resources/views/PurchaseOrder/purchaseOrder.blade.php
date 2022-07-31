@@ -296,8 +296,8 @@
     @endsection
 
     @section('after_scripts')
-    @include('customViews.invScripts.common')
-    @include('customViews.invScripts.purchaseOrder')
+    @include('invScripts.common')
+    @include('invScripts.purchaseOrder')
 
 
     @endsection

@@ -58,6 +58,8 @@ class CreateSalesMigrationsTable extends Migration
             $table->unsignedSmallInteger('item_id')->nullable();
             $table->unsignedSmallInteger('unit_id')->nullable();
             $table->unsignedSmallInteger('add_qty')->nullable();
+            $table->unsignedSmallInteger('free_qty')->nullable();
+            $table->unsignedSmallInteger('total_qty')->nullable();
             $table->unsignedSmallInteger('unit_price')->nullable();
             $table->unsignedSmallInteger('discount_mode')->nullable();
             $table->unsignedSmallInteger('discount')->nullable();

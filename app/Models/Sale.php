@@ -35,6 +35,9 @@ class Sale extends BaseModel
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+    public function saleItemsEntity(){
+        return $this->hasMany(SaleItem::class,'sales_id','id');
+    }
 
     /*
     |--------------------------------------------------------------------------

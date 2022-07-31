@@ -6,6 +6,7 @@ use App\Base\BaseCrudController;
 use App\Http\Requests\SaleRequest;
 use App\Models\MstItem;
 use App\Models\MstStore;
+use App\Models\Sale;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -100,17 +101,32 @@ class SaleCrudController extends BaseCrudController
 
 
         // load the view from /resources/views/vendor/backpack/crud/ if it exists, otherwise load the one in the package
-        return view('customViews.sales', $this->data);
+        return view('Sales.sales', $this->data);
     }
 
-    /**
-     * Define what happens when the Update operation is loaded.
-     * 
-     * @see https://backpackforlaravel.com/docs/crud-operation-update
-     * @return void
-     */
-    protected function setupUpdateOperation()
+    public function show($id)
     {
-        $this->setupCreateOperation();
+        // dd("blade[salesShow.blade.php] to be edited");
+        $this->crud->hasAccessOrFail('show');
+
+        // get entry ID from Request (makes sure its the last ID for nested resources)
+        $id = $this->crud->getCurrentEntryId() ?? $id;
+        $data = [];
+        // get the info for that entry (include softDeleted items if the trait is used)
+     
+            $data['entry'] = $this->crud->getEntry($id);
+        
+
+        $data['entry'] = $this->crud->getEntry($id);
+
+        $data['items'] = $data['entry']->saleItemsEntity;
+
+        $data['crud'] = $this->crud;
+
+        return view('Sales.salesShow', [
+            'entry' => $data['entry'],
+            'items' => $data['items'],
+            'crud' => $data['crud'],
+        ]);
     }
 }

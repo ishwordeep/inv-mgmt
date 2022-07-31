@@ -113,7 +113,7 @@ class PurchaseOrderCrudController extends BaseCrudController
         $this->data['stores'] = $stores;
         $this->data['requested_stores'] = $requested_stores;
         // load the view from /resources/views/vendor/backpack/crud/ if it exists, otherwise load the one in the package
-        return view('customViews.purchaseOrder', $this->data);
+        return view('PurchaseOrder.purchaseOrder', $this->data);
     }
     public function store()
     {
@@ -196,7 +196,7 @@ class PurchaseOrderCrudController extends BaseCrudController
         }
         $data['items'] = $data['entry']->purchaseItemsEntity;
         $data['crud'] = $this->crud;
-        return view('customViews.purchaseOrderShow', [
+        return view('PurchaseOrder.purchaseOrderShow', [
             'entry' => $data['entry'],
             'items' => $data['items'],
             'crud' => $data['crud'],
