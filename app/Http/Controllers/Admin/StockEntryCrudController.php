@@ -204,7 +204,7 @@ class StockEntryCrudController extends BaseCrudController
             $discount_modes = MstDiscountMode::all();
             $poItems = PurchaseOrderItem::wherePoId($pod->id)->get();
             $data = [
-                'view' => view('customViews.partialViews.trForPOItemsForStockEntries', compact('poItems', 'discount_modes'))->render(),
+                'view' => view('PartialViews.trForPOItemsForStockEntries', compact('poItems', 'discount_modes'))->render(),
                 'pod' => $pod,
             ];
             return ($data);

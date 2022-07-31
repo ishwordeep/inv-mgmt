@@ -142,29 +142,6 @@
 </tr>
 
 @section('after_scripts')
-
-<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
-<script>
-    $(document).ready(function () {
-        debugger;
-    $(".destroyRepeater").click(function () {
-        destroyRepeaterFunction(this)
-    });
-
-    function destroyRepeaterFunction(obj){
-        let test = '';
-        let currentInvType = $(obj).closest('tbody').attr('id')
-        test = "#" + currentInvType + " tr";
-        let NumberOfRows = $(test).length;
-        // here 3 because,one column is hidden
-        if (NumberOfRows === 3) {~
-            $('.destroyRepeater').addClass('d-none');
-        }
-        $(obj).closest("tr")[0].remove();
-    }
-
-});
-</script>
+@include('invScripts.common')
 @endsection
 
