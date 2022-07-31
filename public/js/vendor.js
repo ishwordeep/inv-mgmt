@@ -386,7 +386,7 @@ $(document).ready(function () {
         });
     });
 
-    $(str).autocomplete({
+    $('.inv_item').autocomplete({
         source: availableTags,
         minLength: 1,
         select: function(event, ui) {
@@ -666,7 +666,7 @@ $(document).ready(function () {
         });
     });
 
-    $(str).autocomplete({
+    $('.inv_item').autocomplete({
         source: availableTags,
         minLength: 1,
         select: function(event, ui) {
