@@ -33,7 +33,7 @@
             <div class=" col-sm-4">
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="bill_tyle" style="min-width: 100px;">Bill Type</label>
-                    <select class="form-select form-control" id="bill_tyle" name="bill_tyle" style="min-width: 150px;">
+                    <select class="form-select form-control" id="bill_tyle" name="bill_tyle" style="min-width: 100px;">
                         <option value="1">Individual</option>
                         <option value="2">Corporate</option>
                     </select>
@@ -43,7 +43,7 @@
             <div class=" col-sm-4">
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01" style="min-width: 100px;">Store</label>
-                    <select class="form-select form-control" id="inputGroupSelect01" name="store_id" style="min-width: 150px;">
+                    <select class="form-select form-control" id="inputGroupSelect01" name="store_id" style="min-width: 100px;">
                         @foreach($stores as $store)
                         <option value={{$store->id}}>{{$store->name_en}}</option>
                         @endforeach
@@ -56,43 +56,43 @@
             <div class=" col-sm-4 ">
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="invvoice_number" style="min-width: 100px;">Invoice Number</label>
-                    <input type="text" id="invvoice_number" name='invvoice_number' value="" class="form-control" placeholder="Inv Num" style="min-width: 150px;">
+                    <input type="text" id="invvoice_number" name='invvoice_number' value="" class="form-control" placeholder="Inv Num" style="min-width: 100px;">
                 </div>
             </div>
             <div class=" col-sm-4 ">
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="transaction_date" style="min-width: 100px;">Transaction Date</label>
-                    <input type="date" id="transaction_date" name='transaction_date' value="" class="form-control" placeholder="Approved Date" style="min-width: 150px;">
+                    <input type="date" id="transaction_date" name='transaction_date' value="" class="form-control" placeholder="Approved Date" style="min-width: 100px;">
                 </div>
             </div>
             <div class=" col-sm-4 ">
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="company_name" style="min-width: 100px;">Company Name</label>
-                    <input type="text" id="company_name" name='company_name' value="" class="form-control" placeholder="Company Name" style="min-width: 150px;">
+                    <input type="text" id="company_name" name='company_name' value="" class="form-control" placeholder="Company Name" style="min-width: 100px;">
                 </div>
             </div>
             <div class=" col-sm-4 ">
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="pan_vat" style="min-width: 100px;">Pan/Vat Number</label>
-                    <input type="text" id="pan_vat" name='pan_vat' value="" class="form-control" placeholder="Pan/Vat Number" style="min-width: 150px;">
+                    <input type="text" id="pan_vat" name='pan_vat' value="" class="form-control" placeholder="Pan/Vat Number" style="min-width: 100px;">
                 </div>
             </div>
             <div class=" col-sm-4 ">
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="full_name" style="min-width: 100px;"> Full Name</label>
-                    <input type="text" id="full_name" name='full_name' value="" class="form-control" placeholder=" Full Name" style="min-width: 150px;">
+                    <input type="text" id="full_name" name='full_name' value="" class="form-control" placeholder=" Full Name" style="min-width: 100px;">
                 </div>
             </div>
             <div class=" col-sm-4 ">
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="address" style="min-width: 100px;">Address</label>
-                    <input type="text" id="address" name='address' value="" class="form-control" placeholder="Address" style="min-width: 150px;">
+                    <input type="text" id="address" name='address' value="" class="form-control" placeholder="Address" style="min-width: 100px;">
                 </div>
             </div>
             <div class=" col-sm-4 ">
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="contact_number" style="min-width: 100px;">Contact Number</label>
-                    <input type="text" id="contact_number" name='contact_number' value="" class="form-control" placeholder="Contact Number" style="min-width: 150px;">
+                    <input type="text" id="contact_number" name='contact_number' value="" class="form-control" placeholder="Contact Number" style="min-width: 100px;">
                 </div>
             </div>
 
@@ -101,7 +101,7 @@
             <div class=" col-sm-4 ">
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="expectedDateAD" style="min-width: 100px;">Invoice Date</label>
-                    <input type="date" id="expectedDateAD" name='expected_delivery' value="" class="form-control" placeholder="Entry Date" style="min-width: 150px;">
+                    <input type="date" id="expectedDateAD" name='expected_delivery' value="" class="form-control" placeholder="Entry Date" style="min-width: 100px;">
                 </div>
             </div>
             <div class=" col-sm-4 ">

@@ -143,5 +143,8 @@
 
 @section('after_scripts')
 @include('invScripts.common')
+<script>
+    debugger;
+</script>
 @endsection
 

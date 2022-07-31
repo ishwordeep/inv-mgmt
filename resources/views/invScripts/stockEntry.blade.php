@@ -1,7 +1,6 @@
 <script>
     $(document).ready(function() {
         $('#fetch_by_po_num_btn').click(function() {
-            debugger;
             let po_num = $('#purchase_order_number').val();
             url = "http://inv_mgmt.test/admin/get-podetails/" + po_num;
             console.log("URL::", url)

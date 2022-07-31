@@ -50,7 +50,7 @@
             <div class=" col-sm-4">
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="requested_store" style="min-width: 100px;">Requested Store</label>
-                    <select class="form-select form-control" id="requested_store" name="requested_store_id" style="min-width: 150px;" disabled>
+                    <select class="form-select form-control" id="requested_store" name="requested_store_id" style="width:120px;" disabled>
                         <option val='' disabled>--Select--</option>
                         <option value="1">one</option>
                         <option value="2">Two</option>
@@ -63,7 +63,7 @@
             <div class=" col-sm-4">
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">Store</label>
-                    <select class="form-select form-control" id="inputGroupSelect01" style="min-width: 200px;">
+                    <select class="form-select form-control" id="inputGroupSelect01" style="min-width:150px;">
                         <option selected>Choose...</option>
                         <option value="1">one</option>
                         <option value="2">Two</option>
@@ -107,7 +107,7 @@
     <div class="table-responsive card">
         <table class="table" id="repeaterTable" style="min-width: 1000px;">
             <thead>
-                @include('customViews.partialViews.tableHeaderForInv')
+                @include('partialViews.tableHeaderForInv')
             </thead>
             <tbody id="stock-table">
                 <tr>
@@ -330,6 +330,5 @@
 
 @section('after_scripts')
 @include('invScripts.common')
-
-{{-- @include('customViews.invScripts.stockEntry') --}}
+@include('invScripts.stockEntry')
 @endsection
