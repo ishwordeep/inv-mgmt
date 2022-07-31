@@ -60,4 +60,6 @@ Route::group([
   
     Route::crud('batch-detail', 'BatchDetailCrudController');
     Route::crud('item-detail', 'ItemDetailCrudController');
+    Route::crud('sale', 'SaleCrudController');
+    Route::crud('sale-item', 'SaleItemCrudController');
 }); // this should be the absolute last line of this file

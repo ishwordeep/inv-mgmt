@@ -30,9 +30,7 @@ class CreateSalesMigrationsTable extends Migration
             $table->string('address', 200)->nullable();
             $table->string('contact_number')->nullable();
 
-            $table->integer('discount_mode_id')->nullable();
-            $table->float('discount')->nullable();
-            $table->unsignedFloat('flat_discount')->nullable();
+            $table->boolean('itemWiseDiscount')->nullable();
 
             $table->unsignedFloat('gross_total')->nullable();
             $table->unsignedFloat('total_discount')->nullable();
@@ -52,6 +50,31 @@ class CreateSalesMigrationsTable extends Migration
             $table->foreign('status_id')->references('id')->on('mst_sup_status')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreign('created_by')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreign('approved_by')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
+        });
+        Schema::create('sales_items', function (Blueprint $table) {
+
+            $table->increments('id');
+            $table->unsignedSmallInteger('sales_id')->nullable();
+            $table->unsignedSmallInteger('item_id')->nullable();
+            $table->unsignedSmallInteger('unit_id')->nullable();
+            $table->unsignedSmallInteger('add_qty')->nullable();
+            $table->unsignedSmallInteger('unit_price')->nullable();
+            $table->unsignedSmallInteger('discount_mode')->nullable();
+            $table->unsignedSmallInteger('discount')->nullable();
+            $table->float('tax_vat')->nullable();
+            $table->float('item_total')->nullable();
+
+            $table->unsignedInteger('created_by')->nullable();
+            $table->timestamps();
+
+            
+            $table->foreign('unit_id')->references('id')->on('mst_units')->cascadeOnDelete()->cascadeOnDelete();
+            $table->foreign('discount_mode')->references('id')->on('mst_discount_modes')->cascadeOnDelete()->cascadeOnDelete();
+            $table->foreign('item_id')->references('id')->on('mst_items')->cascadeOnDelete()->cascadeOnDelete();
+            $table->foreign('sales_id')->references('id')->on('sales')->cascadeOnDelete()->cascadeOnDelete();
+
+                
+            
         });
     }
 

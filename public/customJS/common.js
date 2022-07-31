@@ -1,6 +1,6 @@
 
 $(document).ready(function () {
-    $("#addRepeaterToStockEntry,#addRepeaterToPO").click(function () {
+    $("#addRepeaterToStockEntry,#addRepeaterToPO,#addRepeaterToSales").click(function () {
        
         repeater($(this).attr('id'))
     });
@@ -83,8 +83,12 @@ $(document).ready(function () {
         if(type==='addRepeaterToPO'){
             let tr = $('#repeaterRowPO').clone(true);
             tr.removeAttr('class');
-
             $('#po-table').append(tr);
+        }
+        if(type==='addRepeaterToSales'){
+            let tr = $('#repeaterRowSales').clone(true);
+            tr.removeAttr('class');
+            $('#sales-table').append(tr);
         }
         
         $(".destroyRepeater").removeClass("d-none");

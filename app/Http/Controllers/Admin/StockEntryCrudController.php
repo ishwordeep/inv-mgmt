@@ -13,6 +13,7 @@ use App\Http\Requests\StockEntryRequest;
 use App\Models\BatchDetail;
 use App\Models\ItemDetail;
 use App\Models\MstBatchNo;
+use App\Models\MstItem;
 use App\Models\StockEntry;
 use App\Models\StockItem;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
@@ -42,9 +43,20 @@ class StockEntryCrudController extends BaseCrudController
     }
     public function create()
     {
+        $filtered_items = [];
+
         $this->crud->hasAccessOrFail('create');
 
         // prepare the fields you need to show
+        $items = MstItem::where('is_active', 'true')->get(['id', 'name_en']);
+
+        foreach ($items as $item) {
+            array_push($filtered_items, [
+                'id' => $item->id,
+                'name' => $item->name_en
+            ]);
+        }
+        $this->data['item_lists'] = $filtered_items;
         $this->data['invType'] = 'addRepeaterToStockEntry';
         $this->data['crud'] = $this->crud;
         $this->data['saveAction'] = $this->crud->getSaveAction();
@@ -59,7 +71,7 @@ class StockEntryCrudController extends BaseCrudController
         $this->crud->hasAccessOrFail('create');
 
         $request = $this->crud->validateRequest();
-        dd($request->all());
+        // dd($request->all());
 
         $stockInput = $request->only([
             'store_id',
