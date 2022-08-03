@@ -24,11 +24,7 @@ mix.js("resources/js/app.js", "public/js")
         "public/js/jquery.min.js",
         "public/packages/backpack/base/js/bundle.js",
         "public/packages/jquery-ui-dist/jquery-ui.min.js",
-        "public/customJS/common.js",
-        "public/customJS/stock.js",
-        "public/customJS/po.js",
-        "public/customJS/numericals.js",
-        "public/customJS/stock.js",
+    
     ],
     "public/js/vendor.js"
 )
