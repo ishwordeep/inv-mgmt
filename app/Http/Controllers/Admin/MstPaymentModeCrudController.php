@@ -64,6 +64,7 @@ class MstPaymentModeCrudController extends BaseCrudController
         CRUD::setValidation(MstPaymentModeRequest::class);
         $fields = [
             $this->addReadOnlyCodeField(),
+            $this->addClassCol8(),
             $this->addNameEnField(),
             $this->addNameLcField(),
             $this->addIsActiveField(),

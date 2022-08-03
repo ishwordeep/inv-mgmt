@@ -20,7 +20,7 @@ class PurchaseOrderType extends BaseModel
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
-    // protected $fillable = [];
+    protected $fillable = ['name_en','name_lc','description','is_active'];
     // protected $hidden = [];
     // protected $dates = [];
 

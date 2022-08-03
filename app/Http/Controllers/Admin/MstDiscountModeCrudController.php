@@ -64,6 +64,7 @@ class MstDiscountModeCrudController extends BaseCrudController
       
         $fields = [
             $this->addReadOnlyCodeField(),
+            $this->addClassCol8(),
             $this->addNameEnField(),
             $this->addNameLcField(),
             $this->addIsActiveField(),

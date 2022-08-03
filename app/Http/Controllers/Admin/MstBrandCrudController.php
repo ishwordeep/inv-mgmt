@@ -66,10 +66,11 @@ class MstBrandCrudController extends BaseCrudController
         
         $fields = [
             $this->addReadOnlyCodeField(),
+            $this->addClassCol8(),
             $this->addNameEnField(),
             $this->addNameLcField(),
-            $this->addDescriptionField(),
             $this->addIsActiveField(),
+            $this->addDescriptionField(),
         ];
         $this->crud->addFields(array_filter($fields));
         /** 

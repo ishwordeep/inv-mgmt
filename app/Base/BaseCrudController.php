@@ -54,6 +54,14 @@ class BaseCrudController extends CrudController
         ];
     }
 
+    protected function addClassCol8(){
+        return   [
+            'type' => 'custom_html',
+            'name' => 'plain_html_1',
+            'value' => '<div class="col-md-8"></div>',
+        ];
+    }
+
     protected function addReadOnlyCodeField()
     {
         return [
@@ -269,13 +277,17 @@ class BaseCrudController extends CrudController
     {
         return [
             'name' => 'store_id',
-            'type' => 'select',
+            'type' => 'select2',
             'entity' => 'storeEntity',
             'attribute' => 'name_en',
             'model' => MstStore::class,
             'label' => 'Store',
+            'wrapper' => [
+                'class' => 'form-group col-md-4'
+            ]
         ];
     }
+
     // ############### COLUMNS ###############################
     protected function addRowNumberColumn()
     {

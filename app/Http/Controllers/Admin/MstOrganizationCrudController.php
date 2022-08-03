@@ -81,6 +81,7 @@ class MstOrganizationCrudController extends BaseCrudController
 
         $fields = [
             $this->addReadOnlyCodeField(),
+            $this->addClassCol8(),
             $this->addNameEnField(),
             $this->addNameLcField(),
             $this->addCountryField(),
@@ -94,9 +95,12 @@ class MstOrganizationCrudController extends BaseCrudController
                 'type' => 'image',
                 'label' => 'Logo',
                 'disk'   => 'uploads',
+                'wrapper' => [
+                    'class' => 'form-group col-md-4'
+                ]
             ],
-            $this->addDescriptionField(),
             $this->addIsActiveField(),
+            $this->addDescriptionField(),
         ];
         $this->crud->addFields(array_filter($fields));
 

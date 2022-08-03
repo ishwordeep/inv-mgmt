@@ -82,8 +82,8 @@ table.dataTable tbody td.dt-body-nowrap {
 
 table.dataTable {
   clear: both;
-  margin-top: 6px !important;
-  margin-bottom: 6px !important;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
   max-width: none !important;
   border-collapse: separate !important;
   border-spacing: 0;

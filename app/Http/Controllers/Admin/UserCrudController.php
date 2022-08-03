@@ -87,6 +87,9 @@ class UserCrudController extends BaseCrudController
                 ],
                 // optional
                 'inline'      => true, // show the radios all on the same line?
+                'wrapper' => [
+                    'class' => 'from-group col-md-4'
+                ]
             ],
 
             $this->addStoreField(),

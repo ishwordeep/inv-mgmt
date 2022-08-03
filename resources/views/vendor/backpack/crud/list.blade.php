@@ -27,7 +27,7 @@
     <!-- THE ACTUAL CONTENT -->
     <div class="{{ $crud->getListContentClass() }}">
 
-        <div class="row mb-0">
+        <div class="row mb-2">
           <div class="col-sm-6">
             @if ( $crud->buttons()->where('stack', 'top')->count() ||  $crud->exportButtons())
               <div class="d-print-none {{ $crud->hasAccess('create')?'with-border':'' }}">

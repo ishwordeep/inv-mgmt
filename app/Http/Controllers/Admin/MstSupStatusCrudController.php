@@ -65,6 +65,7 @@ class MstSupStatusCrudController extends BaseCrudController
         CRUD::setValidation(MstSupStatusRequest::class);
         $fields = [
             $this->addReadOnlyCodeField(),
+            $this->addClassCol8(),
             $this->addNameEnField(),
             $this->addNameLcField(),
             $this->addDescriptionField(),

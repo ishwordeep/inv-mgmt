@@ -35,30 +35,24 @@ class MstSupplierCrudController extends BaseCrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('id');
-        CRUD::column('code');
-        CRUD::column('name_en');
-        CRUD::column('name_lc');
-        CRUD::column('country_id');
-        CRUD::column('province_id');
-        CRUD::column('district_id');
-        CRUD::column('address');
-        CRUD::column('email');
-        CRUD::column('contact_person');
-        CRUD::column('contact_number');
-        CRUD::column('description');
-        CRUD::column('is_active');
-        CRUD::column('created_by');
-        CRUD::column('updated_by');
-        CRUD::column('deleted_by');
-        CRUD::column('created_at');
-        CRUD::column('updated_at');
-
-        /**
-         * Columns can be defined using the fluent syntax or array syntax:
-         * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']); 
-         */
+        $columns = [
+            $this->addRowNumberColumn(),
+            $this->addCodeColumn(),
+            $this->addNameEnColumn(),
+            $this->addNameLcColumn(),
+            $this->addCountryColumn(),
+            $this->addProvinceColumn(),
+            $this->addDistrictColumn(),
+            $this->addAddressColumn(),
+            [
+                'name'=>'contact_person',
+                'label'=>'Contact Person',
+            ],
+            $this->addEmailColumn(),
+            $this->addPhoneColumn(),
+            $this->addIsActiveColumn(),
+        ];
+        $this->crud->addColumns(array_filter($columns));
     }
 
     /**
@@ -75,6 +69,7 @@ class MstSupplierCrudController extends BaseCrudController
        
         $fields = [
             $this->addReadOnlyCodeField(),
+            $this->addClassCol8(),
             $this->addNameEnField(),
             $this->addNameLcField(),
             $this->addCountryField(),
@@ -91,8 +86,8 @@ class MstSupplierCrudController extends BaseCrudController
             ],
             $this->addEmailField(),
             $this->addPhoneField(),
-            $this->addDescriptionField(),
             $this->addIsActiveField(),
+            $this->addDescriptionField(),
         ];
         $this->crud->addFields(array_filter($fields));
 
