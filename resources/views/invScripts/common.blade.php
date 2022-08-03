@@ -46,7 +46,7 @@
                     $(currentObj).find('.UnitSale').attr("id", "UnitSale-" + ui.item.id).attr('name', 'unit_sale[' + ui.item.id + ']'); //stock entries
                     $(currentObj).find('.TotalAmount').attr("id", "TotalAmount-" + ui.item.id).attr('name', 'item_amount[' + ui.item.id + ']');
 
-                    // enableFieldsForPO(ui.item.id)
+                    enableFieldsForPO(ui.item.id)
                     $('#inv_item_hidden-' + ui.item.id).val(ui.item.id);
                 }
             }

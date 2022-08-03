@@ -17,8 +17,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect('/admin/dashboard');
+// Route::get('/', function () {
+//     return redirect('/admin/dashboard');
+// });
+Route::get('/admin/dashboard', function () {
+    return view('reporting.testchart');
 });
 Route::get('api/province/{country_id}', [ProvinceApiController::class, 'index']);
 Route::get('api/district/{province_id}', [DistrictApiController::class, 'index']);
