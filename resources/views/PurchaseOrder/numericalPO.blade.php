@@ -94,6 +94,24 @@
             }
             return purchaseOrderQty * purchasePrice - itemDiscount;
         }
+        $(".destroyRepeater").click(function() {
+            destroyRepeaterFunction(this);
+            calcBillAmount()
+
+        });
+
+        function destroyRepeaterFunction(obj) {
+            let test = "";
+            let currentInvType = $(obj).closest("tbody").attr("id");
+            test = "#" + currentInvType + " tr";
+            let NumberOfRows = $(test).length;
+            // here 3 because,one column is hidden:: first row+current row+hidden row
+            if (NumberOfRows === 3) {
+                ~$(".destroyRepeater").addClass("d-none");
+            }
+            $(obj).closest("tr")[0].remove();
+        }
+
 
     });
 </script>
