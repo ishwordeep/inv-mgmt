@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\MstItem;
 use App\Models\MstStore;
 use App\Models\MstSupplier;
-use Illuminate\Http\Request;
-use App\Models\PurchaseOrder;
-use App\Base\BaseCrudController;
-use App\Models\PurchaseOrderType;
-use App\Http\Requests\PurchaseOrderRequest;
-use App\Models\MstItem;
-use App\Models\MstPoSequence;
 use App\Models\MstSupStatus;
+use Illuminate\Http\Request;
+use App\Models\MstPoSequence;
+use App\Models\PurchaseOrder;
+use Barryvdh\DomPDF\Facade\Pdf;
+use App\Base\BaseCrudController;
 use App\Models\PurchaseOrderItem;
+use App\Models\PurchaseOrderType;
 use Illuminate\Support\Facades\DB;
 
+use App\Http\Requests\PurchaseOrderRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -135,6 +136,7 @@ class PurchaseOrderCrudController extends BaseCrudController
                 'comments',
             ]);
             $request->status_id=(int)$request->status_id;
+
             if ($request->status_id === MstSupStatus::APPROVED) {
                 // if (!$this->user->is_po_approver) abort(401);
                 
@@ -168,11 +170,13 @@ class PurchaseOrderCrudController extends BaseCrudController
                 DB::commit();
 
                 // Alert::success(trans('backpack::crud.insert_success'))->flash();
-                return response()->json([
-                    'status' => true,
-                    'url' => backpack_url('/purchase-order/'. $POId->id.'/show'),
-                ]);
+                // return response()->json([
+                //     'status' => true,
+                //     'url' => backpack_url('/purchase-order/'. $POId->id.'/show'),
+                // ]);
+                return redirect(backpack_url('/purchase-order/'. $POId->id.'/show'));
             } catch (\Throwable $th) {
+                dd($th);
                 DB::rollback();
 
                 return response()->json([
@@ -187,7 +191,24 @@ class PurchaseOrderCrudController extends BaseCrudController
         $this->crud->hasAccessOrFail('show');
         // get entry ID from Request (makes sure its the last ID for nested resources)
         $id = $this->crud->getCurrentEntryId() ?? $id;
-        $data = [];
+
+        $data = $this->getData($id);
+
+        return view('PurchaseOrder.purchaseOrderShow', [
+            'entry' => $data['entry'],
+            'items' => $data['items'],
+            'crud' => $data['crud'],
+        ]);
+    }
+
+    public function poPrintPdf($id){
+        $data = $this->getData($id);
+
+        $pdf = Pdf::loadView('PurchaseOrder.purchaseOrderPrint', $data);
+        return $pdf->stream('PurchaseOrder.pdf');
+    }
+
+    public function getData($id){
         // get the info for that entry (include softDeleted items if the trait is used)
         if ($this->crud->get('show.softDeletes') && in_array('Illuminate\Database\Eloquent\SoftDeletes', class_uses($this->crud->model))) {
             $data['entry'] = $this->crud->getModel()->withTrashed()->findOrFail($id);
@@ -196,13 +217,9 @@ class PurchaseOrderCrudController extends BaseCrudController
         }
         $data['items'] = $data['entry']->purchaseItemsEntity;
         $data['crud'] = $this->crud;
-        return view('PurchaseOrder.purchaseOrderShow', [
-            'entry' => $data['entry'],
-            'items' => $data['items'],
-            'crud' => $data['crud'],
-        ]);
+        
+        return $data;
     }
-
     /**
      * Define what happens when the Update operation is loaded.
      * 

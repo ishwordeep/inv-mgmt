@@ -27,8 +27,6 @@ use Illuminate\Queue\Console\BatchesTableCommand;
  */
 class StockEntryCrudController extends BaseCrudController
 {
-
-
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
      * 
@@ -41,6 +39,7 @@ class StockEntryCrudController extends BaseCrudController
         CRUD::setEntityNameStrings('', 'Stock Entries');
         $this->user = backpack_user();
     }
+
     public function create()
     {
         $filtered_items = [];
@@ -65,13 +64,14 @@ class StockEntryCrudController extends BaseCrudController
         // load the view from /resources/views/vendor/backpack/crud/ if it exists, otherwise load the one in the package
         return view('StockEntry.stockEntries', $this->data);
     }
+
     public function store()
     {
         // dd("ok");
         $this->crud->hasAccessOrFail('create');
 
         $request = $this->crud->validateRequest();
-        // dd($request->all());
+        // dd($request->request);
 
         $stockInput = $request->only([
             'store_id',
@@ -146,6 +146,7 @@ class StockEntryCrudController extends BaseCrudController
                 'route' => url($this->crud->route)
             ]);
         } catch (\Exception $e) {
+            dd($e);
             DB::rollback();
             return response()->json([
                 'status' => 'failed',
@@ -153,6 +154,7 @@ class StockEntryCrudController extends BaseCrudController
             ]);
         }
     }
+
     private function saveBatchQtyDetails($itemArr)
     {
         $arr = [
@@ -170,6 +172,7 @@ class StockEntryCrudController extends BaseCrudController
 
         BatchDetail::create($arr);
     }
+
     private function saveItemQtyDetails($itemArr)
     {
         $arr = [
@@ -194,6 +197,10 @@ class StockEntryCrudController extends BaseCrudController
         } else {
             ItemDetail::create($arr);
         }
+    }
+
+    public function sePrintPdf($id){
+        dd('here');
     }
 
     public function fetchPurchaseOrderDetails($po_num)

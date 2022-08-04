@@ -42,9 +42,15 @@ Route::group([
     Route::crud('mst-brand', 'MstBrandCrudController');
     Route::crud('mst-item', 'MstItemCrudController');
     Route::crud('user', 'UserCrudController');
+
     Route::crud('stock-entry', 'StockEntryCrudController');
+    // Route::crud('stock-entry-print-pdf/{se_id}', 'StockEntryCrudController@sePrintPdf')->name('sePrintPdf');
+    
     Route::crud('stock-item', 'StockItemCrudController');
+
     Route::crud('purchase-order', 'PurchaseOrderCrudController');
+    Route::get('purchase-order-print-pdf/{po_id}','PurchaseOrderCrudController@poPrintPdf')->name('poPrintPdf');
+
     Route::crud('purchase-order-item', 'PurchaseOrderItemCrudController');
     Route::crud('purchase-order-type', 'PurchaseOrderTypeCrudController');
 

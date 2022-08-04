@@ -122,7 +122,7 @@
     </div>
 
     {{-- Item Entry Table --}}
-    <div class="table-responsive card">
+    <div class="table-responsive card mb-2">
         <table class="table" id="repeaterTable" style="min-width: 1000px;">
             <thead>
 
@@ -276,9 +276,9 @@
 
             </tbody>
         </table>
-        <div>
-            <button type="button" class="btn btn-primary btn-sm " id="addRepeaterToSales"><i class="las la-plus p-1 text-white  bg-primary" aria-hidden="true"></i>Add More Item</button>
-        </div>
+    </div>
+    <div class="mb-3">
+        <button type="button" class="btn btn-primary btn-sm " id="addRepeaterToSales"><i class="las la-plus p-1 text-white  bg-primary" aria-hidden="true"></i>Add More Item</button>
     </div>
 
     <div class="main-container card">

@@ -1,62 +1,24 @@
-@extends(backpack_view('blank'))
-
-@php
-
-    $defaultBreadcrumbs = [
-      trans('backpack::crud.admin') => url(config('backpack.base.route_prefix'), 'dashboard'),
-      $crud->entity_name_plural => url($crud->route),
-      trans('backpack::crud.add') => false,
-    ];
-
-    // if breadcrumbs aren't defined in the CrudController, use the default breadcrumbs
-    $breadcrumbs = $breadcrumbs ?? $defaultBreadcrumbs;
-
-@endphp
-
-@section('header')
-    <section class="container-fluid">
-        <h2>
-            <span class="text-capitalize">{!! $crud->getHeading() ?? $crud->entity_name_plural !!}</span>
-            <small>{!! $crud->getSubheading() ?? trans('backpack::crud.preview').' '.$crud->entity_name !!}.</small>
-
-            @if ($crud->hasAccess('list'))
-                <small><a href="{{ url($crud->route) }}" class="d-print-none font-sm"><i class="la la-angle-double-{{ config('backpack.base.html_direction') == 'rtl' ? 'right' : 'left' }}"></i> {{ trans('backpack::crud.back_to_all') }} <span>{{ $crud->entity_name_plural }}</span></a></small>
-            @endif
-        </h2>
-    </section>
-@endsection
-
-@push('after_styles')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <style>
-        .upper-container .col-2 {
-            flex: 0 0 auto;
-            width: 9.666667%;
-        }
-        .row *{
-            border: transparent !important;
-        }
-        .input-group-text {
-            background-color: transparent !important;
-            font-weight: bold;
-
-        }
+        
     </style>
-@endpush
-
-@php 
-    $status=[
-        1=>'text-warning',
-        2=>'text-success',
-        3=>'text-danger',
-    ];
-@endphp
-
-@section('content')
+</head>
+<body>
+    @php 
+        $status=[
+            1=>'text-warning',
+            2=>'text-success',
+            3=>'text-danger',
+        ];
+    @endphp
+    
     <div class="card shadow px-3 mt-4">
-        <div class="buttons mt-2">
-            <a href="{{ route('poPrintPdf', $entry->id) }}" target="_blank" class="btn btn-sm btn-primary"><i class="la la-file-pdf">&nbsp;PDF</i></a>
-            <!-- <a href="void:;" class="btn btn-sm btn-primary">Email</a> -->
-        </div>
         <!-- store name section -->
         <div class="mt-3">
             <div class="row">
@@ -163,4 +125,5 @@
             </div>
         </div>
     </div>
-@endsection
+</body>
+</html>
