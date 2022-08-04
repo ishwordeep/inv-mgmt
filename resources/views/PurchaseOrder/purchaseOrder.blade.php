@@ -44,7 +44,7 @@
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="supplier" style="min-width: 100px;">Supplier</label>
                     <select class="form-select form-control" id="supplier" name="supplier_id" style="min-width: 100px;">
-                        <option val='' disabled>--Select--</option>
+                        <option val='' >--Select--</option>
                         @foreach($suppliers as $supplier)
                         <option value={{$supplier->id}}>{{$supplier->name_en}}</option>
                         @endforeach
@@ -66,8 +66,8 @@
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="requested_store" style="min-width: 100px;">Requested
                         Store</label>
-                    <select class="form-select form-control" id="requested_store" name="requested_store_id" style="min-width: 100px;" disabled>
-                        <option val='' disabled>--Select--</option>
+                    <select class="form-select form-control" id="requested_store" name="requested_store_id" style="min-width: 100px;" >
+                        <option val='' >--Select--</option>
                         @foreach($requested_stores as $store)
                         <option value={{$store->id}}>{{$store->name_en}}</option>
                         @endforeach
@@ -111,7 +111,7 @@
                     </td>
                     <td>
                         <div class="input-group">
-                            <input type="number" class="form-control p-1 FreeQty" data-cntr='' id="" placeholder="Free Qty" name="" size="1" style="width:5rem;" disabled>
+                            <input type="number" class="form-control p-1 FreeQty" data-cntr='' id="" placeholder="Free Qty" name="" size="1" style="width:5rem;" >
                         </div>
                     </td>
                     <td>
@@ -122,18 +122,18 @@
                     {{-- <td>
                             <div class="input-group">
                                 <input type="date" class="form-control p-1 ExpiryDate" data-cntr='' id=""
-                                    placeholder="Expiry Date" name="" size="1" style="width:7rem;" disabled>
+                                    placeholder="Expiry Date" name="" size="1" style="width:7rem;" >
                             </div>
                         </td> --}}
                     <td>
                         <div class="input-group">
-                            <input type="number" class="form-control p-1 UnitCost" data-cntr='' id="" placeholder="Unit Cost" name="" size="1" style="width:5rem;" disabled>
+                            <input type="number" class="form-control p-1 UnitCost" data-cntr='' id="" placeholder="Unit Cost" name="" size="1" style="width:5rem;" >
                         </div>
                     </td>
 
                     <td>
                         <div class="input-group">
-                            <select class="form-select form-control DiscountMode" data-cntr='' id="" style="min-width: 73px;" disabled>
+                            <select class="form-select form-control DiscountMode" data-cntr='' id="" style="min-width: 73px;" >
                                 <option value="1">%</option>
                                 <option value="2">NRS</option>
                             </select>
@@ -141,7 +141,7 @@
                     </td>
                     <td>
                         <div class="input-group">
-                            <input type="number" class="form-control p-1 Discount" data-cntr='' id="" placeholder="Discount" name="" size="1" style="width:5rem;" disabled>
+                            <input type="number" class="form-control p-1 Discount" data-cntr='' id="" placeholder="Discount" name="" size="1" style="width:5rem;" >
                         </div>
                     </td>
 
@@ -172,7 +172,7 @@
                     </td>
                     <td>
                         <div class="input-group">
-                            <input type="number" class="form-control p-1 FreeQty" data-cntr='' id="" placeholder="Free Qty" name="" size="1" style="width:5rem;" disabled>
+                            <input type="number" class="form-control p-1 FreeQty" data-cntr='' id="" placeholder="Free Qty" name="" size="1" style="width:5rem;" >
                         </div>
                     </td>
                     <td>
@@ -183,18 +183,18 @@
                     {{-- <td>
                             <div class="input-group">
                                 <input type="date" class="form-control p-1 ExpiryDate" data-cntr='' id=""
-                                    placeholder="Expiry Date" name="" size="1" style="width:7rem;" disabled>
+                                    placeholder="Expiry Date" name="" size="1" style="width:7rem;" >
                             </div>
                         </td> --}}
                     <td>
                         <div class="input-group">
-                            <input type="number" class="form-control p-1 UnitCost" data-cntr='' id="" placeholder="Unit Cost" name="" size="1" style="width:5rem;" disabled>
+                            <input type="number" class="form-control p-1 UnitCost" data-cntr='' id="" placeholder="Unit Cost" name="" size="1" style="width:5rem;" >
                         </div>
                     </td>
 
                     <td>
                         <div class="input-group">
-                            <select class="form-select form-control DiscountMode" data-cntr='' id="" style="min-width: 73px;" disabled>
+                            <select class="form-select form-control DiscountMode" data-cntr='' id="" style="min-width: 73px;" >
                                 <option value="1">%</option>
                                 <option value="2">NRS</option>
                             </select>
@@ -202,7 +202,7 @@
                     </td>
                     <td>
                         <div class="input-group">
-                            <input type="number" class="form-control p-1 Discount" data-cntr='' id="" placeholder="Discount" name="" size="1" style="width:5rem;" disabled>
+                            <input type="number" class="form-control p-1 Discount" data-cntr='' id="" placeholder="Discount" name="" size="1" style="width:5rem;" >
                         </div>
                     </td>
 
@@ -239,20 +239,20 @@
                         <tr>
                             <th class="bg-primary text-white">Gross Total</th>
                             <td>
-                                <input id="" type="numner" name="gross_amt" class="form-control" readonly>
+                                <input id="gross_amt" type="numner" name="gross_amt" class="form-control" readonly>
                             </td>
                         </tr>
                         <tr>
                             <th class="bg-primary text-white">Total Discount</th>
                             <td>
-                                <input id="" type="number" name="discount_amt" class="form-control" readonly>
+                                <input id="total_disc_amt" type="number" name="discount_amt" class="form-control" readonly>
                             </td>
                         </tr>
 
                         <tr>
                             <th class="bg-primary text-white">Net Amount</th>
                             <td>
-                                <input id="" type="number" name="net_amt" class="form-control bg-secondary" readonly>
+                                <input id="net_amt" type="number" name="net_amt" class="form-control bg-secondary" readonly>
                             </td>
                         </tr>
                     </tbody>
@@ -275,6 +275,7 @@
 @section('after_scripts')
 @include('invScripts.common')
 @include('invScripts.purchaseOrder')
+@include('PurchaseOrder.numericalPO')
 
 
 @endsection

@@ -31,14 +31,14 @@
                     label: 'Item B',
                     backgroundColor: 'rgb(55, 9, 32)',
                     borderColor: 'rgb(55, 9, 32)',
-                    data: [0, 180, 52, 12, 20, 230, 45],
+                    data: [0, 30, 52, 12, 70, 230, 45],
                 },
-                {
-                    label: 'Item C',
-                    backgroundColor: 'rgb(5, 99, 132)',
-                    borderColor: 'rgb(5, 99, 132)',
-                    data: [0, 10, 92, 12, 220, 20, 45],
-                }
+                // {
+                //     label: 'Item C',
+                //     backgroundColor: 'rgb(5, 99, 132)',
+                //     borderColor: 'rgb(5, 99, 132)',
+                //     data: [0, 10, 92, 12, 220, 20, 45],
+                // }
             ]
         };
 
