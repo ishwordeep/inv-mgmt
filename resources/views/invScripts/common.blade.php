@@ -137,7 +137,6 @@
        
 
         $('#save').on('click', function() {
-            checkIfAtleastOneItem($(this))
             $('#status').val(1);
         });
         $('#approve').on('click', function() {

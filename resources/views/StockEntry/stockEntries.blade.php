@@ -125,7 +125,7 @@
                     </td>
                     <td>
                         <div class="input-group">
-                            <input type="number" class="form-control p-1 FreeQty" data-cntr='' id="" placeholder="Free Qty" name="" size="1" style="width:5rem;" disabled>
+                            <input type="number" class="form-control p-1 FreeQty" data-cntr='' id="" placeholder="Free Qty" name="" size="1" style="width:5rem;" >
                         </div>
                     </td>
                     <td>
@@ -135,18 +135,18 @@
                     </td>
                     <td>
                         <div class="input-group">
-                            <input type="date" class="form-control p-1 ExpiryDate" data-cntr='' id="" placeholder="Expiry Date" name="" size="1" style="width:7rem;" disabled>
+                            <input type="date" class="form-control p-1 ExpiryDate" data-cntr='' id="" placeholder="Expiry Date" name="" size="1" style="width:7rem;" >
                         </div>
                     </td>
                     <td>
                         <div class="input-group">
-                            <input type="number" class="form-control p-1 UnitCost" data-cntr='' id="" placeholder="Unit Cost" name="" size="1" style="width:5rem;" disabled>
+                            <input type="number" class="form-control p-1 UnitCost" data-cntr='' id="" placeholder="Unit Cost" name="" size="1" style="width:5rem;" >
                         </div>
                     </td>
                 
                     <td>
                         <div class="input-group">
-                            <select class="form-select form-control DiscountMode" data-cntr='' id="" style="min-width: 73px;" disabled>
+                            <select class="form-select form-control DiscountMode" data-cntr='' id="" style="min-width: 73px;" >
                                 <option value="1">%</option>
                                 <option value="2">NRS</option>
                             </select>
@@ -154,19 +154,19 @@
                     </td>
                     <td>
                         <div class="input-group">
-                            <input type="number" class="form-control p-1 Discount" data-cntr='' id="" placeholder="Discount" name="" size="1" style="width:5rem;" disabled>
+                            <input type="number" class="form-control p-1 Discount" data-cntr='' id="" placeholder="Discount" name="" size="1" style="width:5rem;" >
                         </div>
                     </td>
                     @if($invType==='addRepeaterToStockEntry')
                     <td>
                         <div class="input-group">
-                            <input type="number" class="form-control p-1 TaxVat" data-cntr='' id="" placeholder="Tax/vat" name="" size="1" style="width:5rem;" disabled>
+                            <input type="number" class="form-control p-1 TaxVat" data-cntr='' id="" placeholder="Tax/vat" name="" size="1" style="width:5rem;" >
                         </div>
                     </td>
                 
                     <td>
                         <div class="input-group">
-                            <input type="number" class="form-control p-1 UnitSale" data-cntr='' id="" placeholder="Unit Sales" name="" size="1" style="width:5rem;" disabled>
+                            <input type="number" class="form-control p-1 UnitSale" data-cntr='' id="" placeholder="Unit Sales" name="" size="1" style="width:5rem;" >
                         </div>
                     </td>
                     @endif
@@ -274,38 +274,38 @@
                         <tr>
                             <th class="bg-primary text-white">Gross Total</th>
                             <td>
-                                <input id="" type="numner" name="" class="form-control">
+                                <input id="gross_amt" type="numner" name="gross_amt" class="form-control">
                             </td>
                         </tr>
                         <tr>
                             <th class="bg-primary text-white">Total Discount</th>
                             <td>
-                                <input id="" type="number" name="" class="form-control">
+                                <input id="total_disc_amt" type="number" name="total_disc_amt" class="form-control">
                             </td>
                         </tr>
                         <tr>
                             <th class="bg-primary text-white">Taxable Amount</th>
                             <td>
-                                <input id="" type="number" name="" class="form-control">
+                                <input id="taxableAmt" type="number" name="taxableAmt" class="form-control">
                             </td>
 
                         </tr>
                         <tr>
                             <th class="bg-primary text-white">Tax Total</th>
                             <td>
-                                <input id="" type="number" name="" class="form-control">
+                                <input id="totalTaxAmt" type="number" name="totalTaxAmt" class="form-control">
                             </td>
                         </tr>
                         <tr>
                             <th class="bg-primary text-white">Other Charges</th>
                             <td>
-                                <input id="" type="number" name="" class="form-control">
+                                <input id="other_charges" type="number" name="other_charges" class="form-control">
                             </td>
                         </tr>
                         <tr>
                             <th class="bg-primary text-white">Net Amount</th>
                             <td>
-                                <input id="" type="number" name="" class="form-control bg-secondary">
+                                <input id="net_amt" type="number" name="net_amt" class="form-control bg-secondary">
                             </td>
                         </tr>
                     </tbody>
@@ -331,4 +331,5 @@
 @section('after_scripts')
 @include('invScripts.common')
 @include('invScripts.stockEntry')
+@include('StockEntry.numericalStockEntry')
 @endsection
