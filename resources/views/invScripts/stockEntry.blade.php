@@ -5,7 +5,6 @@
             url = "http://inv_mgmt.test/admin/get-podetails/" + po_num;
             console.log("URL::", url)
             $.get(url).then(function(response) {
-                debugger;
                 if (response.nodata === 'nodata') {
                     Swal.fire("No Data Found")
                 } else {
