@@ -4,17 +4,19 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\MstItem;
 use App\Models\MstStore;
+use PDF;
 use App\Models\MstSupplier;
 use App\Models\MstSupStatus;
 use Illuminate\Http\Request;
 use App\Models\MstPoSequence;
 use App\Models\PurchaseOrder;
-use Barryvdh\DomPDF\Facade\Pdf;
 use App\Base\BaseCrudController;
 use App\Models\PurchaseOrderItem;
 use App\Models\PurchaseOrderType;
-use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Facades\DB;
+use Prologue\Alerts\Facades\Alert;
+use Mail;
 use App\Http\Requests\PurchaseOrderRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
@@ -186,6 +188,7 @@ class PurchaseOrderCrudController extends BaseCrudController
             }
         }
     }
+
     public function show($id)
     {
         $this->crud->hasAccessOrFail('show');
@@ -204,8 +207,32 @@ class PurchaseOrderCrudController extends BaseCrudController
     public function poPrintPdf($id){
         $data = $this->getData($id);
 
-        $pdf = Pdf::loadView('PurchaseOrder.purchaseOrderPrint', $data);
+        $pdf = PDF::loadView('PurchaseOrder.purchaseOrderPdf', $data);
         return $pdf->stream('PurchaseOrder.pdf');
+    }
+
+    public function poSendMail($id){
+        $data = $this->getData($id);
+        $data['store_email'] = MstStore::whereId($data['entry']->store_id)->pluck('email')->first();
+        
+        $pdf = PDF::loadView('PurchaseOrder.purchaseOrderPdf', $data);
+
+        try{
+            if(isset($data['store_email'])){
+                    Mail::send('test',$data, function($message) use($pdf,$data) {
+                        $message->to($data['store_email'])
+                        ->from(env('MAIL_USERNAME'))
+                        ->subject('Purchase Order')
+                        ->attachData($pdf->output(),'PurchaseOrder.pdf');
+                    });
+                \Alert::success(trans('Email sent successfully'))->flash();
+            }else{
+                \Alert::error(trans('Some problem occured during sending the email.'))->flash();
+            }
+        }catch(Exception $e){
+            dd($e);
+        }
+        return redirect()->back();
     }
 
     public function getData($id){

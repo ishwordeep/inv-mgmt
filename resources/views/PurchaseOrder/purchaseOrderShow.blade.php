@@ -1,7 +1,6 @@
 @extends(backpack_view('blank'))
 
 @php
-
     $defaultBreadcrumbs = [
       trans('backpack::crud.admin') => url(config('backpack.base.route_prefix'), 'dashboard'),
       $crud->entity_name_plural => url($crud->route),
@@ -10,7 +9,6 @@
 
     // if breadcrumbs aren't defined in the CrudController, use the default breadcrumbs
     $breadcrumbs = $breadcrumbs ?? $defaultBreadcrumbs;
-
 @endphp
 
 @section('header')
@@ -53,9 +51,9 @@
 
 @section('content')
     <div class="card shadow px-3 mt-4">
-        <div class="buttons mt-2">
-            <a href="{{ route('poPrintPdf', $entry->id) }}" target="_blank" class="btn btn-sm btn-primary"><i class="la la-file-pdf">&nbsp;PDF</i></a>
-            <!-- <a href="void:;" class="btn btn-sm btn-primary">Email</a> -->
+        <div class="buttons mt-2 text-right">
+            <a href="{{ route('poprintpdf', $entry->id) }}" target="_blank" class="btn btn-sm btn-primary"><i class="la la-file-pdf">&nbsp;PDF</i></a>
+            <a href="{{ route('posendmail', $entry->id) }}" class="btn btn-sm btn-primary"><i class="la la-inbox">&nbsp;Email</i></a>
         </div>
         <!-- store name section -->
         <div class="mt-3">

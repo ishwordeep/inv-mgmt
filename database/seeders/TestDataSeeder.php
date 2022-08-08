@@ -20,12 +20,12 @@ class TestDataSeeder extends Seeder
         $now = Carbon::now()->toDateTimeString();
         $this->time = $now;
         $this->organization();
+        $this->store();
         $this->users();
         $this->units();
         $this->category();
         $this->subcategory();
         $this->supplier();
-        $this->store();
         $this->brand();
         $this->item();
     }
@@ -39,11 +39,11 @@ class TestDataSeeder extends Seeder
     }
     private function users(){
         DB::table('users')->insert([
-            array('id' => 1, 'code'=>'sys','name' => 'System Admin', 'email' => 'super@gmail.com','user_level'=>1,'password' => \Hash::make('123456')),
-            array('id' => 2, 'code'=>'1','name' => 'Deep Admin', 'email' => 'deep@gmail.com','user_level'=>2,'password' => \Hash::make('123456')),
-            array('id' => 3, 'code'=>'2','name' => 'A Store', 'email' => 'a@gmail.com','user_level'=>3,'password' => \Hash::make('123456')),
-            array('id' => 4, 'code'=>'3','name' => 'B Store', 'email' => 'b@gmail.com','user_level'=>3,'password' => \Hash::make('123456')),
-            array('id' => 5, 'code'=>'4','name' => 'C Store', 'email' => 'c@gmail.com','user_level'=>3,'password' => \Hash::make('123456')),
+            array('id' => 1, 'code'=>'sys','name' => 'System Admin', 'email' => 'super@gmail.com','store_id' => null,'user_level'=>1,'password' => \Hash::make('123456')),
+            array('id' => 2, 'code'=>'1','name' => 'Deep Admin', 'email' => 'deep@gmail.com','store_id' => null,'user_level'=>2,'password' => \Hash::make('123456')),
+            array('id' => 3, 'code'=>'2','name' => 'A Store', 'email' => 'a@gmail.com','store_id' => 1,'user_level'=>3,'password' => \Hash::make('123456')),
+            array('id' => 4, 'code'=>'3','name' => 'B Store', 'email' => 'b@gmail.com','store_id' => 2,'user_level'=>3,'password' => \Hash::make('123456')),
+            array('id' => 5, 'code'=>'4','name' => 'C Store', 'email' => 'c@gmail.com','store_id' => 3,'user_level'=>3,'password' => \Hash::make('123456')),
         ]);
         DB::statement("SELECT SETVAL('users_id_seq',100)");
 

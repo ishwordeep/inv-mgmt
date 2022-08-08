@@ -44,12 +44,12 @@ Route::group([
     Route::crud('user', 'UserCrudController');
 
     Route::crud('stock-entry', 'StockEntryCrudController');
-    // Route::crud('stock-entry-print-pdf/{se_id}', 'StockEntryCrudController@sePrintPdf')->name('sePrintPdf');
     
     Route::crud('stock-item', 'StockItemCrudController');
 
     Route::crud('purchase-order', 'PurchaseOrderCrudController');
-    Route::get('purchase-order-print-pdf/{po_id}','PurchaseOrderCrudController@poPrintPdf')->name('poPrintPdf');
+    Route::get('purchase-order-print-pdf/{po_id}','PurchaseOrderCrudController@poPrintPdf')->name('poprintpdf');
+    Route::get('purchase-order-send-mail/{po_id}','PurchaseOrderCrudController@poSendMail')->name('posendmail');
 
     Route::crud('purchase-order-item', 'PurchaseOrderItemCrudController');
     Route::crud('purchase-order-type', 'PurchaseOrderTypeCrudController');
