@@ -50,8 +50,12 @@
                     let discountMode = $(currRow).find(".DiscountMode").val();
                     let discount = checkNan(parseFloat($(currRow).find(".Discount").val()));
                     
-                    let itemDiscount = calcItemDiscount(purchaseOrderQty, purchasePrice, discountMode,
-                    discount);
+                    if($('#itemWiseDiscount').is(':checked'))){
+                        let itemDiscount = calcItemDiscount(purchaseOrderQty, purchasePrice, discountMode,discount);
+                    }
+                    else{
+                        let itemDiscount = calcItemDiscount(purchaseOrderQty, purchasePrice, discountMode,0);
+                    }
                    if(parseFloat(checkNan($(currRow).find('.TaxVat').val()))>0){
                     let taxRate=parseFloat(checkNan($(currRow).find('.TaxVat').val()));
                    

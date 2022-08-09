@@ -8,11 +8,11 @@
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-country') }}'><i class='nav-icon la la-question'></i> Countries</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-province') }}'><i class='nav-icon la la-question'></i> Provinces</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-district') }}'><i class='nav-icon la la-question'></i> Districts</a></li>
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-gender') }}'><i class='nav-icon la la-question'></i> Genders</a></li>
+        {{-- <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-gender') }}'><i class='nav-icon la la-question'></i> Genders</a></li> --}}
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-sup-status') }}'><i class='nav-icon la la-question'></i> Status</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-discount-mode') }}'><i class='nav-icon la la-question'></i> Discount Modes</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('purchase-order-type') }}'><i class='nav-icon la la-question'></i> Purchase order types</a></li>
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-payment-mode') }}'><i class='nav-icon la la-question'></i> Payment Modes</a></li>
+        {{-- <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-payment-mode') }}'><i class='nav-icon la la-question'></i> Payment Modes</a></li> --}}
     </ul>
 </li>
 <li class="nav-item nav-dropdown">
