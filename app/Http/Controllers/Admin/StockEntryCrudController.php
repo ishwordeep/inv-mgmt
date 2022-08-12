@@ -114,14 +114,15 @@ class StockEntryCrudController extends BaseCrudController
         try {
             DB::beginTransaction();
             $stock = StockEntry::create($stockInput);
-            foreach ($request->mst_item_id as $key => $val) {
+            foreach ($request->itemStockHidden as $key => $val) {
+                if(isset($request->itemStockHidden[$key])){
                 $itemArr = [
                     'stock_id' => $stock->id,
                     'item_id' => $request->itemStockHidden[$key],
                     'add_qty' => $request->add_qty[$key],
                     'free_qty' => $request->free_item[$key],
                     'total_qty' => $request->total_qty[$key],
-                    'discount_mode_id' => $request->total_qty[$key],
+                    'discount_mode_id' => $request->discount_mode_id[$key],
                     'discount' => isset($itemDiscount) ? $itemDiscount : (isset($request->discount[$key]) ? $request->discount[$key] : null),
                     'unit_cost_price' => $request->unit_cost_price[$key],
                     'unit_sales_price' => $request->unit_sales_price[$key],
@@ -133,11 +134,12 @@ class StockEntryCrudController extends BaseCrudController
 
                     $itemArr['batch_no'] = MstBatchNo::first()->sequence_code . '-' . $stock->id;
 
-                    $this->saveItemQtyDetails();
-                    $this->saveBatchQtyDetails($itemArr);
+                    // $this->saveItemQtyDetails();
+                    // $this->saveBatchQtyDetails($itemArr);
                 }
 
                 $stockItem = StockItem::create($itemArr);
+            }
             }
             DB::commit();
             return response()->json([

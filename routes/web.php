@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect('/admin/dashboard');
+    return redirect('/admin');
 });
 Route::get('/admin/dashboard', function () {
     return view('reporting.testchart');
