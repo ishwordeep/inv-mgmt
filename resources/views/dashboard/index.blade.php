@@ -22,7 +22,7 @@
             </h3>
         </div>
         <div class="col-lg-4 col-md-6 col-xs-12">
-            <a href="">
+            <a href="{{backpack_url('mst-store')}}">
                 <div class="card-counter success">
                     <i class="fa fa-building"></i>
                     <span class="count-numbers" id="">12</span>
@@ -31,7 +31,7 @@
             </a>
         </div>
         <div class="col-lg-4 col-md-6 col-xs-12">
-            <a href="">
+            <a href="{{backpack_url('mst-item')}}">
                 <div class="card-counter info">
                     <i class="fa fa-sitemap"></i>
                     <span class="count-numbers" id="">12</span>
@@ -41,7 +41,8 @@
         </div>
 
         <div class="col-lg-4 col-md-6 col-xs-12">
-            <a href="">
+            <a href="{{backpack_url('user')}}">
+                <a >
                 <div class="card-counter purple">
                     <i class="fa fa-user"></i>
                     <span class="count-numbers" id="">22</span>
