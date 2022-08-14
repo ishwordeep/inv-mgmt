@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\ItemDetailCrudController;
 use App\Http\Controllers\Admin\MstItemCrudController;
 use App\Http\Controllers\Admin\StockEntryCrudController;
+use App\Models\ItemDetail;
 use App\Models\MstItem;
 use App\Models\StockEntry;
 use Illuminate\Support\Facades\Route;
@@ -62,4 +64,7 @@ Route::group([
     Route::crud('item-detail', 'ItemDetailCrudController');
     Route::crud('sale', 'SaleCrudController');
     Route::crud('sale-item', 'SaleItemCrudController');
+
+    // Reporting Route
+    Route::get('item-detail',[ItemDetailCrudController::class,'getItemDetails'])->name('item-details');
 }); // this should be the absolute last line of this file
