@@ -23,6 +23,11 @@ Route::get('/', function () {
 Route::get('/admin/dashboard', function () {
     return view('dashboard.index');
 });
+
+Route::get('/admin/items', function () {
+    return view('dashboard.items');
+});
+
 Route::get('api/province/{country_id}', [ProvinceApiController::class, 'index']);
 Route::get('api/district/{province_id}', [DistrictApiController::class, 'index']);
 

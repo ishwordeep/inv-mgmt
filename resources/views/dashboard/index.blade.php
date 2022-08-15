@@ -1,5 +1,4 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('/css/dashboard.css') }}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 @extends(backpack_view('blank'))
 
 @section('content')
@@ -41,11 +40,11 @@
         </div>
 
         <div class="col-lg-4 col-md-6 col-xs-12">
-            <a href="{{backpack_url('user')}}">
-                <a >
+            <a  href="{{backpack_url('user')}}">
+               
                 <div class="card-counter purple">
                     <i class="fa fa-user"></i>
-                    <span class="count-numbers" id="">22</span>
+                    <span class="count-numbers" id="">2bb2</span>
                     <span class="count-name">Total Users</span>
                 </div>
             </a>
@@ -62,7 +61,7 @@
             </h3>
         </div>
         <div class="col-lg-4 col-md-6 col-xs-12">
-            <a href="#">
+            <a href="{{backpack_url('mst-item')}}">
                 <div class="card-counter primary">
                     <i class="fa fa-barcode"></i>
                     <span class="count-numbers" id="">1212</span>
@@ -71,7 +70,7 @@
             </a>
         </div>
         <div class="col-lg-4 col-md-6 col-xs-12">
-            <a href="#">
+            <a href="{{route('active-items')}}">
                 <div class="card-counter success">
                     <i class="fa fa-check"></i>
                     <span class="count-numbers" id="">34</span>
@@ -80,7 +79,7 @@
             </a>
         </div>
         <div class="col-lg-4 col-md-6 col-xs-12">
-            <a href="#">
+            <a href="{{route('inactive-items')}}">
                 <div class="card-counter danger">
                     <i class="fa fa-window-close"></i>
                     <span class="count-numbers" id="">34</span>
@@ -102,7 +101,7 @@
             </h3>
         </div>
         <div class="col-lg-4 col-md-6 col-xs-12">
-            <a href="#">
+            <a href="{{route('green-zoned-items')}}">
                 <div class="card-counter success">
                     <i class="fa fa-barcode"></i>
                     <span class="count-numbers" id="">1212</span>
@@ -111,7 +110,7 @@
             </a>
         </div>
         <div class="col-lg-4 col-md-6 col-xs-12">
-            <a href="#">
+            <a href="{{route('yellow-zoned-items')}}">
                 <div class="card-counter warning">
                     <i class="fa fa-check"></i>
                     <span class="count-numbers" id="">34</span>
@@ -120,7 +119,7 @@
             </a>
         </div>
         <div class="col-lg-4 col-md-6 col-xs-12">
-            <a href="#">
+            <a href="{{route('red-zoned-items')}}">
                 <div class="card-counter danger">
                     <i class="fa fa-window-close"></i>
                     <span class="count-numbers" id="">34</span>
