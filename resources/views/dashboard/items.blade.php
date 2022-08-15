@@ -25,11 +25,12 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($data['items'] as $key => $item)
                     <tr>
-                        <td>1</td>
-                        <td>Tomato</td>
-                        <td>Vegetable</td>
-                        <td>123</td>
+                        <td>{{$key+1}}</td>
+                        <td>{{$item->name_en}}</td>
+                        <td>{{$item->categoryEntity->name_en}}</td>
+                        <td>55</td>
                         <td>
                             <i class="fa-solid fa-eye px-2"></i>
                             @if(isset($data['po']))
@@ -37,6 +38,8 @@
                             @endif
                         </td>
                     </tr>
+                    @endforeach
+                    
                 </tbody>
             </table>
         </div>

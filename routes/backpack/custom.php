@@ -4,9 +4,6 @@ use App\Http\Controllers\Admin\ItemDetailCrudController;
 use App\Http\Controllers\Admin\MstItemCrudController;
 use App\Http\Controllers\Admin\StockEntryCrudController;
 use App\Http\Controllers\Dashboard\DashboardController;
-use App\Models\ItemDetail;
-use App\Models\MstItem;
-use App\Models\StockEntry;
 use Illuminate\Support\Facades\Route;
 
 // --------------------------
@@ -67,6 +64,7 @@ Route::group([
     Route::crud('sale-item', 'SaleItemCrudController');
 
     // Reporting Route
+    Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
     Route::get('item-detail',[ItemDetailCrudController::class,'getItemDetails'])->name('item-details');
     Route::get('report/active-items',[DashboardController::class,'totalActiveStock'])->name('active-items');
     Route::get('report/inactive-items',[DashboardController::class,'totalInactiveStock'])->name('inactive-items');

@@ -24,27 +24,19 @@
             <a href="{{backpack_url('mst-store')}}">
                 <div class="card-counter success">
                     <i class="fa fa-building"></i>
-                    <span class="count-numbers" id="">12</span>
+                    <span class="count-numbers" id="">{{$data['store_qty']}}</span>
                     <span class="count-name">Total Stores</span>
                 </div>
             </a>
         </div>
-        <div class="col-lg-4 col-md-6 col-xs-12">
-            <a href="{{backpack_url('mst-item')}}">
-                <div class="card-counter info">
-                    <i class="fa fa-sitemap"></i>
-                    <span class="count-numbers" id="">12</span>
-                    <span class="count-name">Total Items</span>
-                </div>
-            </a>
-        </div>
+       
 
         <div class="col-lg-4 col-md-6 col-xs-12">
             <a  href="{{backpack_url('user')}}">
                
                 <div class="card-counter purple">
                     <i class="fa fa-user"></i>
-                    <span class="count-numbers" id="">2bb2</span>
+                    <span class="count-numbers" id="">{{$data['user_qty']}}</span>
                     <span class="count-name">Total Users</span>
                 </div>
             </a>
@@ -64,7 +56,7 @@
             <a href="{{backpack_url('mst-item')}}">
                 <div class="card-counter primary">
                     <i class="fa fa-barcode"></i>
-                    <span class="count-numbers" id="">1212</span>
+                    <span class="count-numbers" id="">{{$data['total_qty']}}</span>
                     <span class="count-name">Total Stocks</span>
                 </div>
             </a>
@@ -73,7 +65,7 @@
             <a href="{{route('active-items')}}">
                 <div class="card-counter success">
                     <i class="fa fa-check"></i>
-                    <span class="count-numbers" id="">34</span>
+                    <span class="count-numbers" id="">{{$data['active_qty']}}</span>
                     <span class="count-name">Total Active Stocks</span>
                 </div>
             </a>
@@ -82,14 +74,13 @@
             <a href="{{route('inactive-items')}}">
                 <div class="card-counter danger">
                     <i class="fa fa-window-close"></i>
-                    <span class="count-numbers" id="">34</span>
+                    <span class="count-numbers" id="">{{$data['inactive_qty']}}</span>
                     <span class="count-name">Total Inactive Stocks</span>
                 </div>
             </a>
         </div>
     </div>
 </div>
-
 
 
 {{-- Stock Alert Details --}}
