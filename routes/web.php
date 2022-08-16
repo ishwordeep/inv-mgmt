@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\DistrictApiController;
 use App\Http\Controllers\ProvinceApiController;
 use Illuminate\Http\Client\Request;

@@ -35,9 +35,9 @@
             let grossAmt = 0;
             let totalDiscAmt = 0;
             let netAmt = 0;
-            let taxableAmt=0;
-            let totalTaxAmt=0;
-            let other_charges=0;
+            let taxableAmt = 0;
+            let totalTaxAmt = 0;
+            let other_charges = 0;
 
             $(".inv_item").each(function() {
 
@@ -49,24 +49,28 @@
                     let purchasePrice = checkNan(parseInt($(currRow).find(".UnitCost").val()));
                     let discountMode = $(currRow).find(".DiscountMode").val();
                     let discount = checkNan(parseFloat($(currRow).find(".Discount").val()));
-                    
-                    let itemDiscount = calcItemDiscount(purchaseOrderQty, purchasePrice, discountMode,
-                    discount);
-                   if(parseFloat(checkNan($(currRow).find('.TaxVat').val()))>0){
-                    let taxRate=parseFloat(checkNan($(currRow).find('.TaxVat').val()));
-                   
-                    taxableAmt=taxableAmt+(purchaseOrderQty*purchasePrice-itemDiscount);
-                    totalTaxAmt=totalTaxAmt+(purchaseOrderQty*purchasePrice-itemDiscount)*taxRate*0.01;
-                   }
-                    grossAmt = grossAmt + purchaseOrderQty*purchasePrice;
+
+                    // if($('#itemWiseDiscount').is(':checked'))){
+                        let itemDiscount = calcItemDiscount(purchaseOrderQty, purchasePrice, discountMode,discount);
+                    // }
+                    // else{
+                    // let itemDiscount = calcItemDiscount(purchaseOrderQty, purchasePrice, discountMode, 0);
+                    // }
+                    if (parseFloat(checkNan($(currRow).find('.TaxVat').val())) > 0) {
+                        let taxRate = parseFloat(checkNan($(currRow).find('.TaxVat').val()));
+
+                        taxableAmt = taxableAmt + (purchaseOrderQty * purchasePrice - itemDiscount);
+                        totalTaxAmt = totalTaxAmt + (purchaseOrderQty * purchasePrice - itemDiscount) * taxRate * 0.01;
+                    }
+                    grossAmt = grossAmt + purchaseOrderQty * purchasePrice;
                     totalDiscAmt = totalDiscAmt + itemDiscount;
-                    console.log(grossAmt,totalDiscAmt,taxableAmt,totalTaxAmt);
+                    console.log(grossAmt, totalDiscAmt, taxableAmt, totalTaxAmt);
 
 
                 }
             });
 
-            netAmt = grossAmt - totalDiscAmt+totalTaxAmt;
+            netAmt = grossAmt - totalDiscAmt + totalTaxAmt;
             $('#gross_amt').val(grossAmt);
             $('#total_disc_amt').val(totalDiscAmt);
             $('#taxableAmt').val(taxableAmt);
@@ -77,7 +81,7 @@
 
 
         function checkNan(val) {
-            return !isNaN(val)?val:0;
+            return !isNaN(val) ? val : 0;
         }
 
         function calcTotalQty(purchaseOrderQty, freeQty) {
@@ -124,4 +128,5 @@
 
 
     });
+
 </script>

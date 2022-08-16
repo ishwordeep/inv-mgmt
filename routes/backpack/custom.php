@@ -1,9 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\ItemDetailCrudController;
 use App\Http\Controllers\Admin\MstItemCrudController;
 use App\Http\Controllers\Admin\StockEntryCrudController;
-use App\Models\MstItem;
-use App\Models\StockEntry;
+use App\Http\Controllers\Dashboard\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 // --------------------------
@@ -68,4 +68,13 @@ Route::group([
     Route::crud('item-detail', 'ItemDetailCrudController');
     Route::crud('sale', 'SaleCrudController');
     Route::crud('sale-item', 'SaleItemCrudController');
+
+    // Reporting Route
+    Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
+    Route::get('item-detail',[ItemDetailCrudController::class,'getItemDetails'])->name('item-details');
+    Route::get('report/active-items',[DashboardController::class,'totalActiveStock'])->name('active-items');
+    Route::get('report/inactive-items',[DashboardController::class,'totalInactiveStock'])->name('inactive-items');
+    Route::get('report/green-zoned-items',[DashboardController::class,'greenZonedStock'])->name('green-zoned-items');
+    Route::get('report/yellow-zoned-items',[DashboardController::class,'yellowZonedStock'])->name('yellow-zoned-items');
+    Route::get('report/red-zoned-items',[DashboardController::class,'redZonedStock'])->name('red-zoned-items');
 }); // this should be the absolute last line of this file
