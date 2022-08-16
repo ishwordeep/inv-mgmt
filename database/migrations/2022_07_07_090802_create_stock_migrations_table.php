@@ -17,6 +17,7 @@ class CreateStockMigrationsTable extends Migration
             $table->id();
             $table->unsignedInteger('store_id')->nullable();
             $table->string('invoice_number')->nullable();
+            $table->string('po_number')->nullable();
             $table->string('invoice_date')->nullable();
             $table->string('stock_adjustment_number')->nullable();
             $table->timestamp('entry_date')->nullable();
@@ -31,12 +32,16 @@ class CreateStockMigrationsTable extends Migration
             $table->unsignedFloat('total_tax')->nullable();
             $table->unsignedFloat('net_amount')->nullable();
             $table->unsignedInteger('status_id')->nullable();
+            $table->unsignedInteger('requested_store_id')->nullable();
+            $table->unsignedInteger('supplier_id')->nullable();
 
             $table->timestamps();
             $table->foreign('store_id')->references('id')->on('mst_stores')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreign('status_id')->references('id')->on('mst_sup_status')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreign('created_by')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreign('approved_by')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreign('supplier_id')->references('id')->on('mst_suppliers')->onDelete('restrict')->onUpdate('cascade');
+            $table->foreign('requested_store_id')->references('id')->on('mst_stores')->onDelete('restrict')->onUpdate('cascade');
         });
         Schema::create('stock_items', function (Blueprint $table) {
             $table->increments('id');

@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use App\Base\BaseModel;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class StockEntry extends Model
+class StockEntry extends BaseModel
 {
     use CrudTrait;
 
@@ -34,7 +35,9 @@ class StockEntry extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
+    public function stockItemsEntity(){
+        return $this->hasMany(StockItem::class,'stock_id','id');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

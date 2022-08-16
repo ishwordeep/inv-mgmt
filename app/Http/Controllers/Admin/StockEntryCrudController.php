@@ -75,7 +75,6 @@ class StockEntryCrudController extends BaseCrudController
 
         $stockInput = $request->only([
             'store_id',
-            'store_id',
             'remarks',
             'gross_total',
             'total_discount',
@@ -86,20 +85,20 @@ class StockEntryCrudController extends BaseCrudController
             'stock_adjustment_number',
             'invoice_number',
             'invoice_date',
+            'po_number',
             'status_id',
         ]);
 
         $stockInput['created_by'] = $this->user->id;
 
-        $statusCheck = $request->sup_status_id == MstSupStatus::APPROVED;
+        $statusCheck = $request->status_id == MstSupStatus::APPROVED;
 
         if ($statusCheck) {
-            if (!$this->user->is_stock_approver) abort(401);
 
-            $latestId = $this->stockEntries->latest()
+            $latestId = StockEntry::latest()
                 ->where('status_id', MstSupStatus::APPROVED)
                 ->first()->id ?? 0;
-            $stockInput['adjustment_no'] = (MstStockAdjustmentNo::first()->sequence_code . '-') . ($latestId + 1);
+            $stockInput['stock_adjustment_number'] = (MstStockAdjustmentNo::first()->sequence_code . '-') . ($latestId + 1);
             $stockInput['entry_date'] = '2022/12/12';
             $stockInput['approved_by'] = $this->user->id;
         }
@@ -113,30 +112,27 @@ class StockEntryCrudController extends BaseCrudController
 
         try {
             DB::beginTransaction();
+            // dd($stockInput);
             $stock = StockEntry::create($stockInput);
+          
             foreach ($request->itemStockHidden as $key => $val) {
                 if(isset($request->itemStockHidden[$key])){
+
                 $itemArr = [
                     'stock_id' => $stock->id,
                     'item_id' => $request->itemStockHidden[$key],
-                    'add_qty' => $request->add_qty[$key],
+                    'add_qty' => $request->purchase_qty[$key],
                     'free_qty' => $request->free_item[$key],
                     'total_qty' => $request->total_qty[$key],
                     'discount_mode_id' => $request->discount_mode_id[$key],
                     'discount' => isset($itemDiscount) ? $itemDiscount : (isset($request->discount[$key]) ? $request->discount[$key] : null),
-                    'unit_cost_price' => $request->unit_cost_price[$key],
-                    'unit_sales_price' => $request->unit_sales_price[$key],
+                    'unit_cost_price' => $request->purchase_price[$key],
+                    'unit_sales_price' => $request->unit_sale[$key],
                     'expiry_date' => $request->expiry_date[$key],
-                    'tax_vat' => $request->tax_vat[$key],
+                    'tax_vat' => $request->taxvat[$key],
                     'amount' => $request->item_total[$key],
                 ];
-                if ($statusCheck) {
-
-                    $itemArr['batch_no'] = MstBatchNo::first()->sequence_code . '-' . $stock->id;
-
-                    // $this->saveItemQtyDetails();
-                    // $this->saveBatchQtyDetails($itemArr);
-                }
+               
 
                 $stockItem = StockItem::create($itemArr);
             }
@@ -145,7 +141,7 @@ class StockEntryCrudController extends BaseCrudController
             return response()->json([
                 'status' => 'success',
                 'message' => 'Stock added successfully',
-                'route' => url($this->crud->route)
+                'url' => backpack_url('/stock-entry/'. $stock->id.'/show'),
             ]);
         } catch (\Exception $e) {
             DB::rollback();
@@ -172,6 +168,27 @@ class StockEntryCrudController extends BaseCrudController
 
         BatchDetail::create($arr);
     }
+    public function show($id)
+    {
+        $this->crud->hasAccessOrFail('show');
+        // get entry ID from Request (makes sure its the last ID for nested resources)
+        $id = $this->crud->getCurrentEntryId() ?? $id;
+        $data = [];
+        // get the info for that entry (include softDeleted items if the trait is used)
+        if ($this->crud->get('show.softDeletes') && in_array('Illuminate\Database\Eloquent\SoftDeletes', class_uses($this->crud->model))) {
+            $data['entry'] = $this->crud->getModel()->withTrashed()->findOrFail($id);
+        } else {
+            $data['entry'] = $this->crud->getEntry($id);
+        }
+        $data['items'] = $data['entry']->stockItemsEntity;
+        $data['crud'] = $this->crud;
+        return view('StockEntry.StockEntriesShow', [
+            'entry' => $data['entry'],
+            'items' => $data['items'],
+            'crud' => $data['crud'],
+        ]);
+    }
+
     private function saveItemQtyDetails($itemArr)
     {
         $arr = [
