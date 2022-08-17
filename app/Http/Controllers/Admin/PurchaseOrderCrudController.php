@@ -169,27 +169,41 @@ class PurchaseOrderCrudController extends BaseCrudController
     public function update()
     {
         $this->crud->hasAccessOrFail('update');
-
-        // execute the FormRequest authorization and validation, if one is required
         $request = $this->crud->validateRequest();
-dd($request->request);
-        // register any Model Events defined on fields
-        $this->crud->registerFieldEvents();
+        $id = $this->crud->getCurrentEntryId();
 
-        // update the row in the db
-        $item = $this->crud->update(
-            $request->get($this->crud->model->getKeyName()),
-            $this->crud->getStrippedSaveRequest($request)
-        );
-        $this->data['entry'] = $this->crud->entry = $item;
+        if (isset($request)) {
+            $purchaseOrderDetails = $request->only([
+                'status_id',
+                'po_type_id',
+                'supplier_id',
+                'store_id',
+                'requested_store_id',
+                'expected_delivery',
+                'approved_by',
+                'gross_amt',
+                'discount_amt',
+                'tax_amt',
+                'net_amt',
+                'comments',
+            ]);
 
-        // show a success message
-        \Alert::success(trans('backpack::crud.update_success'))->flash();
+            $request->status_id=(int)$request->status_id;
 
-        // save the redirect choice for next time
-        $this->crud->setSaveAction();
+            if ($request->status_id === MstSupStatus::APPROVED) {                
+                $latestId =PurchaseOrder::where('status_id', MstSupStatus::APPROVED)->count() ?? 0;
+                $purchaseOrderDetails['approved_by'] = $this->user->id;
+            }
 
-        return $this->crud->performSaveAction($item->getKey());
+            DB::beginTransaction();
+            try{
+                $POId = PurchaseOrder::whereId($id)->update($purchaseOrderDetails);
+                dd($request->inv_item_hidden);
+            }catch (\Throwable $th) {
+                dd($th);
+                DB::rollback();
+            }
+        }
     }
 
     public function poPrintPdf($id){

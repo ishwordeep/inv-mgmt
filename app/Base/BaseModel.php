@@ -14,6 +14,7 @@ use App\Models\MstSubcategory;
 use App\Models\MstSupplier;
 use App\Models\MstSupStatus;
 use App\Models\MstUnit;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Support\Facades\DB;
@@ -86,7 +87,9 @@ class BaseModel extends Model
     public function subCategoryEntity(){
         return $this->belongsTo(MstSubcategory::class,'subcategory_id','id');
     }
-
+    public function approvedByEntity(){
+        return $this->belongsTo(User::class,'approved_by','id');
+    }
 
     public function supplierEntity(){
         return $this->belongsTo(MstSupplier::class,'supplier_id','id');

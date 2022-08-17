@@ -14,6 +14,7 @@
     </div>
     <div class="row">
         <div class="card w-100 p-2">
+        
             <table class="table table-bordered ">
                 <thead class="{{ isset($data['specifiedColor'])? $data['specifiedColor'] : ''}}" style="font-weight: bold;">
                     <tr>
@@ -25,6 +26,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if(isset($data['items']))
                     @foreach($data['items'] as $key => $item)
                     <tr>
                         <td>{{$key+1}}</td>
@@ -39,6 +41,12 @@
                         </td>
                     </tr>
                     @endforeach
+                    @else
+                    <tr>
+                        <td colspan="5" class="text-center ">No data available</td>
+                    </tr>
+                    @endif
+
                     
                 </tbody>
             </table>
