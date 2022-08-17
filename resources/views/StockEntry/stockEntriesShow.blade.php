@@ -167,6 +167,10 @@
                             <td class="font-weight-bold">Total Disc</td>
                             <td>{{$entry->total_discount}}</td>
                         </tr>
+                        <tr>
+                            <td class="font-weight-bold">Tax Amount</td>
+                            <td>{{$entry->total_tax }}</td>
+                        </tr>
                        
                      
                         <tr>

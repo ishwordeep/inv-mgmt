@@ -27,6 +27,7 @@
                     let data = $('#stockEntryForm').serialize();
                     let url = form.action;
                     axios.post(url, data).then((response) => {
+                        debugger;
                         window.location.href = response.data.url;
                     }, (error) => {
                         swal("Error !", error.response.data.message, "error")

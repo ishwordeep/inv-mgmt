@@ -114,7 +114,7 @@
                     <td>
                         <div class="input-group">
                             <input type="text" class="form-control p-1 inv_item" data-cntr='1' name="" placeholder="Search item..." id='inv_item-1' size="1" style="width:10rem;">
-                            <input type="hidden" id="inv_item_hidden-1" name="itemStockHidden[1]" class="">
+                            <input type="hidden" id="inv_item_hidden-1" name="inv_item_hidden[1]" class="inv_item_hidden">
                         </div>
                     </td>
                     <td>
@@ -124,7 +124,7 @@
                     </td>
                     <td>
                         <div class="input-group">
-                            <input type="number" class="form-control p-1 FreeQty" data-cntr='1' id="FreeQty-1" placeholder="Free Qty" name="free_item[1]" size="1" style="width:5rem;" >
+                            <input type="number" class="form-control p-1 FreeQty" data-cntr='1' id="FreeQty-1" placeholder="Free Qty" name="free_qty[1]" size="1" style="width:5rem;" >
                         </div>
                     </td>
                     <td>
@@ -161,7 +161,7 @@
                         <div class="input-group">
                             <input type="number" class="form-control p-1 TaxVat" data-cntr='1' id="TaxVat-1" placeholder="Tax/vat" name="taxvat[1]" size="1" style="width:5rem;" >
                         </div>
-                    </td>1
+                    </td>
                 
                     <td>
                         <div class="input-group">
@@ -171,7 +171,7 @@
                     @endif
                     <td>
                         <div class="input-group">
-                            <input type="number" class="form-control p-1 TotalAmount" data-cntr='1' id="TotalAmount-1" placeholder="Total Amount" name="item_total[1]" size="1" style="width:5rem;" readonly>
+                            <input type="number" class="form-control p-1 TotalAmount" data-cntr='1' id="TotalAmount-1" placeholder="Total Amount" name="item_amount[1]" size="1" style="width:5rem;" readonly>
                         </div>
                     </td>
                     <td>
@@ -186,7 +186,7 @@
                     <td>
                         <div class="input-group">
                             <input type="text" class="form-control p-1 inv_item" data-cntr='' name="" placeholder="Search item..." id='' size="1" style="width:10rem;">
-                            <input type="hidden"  class="">
+                            <input type="hidden"  class="inv_item_hidden">
                         </div>
                     </td>
                     <td>
@@ -196,7 +196,7 @@
                     </td>
                     <td>
                         <div class="input-group">
-                            <input type="number" class="form-control p-1 FreeQty" data-cntr='' id="" placeholder="Free Qty"  size="1" style="width:5rem;" disabled>
+                            <input type="number" class="form-control p-1 FreeQty" data-cntr='' id="" placeholder="Free Qty"  size="1" style="width:5rem;" >
                         </div>
                     </td>
                     <td>
@@ -206,18 +206,18 @@
                     </td>
                     <td>
                         <div class="input-group">
-                            <input type="date" class="form-control p-1 ExpiryDate" data-cntr='' id="" placeholder="Expiry Date"  size="1" style="width:7rem;" disabled>
+                            <input type="date" class="form-control p-1 ExpiryDate" data-cntr='' id="" placeholder="Expiry Date"  size="1" style="width:7rem;" >
                         </div>
                     </td>
                     <td>
                         <div class="input-group">
-                            <input type="number" class="form-control p-1 UnitCost" data-cntr='' id="" placeholder="Unit Cost"  size="1" style="width:5rem;" disabled>
+                            <input type="number" class="form-control p-1 UnitCost" data-cntr='' id="" placeholder="Unit Cost"  size="1" style="width:5rem;" >
                         </div>
                     </td>
                 
                     <td>
                         <div class="input-group">
-                            <select class="form-select form-control DiscountMode" data-cntr='' id="" style="min-width: 73px;" disabled>
+                            <select class="form-select form-control DiscountMode" data-cntr='' id="" style="min-width: 73px;" >
                                 <option value="1">%</option>
                                 <option value="2">NRS</option>
                             </select>
@@ -225,19 +225,19 @@
                     </td>
                     <td>
                         <div class="input-group">
-                            <input type="number" class="form-control p-1 Discount" data-cntr='' id="" placeholder="Discount"  size="1" style="width:5rem;" disabled>
+                            <input type="number" class="form-control p-1 Discount" data-cntr='' id="" placeholder="Discount"  size="1" style="width:5rem;" >
                         </div>
                     </td>
                     @if($invType==='addRepeaterToStockEntry')
                     <td>
                         <div class="input-group">
-                            <input type="number" class="form-control p-1 TaxVat" data-cntr='' id="" placeholder="Tax/vat"  size="1" style="width:5rem;" disabled>
+                            <input type="number" class="form-control p-1 TaxVat" data-cntr='' id="" placeholder="Tax/vat"  size="1" style="width:5rem;" >
                         </div>
                     </td>
                 
                     <td>
                         <div class="input-group">
-                            <input type="number" class="form-control p-1 UnitSale" data-cntr='' id="" placeholder="Unit Sales" size="1" style="width:5rem;" disabled>
+                            <input type="number" class="form-control p-1 UnitSale" data-cntr='' id="" placeholder="Unit Sales" size="1" style="width:5rem;" >
                         </div>
                     </td>
                     @endif

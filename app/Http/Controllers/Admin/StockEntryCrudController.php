@@ -67,7 +67,6 @@ class StockEntryCrudController extends BaseCrudController
     }
     public function store()
     {
-        // dd("ok");
         $this->crud->hasAccessOrFail('create');
 
         $request = $this->crud->validateRequest();
@@ -114,18 +113,18 @@ class StockEntryCrudController extends BaseCrudController
             DB::beginTransaction();
             // dd($stockInput);
             $stock = StockEntry::create($stockInput);
-          
-            foreach ($request->itemStockHidden as $key => $val) {
-                if(isset($request->itemStockHidden[$key])){
+            
+            foreach ($request->inv_item_hidden as $key => $val) {
 
+                if(isset($request->inv_item_hidden[$key])){
                 $itemArr = [
                     'stock_id' => $stock->id,
-                    'item_id' => $request->itemStockHidden[$key],
+                    'item_id' => $request->inv_item_hidden[$key],
                     'add_qty' => $request->purchase_qty[$key],
-                    'free_qty' => $request->free_item[$key],
+                    'free_qty' => $request->free_qty[$key],
                     'total_qty' => $request->total_qty[$key],
                     'discount_mode_id' => $request->discount_mode_id[$key],
-                    'discount' => isset($itemDiscount) ? $itemDiscount : (isset($request->discount[$key]) ? $request->discount[$key] : null),
+                    'discount' => $request->discount[$key],
                     'unit_cost_price' => $request->purchase_price[$key],
                     'unit_sales_price' => $request->unit_sale[$key],
                     'expiry_date' => $request->expiry_date[$key],

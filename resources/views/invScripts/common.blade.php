@@ -73,7 +73,6 @@
                 source: availableTags,
                 minLength: 1,
                 select: function(event, ui) {
-                    debugger;
                     let present = false;
                     if (present) {
                         alert("I am present");
