@@ -13,18 +13,23 @@
 
 </style>
 
-<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"> -->
-<!-- <script src="{{ asset('customJS/stock.js') }}"></script> -->
 @extends(backpack_view('blank'))
 
-{{-- @section('header')
-@include('customViews.partialViews.header_content');
-@endsection --}}
-@php
-@endphp
+@section('header')
+    <section class="container-fluid">
+        <h2>
+        <span class="text-capitalize">{!! $crud->getHeading() ?? $crud->entity_name_plural !!}</span>
+        <small id="datatable_info_stack">{!! $crud->getSubheading() ?? '' !!}</small>
+
+        @if($crud->hasAccess('create'))
+            <small><a href="{{ url($crud->route) }}" class="d-print-none font-sm"><i class="la la-angle-double-{{ config('backpack.base.html_direction') == 'rtl' ? 'right' : 'left' }}"></i> {{ trans('backpack::crud.back_to_all') }} <span>{{ $crud->entity_name_plural }}</span></a></small>
+        @endif
+        </h2>
+	</section>
+@endsection
+
 {{-- Header Content --}}
 @section('content')
-{{-- <form id="stockEntryForm" action="{{ url($crud->route) }}" method="POST"> --}}
 <form id="purchaseOrderForm" action="{{ url($crud->route) }}" method="POST">
     @csrf
     <div class="card main-container ">
