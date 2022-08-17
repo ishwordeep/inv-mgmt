@@ -102,23 +102,23 @@
                             <td></td>
                             <td>
                                 <div class="input-group">
-                                    <input type="text" value="{{ $item->itemEntity->name_en }}" class="form-control p-1 inv_item" data-cntr='' name="" placeholder="Search item..." id='' size="1" style="width:10rem;">
-                                    <input type="hidden" name="" class="inv_item_hidden">
+                                    <input type="text" value="{{ $item->itemEntity->name_en }}" class="form-control p-1 inv_item" data-cntr='1' name="" placeholder="Search item..." id='inv_item-1' size="1" style="width:10rem;">
+                                    <input type="hidden" id="inv_item_hidden-1" name="inv_item_hidden[1]" class="inv_item_hidden">
                                 </div>
                             </td>
                             <td>
                                 <div class="input-group">
-                                    <input type="number" value="{{ $item->purchase_qty }}" class="form-control p-1 AddQty" data-cntr='' id="" placeholder="Add Qty" name="" size="1" style="width:5rem;">
+                                    <input type="number" value="{{ $item->purchase_qty }}" class="form-control p-1 AddQty" data-cntr='1' id="AddQty-1" placeholder="Add Qty" name="purchase_qty[1]" size="1" style="width:5rem;">
                                 </div>
                             </td>
                             <td>
                                 <div class="input-group">
-                                    <input type="number" value="{{ $item->free_qty }}" class="form-control p-1 FreeQty" data-cntr='' id="" placeholder="Free Qty" name="" size="1" style="width:5rem;" >
+                                    <input type="number" value="{{ $item->free_qty }}" class="form-control p-1 FreeQty" data-cntr='1' id="FreeQty-1" placeholder="Free Qty" name="free_qty[1]" size="1" style="width:5rem;" >
                                 </div>
                             </td>
                             <td>
                                 <div class="input-group">
-                                    <input type="number" value="{{ $item->total_qty }}" class="form-control p-1 TotalQty" data-cntr='' id="" placeholder="Total Qty" name="" size="1" style="width:5rem;" readonly>
+                                    <input type="number" value="{{ $item->total_qty }}" class="form-control p-1 TotalQty" data-cntr='1' id="TotalQty-1" placeholder="Total Qty" name="total_qty[1]" size="1" style="width:5rem;" readonly>
                                 </div>
                             </td>
                             {{-- <td>
@@ -129,13 +129,13 @@
                                 </td> --}}
                             <td>
                                 <div class="input-group">
-                                    <input type="number" value="{{ $item->purchase_price }}" class="form-control p-1 UnitCost" data-cntr='' id="" placeholder="Unit Cost" name="" size="1" style="width:5rem;" >
+                                    <input type="number" value="{{ $item->purchase_price }}" class="form-control p-1 UnitCost" data-cntr='1' id="UnitCost-1" placeholder="Unit Cost" name="purchase_price[1]" size="1" style="width:5rem;" >
                                 </div>
                             </td>
 
                             <td>
                                 <div class="input-group">
-                                    <select class="form-select form-control DiscountMode" data-cntr='' id="" style="min-width: 73px;" >
+                                    <select class="form-select form-control DiscountMode" data-cntr='1' id="DiscountMode-1" name="discount_mode_id[1]" style="min-width: 73px;" >
                                         <option value="1" {{$item->discount_mode_id === 1 ?'selected':''}}>%</option>
                                         <option value="2" {{$item->discount_mode_id === 2 ?'selected':''}}>NRS</option>
                                     </select>
@@ -143,13 +143,13 @@
                             </td>
                             <td>
                                 <div class="input-group">
-                                    <input type="number" value="{{ $item->discount }}" class="form-control p-1 Discount" data-cntr='' id="" placeholder="Discount" name="" size="1" style="width:5rem;" >
+                                    <input type="number" value="{{ $item->discount }}" class="form-control p-1 Discount" data-cntr='1' id="Discount-1" placeholder="Discount" name="discount[1]" size="1" style="width:5rem;" >
                                 </div>
                             </td>
 
                             <td>
                                 <div class="input-group">
-                                    <input type="number" value="{{ $item->item_amount }}" class="form-control p-1 TotalAmount" data-cntr='' id="" placeholder="Total Amount" name="" size="1" style="width:5rem;" readonly>
+                                    <input type="number" value="{{ $item->item_amount }}" class="form-control p-1 TotalAmount" data-cntr='1' id="TotalAmount-1" placeholder="Total Amount" name="item_amount[1]" size="1" style="width:5rem;" readonly>
                                 </div>
                             </td>
                             <td>
@@ -196,32 +196,31 @@
                             </div>
                         </td>
 
-                        <td>
-                            <div class="input-group">
-                                <select class="form-select form-control DiscountMode" data-cntr='' id="" style="min-width: 73px;" >
-                                    <option value="1">%</option>
-                                    <option value="2">NRS</option>
-                                </select>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="input-group">
-                                <input type="number" class="form-control p-1 Discount" data-cntr='' id="" placeholder="Discount" name="" size="1" style="width:5rem;" >
-                            </div>
-                        </td>
+                            <td>
+                                <div class="input-group">
+                                    <select class="form-select form-control DiscountMode" data-cntr='' id="" style="min-width: 73px;" >
+                                        <option value="1">%</option>
+                                        <option value="2">NRS</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="input-group">
+                                    <input type="number" class="form-control p-1 Discount" data-cntr='' id="" placeholder="Discount" name="" size="1" style="width:5rem;" >
+                                </div>
+                            </td>
 
-                        <td>
-                            <div class="input-group">
-                                <input type="number" class="form-control p-1 TotalAmount" data-cntr='' id="" placeholder="Total Amount" name="" size="1" style="width:5rem;" readonly>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="input-group" style="width:5rem;">
-                                <i class="las la-trash p-1 text-danger destroyRepeater d-none" aria-hidden="true"></i>
-                            </div>
-                        </td>
+                            <td>
+                                <div class="input-group">
+                                    <input type="number" class="form-control p-1 TotalAmount" data-cntr='' id="" placeholder="Total Amount" name="" size="1" style="width:5rem;" readonly>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="input-group" style="width:5rem;">
+                                    <i class="las la-trash p-1 text-danger destroyRepeater d-none" aria-hidden="true"></i>
+                                </div>
+                            </td>
                     </tr>
-
                 </tbody>
             </table>
         </div>
