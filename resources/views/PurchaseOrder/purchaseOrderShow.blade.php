@@ -55,6 +55,7 @@
             <a href="{{ route('poprintpdf', $entry->id) }}" target="_blank" class="btn btn-sm btn-primary"><i class="la la-file-pdf">&nbsp;PDF</i></a>
             <a href="{{ route('posendmail', $entry->id) }}" class="btn btn-sm btn-primary"><i class="la la-inbox">&nbsp;Email</i></a>
         </div>
+
         <!-- store name section -->
         <div class="mt-3">
             <div class="row">
@@ -159,6 +160,10 @@
                     </table>
                 </div>
             </div>
+        </div>
+
+        <div class="col-md-2 mb-2">
+            <a href="{{ backpack_url('/purchase-order/'. $entry->id.'/edit') }}" class="btn btn-sm btn-success"><i class="la la-edit">&nbsp;Edit</i></a>
         </div>
     </div>
 @endsection

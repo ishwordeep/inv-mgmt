@@ -2,39 +2,28 @@
 
 namespace App\Http\Controllers\Admin;
 
+use PDF;
+use Mail;
+use Carbon\Carbon;
 use App\Models\MstItem;
 use App\Models\MstStore;
-use PDF;
 use App\Models\MstSupplier;
 use App\Models\MstSupStatus;
 use Illuminate\Http\Request;
 use App\Models\MstPoSequence;
 use App\Models\PurchaseOrder;
+use App\Models\MstDiscountMode;
 use App\Base\BaseCrudController;
 use App\Models\PurchaseOrderItem;
 use App\Models\PurchaseOrderType;
-
 use Illuminate\Support\Facades\DB;
 use Prologue\Alerts\Facades\Alert;
-use Mail;
 use App\Http\Requests\PurchaseOrderRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
-/**
- * Class PurchaseOrderCrudController
- * @package App\Http\Controllers\Admin
- * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
- */
 class PurchaseOrderCrudController extends BaseCrudController
 {
-
-
-    /**
-     * Configure the CrudPanel object. Apply settings to all operations.
-     * 
-     * @return void
-     */
     public function setup()
     {
         CRUD::setModel(\App\Models\PurchaseOrder::class);
@@ -43,16 +32,8 @@ class PurchaseOrderCrudController extends BaseCrudController
         $this->user = backpack_user();
     }
 
-    /**
-     * Define what happens when the List operation is loaded.
-     * 
-     * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
-     * @return void
-     */
-
     protected function setupListOperation()
     {
-       
         CRUD::column('po_number');
         CRUD::column('po_date');
         CRUD::column('expected_delivery');
@@ -67,61 +48,22 @@ class PurchaseOrderCrudController extends BaseCrudController
         CRUD::column('supplier_id');
         CRUD::column('po_type_id');
         CRUD::column('requested_store_id');
-  
-
-        /**
-         * Columns can be defined using the fluent syntax or array syntax:
-         * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']); 
-         */
     }
 
-    /**
-     * Define what happens when the Create operation is loaded.
-     * 
-     * @see https://backpackforlaravel.com/docs/crud-operation-create
-     * @return void
-     */
     public function create()
     {
-        $filtered_items = [];
         $this->crud->hasAccessOrFail('create');
-        $items = MstItem::where('is_active', 'true')->get(['id', 'name_en']);
 
-        foreach ($items as $item) {
-            array_push($filtered_items, [
-                'id' => $item->id,
-                'name' => $item->name_en
-            ]);
-        }
-        $this->data['item_lists'] = $filtered_items;
-        $this->data['invType'] = 'addRepeaterToPO';
-        $this->data['crud'] = $this->crud;
-        $this->data['saveAction'] = $this->crud->getSaveAction();
-        $this->data['title'] = $this->crud->getTitle() ?? trans('backpack::crud.add') . ' ' . $this->crud->entity_name;
+        $data = $this->getCreateData();
 
-        $this->data['po_types'] = PurchaseOrderType::whereIsActive(true)->select('id', 'name_en')->get();
-        $this->data['suppliers'] = MstSupplier::whereIsActive(true)->select('id', 'name_en')->get();
-
-        if ($this->user->user_level === config('users.user_level.store_user')) {
-            $stores = MstStore::whereIsActive(true)->whereId($this->user->store_id)->select('id', 'name_en')->get();
-            $requested_stores = MstStore::whereIsActive(true)->where('id', '<>', $this->user->store_id)->select('id', 'name_en')->get();
-        } else {
-            $stores = MstStore::whereIsActive(true)->select('id', 'name_en')->get();
-            $requested_stores = MstStore::whereIsActive(true)->select('id', 'name_en')->get();
-        }
-
-
-
-        $this->data['stores'] = $stores;
-        $this->data['requested_stores'] = $requested_stores;
-        // load the view from /resources/views/vendor/backpack/crud/ if it exists, otherwise load the one in the package
-        return view('PurchaseOrder.purchaseOrder', $this->data);
+        return view('PurchaseOrder.purchaseOrder', $data);
     }
+
     public function store()
     {
         $this->crud->hasAccessOrFail('create');
         $request = $this->crud->validateRequest();
+
         if (isset($request)) {
             $purchaseOrderDetails = $request->only([
                 'status_id',
@@ -137,6 +79,7 @@ class PurchaseOrderCrudController extends BaseCrudController
                 'net_amt',
                 'comments',
             ]);
+
             $request->status_id=(int)$request->status_id;
 
             if ($request->status_id === MstSupStatus::APPROVED) {
@@ -144,9 +87,11 @@ class PurchaseOrderCrudController extends BaseCrudController
                 
                 $latestId =PurchaseOrder::where('status_id', MstSupStatus::APPROVED)->count() ?? 0;
                 // dd($request->status_id,$latestId);
+
                 $purchaseOrderDetails['po_number'] = (MstPoSequence::first()->sequence_code).($latestId + 1);
                 // dd((MstPoSequence::first()->sequence_code),$purchaseOrderDetails['po_number']);
-                $purchaseOrderDetails['po_date'] = '2079/12/12';//add current date
+
+                $purchaseOrderDetails['po_date'] = Carbon::now()->toDateString();
                 $purchaseOrderDetails['approved_by'] = $this->user->id;
             }
 
@@ -171,11 +116,12 @@ class PurchaseOrderCrudController extends BaseCrudController
 
                 DB::commit();
 
-                // Alert::success(trans('backpack::crud.insert_success'))->flash();
                 // return response()->json([
-                //     'status' => true,
-                //     'url' => backpack_url('/purchase-order/'. $POId->id.'/show'),
-                // ]);
+                    //     'status' => true,
+                    //     'url' => backpack_url('/purchase-order/'. $POId->id.'/show'),
+                    // ]);
+
+                Alert::success(trans('backpack::crud.insert_success'))->flash();
                 return redirect(backpack_url('/purchase-order/'. $POId->id.'/show'));
             } catch (\Throwable $th) {
                 dd($th);
@@ -202,6 +148,48 @@ class PurchaseOrderCrudController extends BaseCrudController
             'items' => $data['items'],
             'crud' => $data['crud'],
         ]);
+    }
+
+    public function edit($id)
+    {
+        $this->crud->hasAccessOrFail('update');
+
+        $id = $this->crud->getCurrentEntryId() ?? $id;
+        $edit_data = $this->getData($id);
+        $data = $this->getCreateData();
+
+        return view('PurchaseOrder.purchaseOrderEdit', [
+            'data' => $data,
+            'entry' => $edit_data['entry'],
+            'items' => $edit_data['items'],
+            'crud' => $edit_data['crud'],
+        ]);
+    }
+
+    public function update()
+    {
+        $this->crud->hasAccessOrFail('update');
+
+        // execute the FormRequest authorization and validation, if one is required
+        $request = $this->crud->validateRequest();
+dd($request->request);
+        // register any Model Events defined on fields
+        $this->crud->registerFieldEvents();
+
+        // update the row in the db
+        $item = $this->crud->update(
+            $request->get($this->crud->model->getKeyName()),
+            $this->crud->getStrippedSaveRequest($request)
+        );
+        $this->data['entry'] = $this->crud->entry = $item;
+
+        // show a success message
+        \Alert::success(trans('backpack::crud.update_success'))->flash();
+
+        // save the redirect choice for next time
+        $this->crud->setSaveAction();
+
+        return $this->crud->performSaveAction($item->getKey());
     }
 
     public function poPrintPdf($id){
@@ -247,14 +235,39 @@ class PurchaseOrderCrudController extends BaseCrudController
         
         return $data;
     }
-    /**
-     * Define what happens when the Update operation is loaded.
-     * 
-     * @see https://backpackforlaravel.com/docs/crud-operation-update
-     * @return void
-     */
-    protected function setupUpdateOperation()
-    {
-        $this->setupCreateOperation();
+
+    public function getCreateData(){
+        $filtered_items = [];
+
+        $items = MstItem::where('is_active', 'true')->get(['id', 'name_en']);
+
+        foreach ($items as $item) {
+            array_push($filtered_items, [
+                'id' => $item->id,
+                'name' => $item->name_en
+            ]);
+        }
+        $data['item_lists'] = $filtered_items;
+        $data['invType'] = 'addRepeaterToPO';
+        $data['crud'] = $this->crud;
+        $data['saveAction'] = $this->crud->getSaveAction();
+        $data['title'] = $this->crud->getTitle() ?? trans('backpack::crud.add') . ' ' . $this->crud->entity_name;
+
+        $data['po_types'] = PurchaseOrderType::whereIsActive(true)->select('id', 'name_en')->get();
+        $data['suppliers'] = MstSupplier::whereIsActive(true)->select('id', 'name_en')->get();
+        $data['discount_mode'] = MstDiscountMode::whereIsActive(true)->select('id', 'name_en')->get();
+        
+        if ($this->user->user_level === config('users.user_level.store_user')) {
+            $stores = MstStore::whereIsActive(true)->whereId($this->user->store_id)->select('id', 'name_en')->get();
+            $requested_stores = MstStore::whereIsActive(true)->where('id', '<>', $this->user->store_id)->select('id', 'name_en')->get();
+        } else {
+            $stores = MstStore::whereIsActive(true)->select('id', 'name_en')->get();
+            $requested_stores = MstStore::whereIsActive(true)->select('id', 'name_en')->get();
+        }
+
+        $data['stores'] = $stores;
+        $data['requested_stores'] = $requested_stores;
+
+        return $data;
     }
 }

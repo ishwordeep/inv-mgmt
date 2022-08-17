@@ -41,6 +41,9 @@ class PurchaseOrder extends BaseModel
     public function approvedByEntity(){
         return $this->belongsTo(User::class,'approved_by','id');
     }
+    public function storeEntity(){
+        return $this->belongsTo(MstStore::class,'store_id','id');
+    }
 
     /*
     |--------------------------------------------------------------------------
