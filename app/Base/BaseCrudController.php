@@ -53,18 +53,35 @@ class BaseCrudController extends CrudController
             'value' => '<br>',
         ];
     }
-
+    protected function addColMd8Field(){
+        return[
+            'type' => 'custom_html',
+            'name' => 'col-md-8',
+            'value' => '<div class="col-md-8"></div>',
+        ];
+    }
     protected function addReadOnlyCodeField()
     {
         return [
             'name' => 'code',
             'label' => 'Code',
-            'type' => 'text',
-            'wrapper' => [
-                'class' => 'form-group col-md-4',
-            ],
+            'type' => 'hidden',
             'attributes' => [
                 'readonly' => true,
+            ],
+        ];
+    }
+    protected function addReadOnlyCodeTextField()
+    {
+        return [
+            'name' => 'code',
+            'label' => 'Code',
+            'type' => 'text',
+            'attributes' => [
+                'readonly' => true,
+            ],
+            'wrapper' => [
+                'class' => 'form-group col-md-4'
             ],
         ];
     }
@@ -289,6 +306,14 @@ class BaseCrudController extends CrudController
     {
         return [
             'name' => 'code',
+            'label' => 'Code',
+            'type' => 'text',
+        ];
+    }
+    protected function addCodeTextColumn()
+    {
+        return [
+            'name' => 'code_text',
             'label' => 'Code',
             'type' => 'text',
         ];

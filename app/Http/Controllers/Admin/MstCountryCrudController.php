@@ -64,7 +64,8 @@ class MstCountryCrudController extends BaseCrudController
         CRUD::setValidation(MstCountryRequest::class);
 
         $fields = [
-            $this->addReadOnlyCodeField(),
+            $this->addReadOnlyCodeTextField(),
+            $this->addColMd8Field(),
             $this->addNameEnField(),
             $this->addNameLcField(),            
             $this->addIsActiveField(),

@@ -20,7 +20,7 @@ class MstCountry extends BaseModel
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
-    protected $fillable = ['code','name_en','name_lc','is_active','created_by','updated_by','deleted_by'];
+    protected $fillable = ['code_text','name_en','name_lc','is_active','created_by','updated_by','deleted_by'];
     // protected $hidden = [];
     // protected $dates = [];
 

@@ -68,6 +68,8 @@ class MstDistrictCrudController extends BaseCrudController
 
         $fields = [
             $this->addReadOnlyCodeField(),
+            $this->addNameEnField(),
+            $this->addNameLcField(),
             [
                 'name'  => 'province_id',
                 'label' => 'Province',
@@ -79,10 +81,6 @@ class MstDistrictCrudController extends BaseCrudController
                     'class' => 'form-group col-md-4',
                 ],
             ],
-            $this->addNameEnField(),
-            $this->addNameLcField(),
-
-
             $this->addIsActiveField(),
         ];
         $this->crud->addFields(array_filter($fields));

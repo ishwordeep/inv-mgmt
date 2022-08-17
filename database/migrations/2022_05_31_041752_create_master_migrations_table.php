@@ -15,7 +15,7 @@ class CreateMasterMigrationsTable extends Migration
     {
         Schema::create('mst_countries', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('code')->unique();
+            $table->string('code_text')->unique();
             $table->string('name_en')->unique();
             $table->string('name_lc')->unique()->nullable();
 
@@ -85,7 +85,7 @@ class CreateMasterMigrationsTable extends Migration
 
         Schema::create('mst_units', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('code')->unique();
+            $table->string('code_text')->unique();
             $table->string('name_en')->unique();
             $table->string('name_lc')->unique()->nullable();
 
@@ -98,7 +98,7 @@ class CreateMasterMigrationsTable extends Migration
 
         Schema::create('mst_discount_modes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('code', 20)->unique();
+            $table->string('code_text', 20)->unique();
             $table->string('name_en', 100)->unique();
             $table->string('name_lc', 100)->unique();
 

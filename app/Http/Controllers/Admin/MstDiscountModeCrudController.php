@@ -37,7 +37,7 @@ class MstDiscountModeCrudController extends BaseCrudController
     {
         $columns = [
             $this->addRowNumberColumn(),
-            $this->addCodeColumn(),
+            $this->addCodeTextColumn(),
             $this->addNameEnColumn(),
             $this->addNameLcColumn(),
             $this->addIsActiveColumn(),
@@ -61,9 +61,9 @@ class MstDiscountModeCrudController extends BaseCrudController
     {
         CRUD::setValidation(MstDiscountModeRequest::class);
 
-      
         $fields = [
-            $this->addReadOnlyCodeField(),
+            $this->addReadOnlyCodeTextField(),
+            $this->addColMd8Field(),
             $this->addNameEnField(),
             $this->addNameLcField(),
             $this->addIsActiveField(),

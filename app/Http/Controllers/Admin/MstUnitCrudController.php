@@ -38,7 +38,7 @@ class MstUnitCrudController extends BaseCrudController
        
         $columns = [
             $this->addRowNumberColumn(),
-            $this->addCodeColumn(),
+            $this->addCodeTextColumn(),
             $this->addNameEnColumn(),
             $this->addNameLcColumn(),
             $this->addIsActiveColumn(),
@@ -65,7 +65,7 @@ class MstUnitCrudController extends BaseCrudController
         
 
         $fields = [
-            $this->addReadOnlyCodeField(),
+            $this->addReadOnlyCodeTextField(),
             $this->addNameEnField(),
             $this->addNameLcField(),
             $this->addIsActiveField(),

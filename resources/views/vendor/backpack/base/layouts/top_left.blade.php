@@ -24,7 +24,7 @@
 
        @yield('after_breadcrumbs_widgets')
 
-       @yield('header')
+       <!-- @yield('header') -->
 
         <div class="container-fluid animated fadeIn">
 

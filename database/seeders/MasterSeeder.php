@@ -30,7 +30,7 @@ class MasterSeeder extends Seeder
     {
 
      DB::table('mst_countries')->insert([
-            array('id' => 1,'code' => 'nep','name_en' => 'Nepal','name_lc' => 'नेपाल','created_at'=>$this->time),
+            array('id' => 1,'code_text' => 'nep','name_en' => 'Nepal','name_lc' => 'नेपाल','created_at'=>$this->time),
         ]);
         DB::statement("SELECT SETVAL('mst_provinces_id_seq',100)");
     }
@@ -150,8 +150,8 @@ class MasterSeeder extends Seeder
     {
         DB::table('mst_discount_modes')->insert(
             [
-                array('id' => 1, 'code' => 'p', 'name_en' => 'Percentage', 'name_lc' => 'Percentage','created_at'=>$this->time ),
-                array('id' => 2, 'code' => 'n', 'name_en' => 'NRS', 'name_lc' => 'NRS','created_at'=>$this->time),
+                array('id' => 1, 'code_text' => '%', 'name_en' => 'Percentage', 'name_lc' => 'Percentage','created_at'=>$this->time ),
+                array('id' => 2, 'code_text' => 'NRP', 'name_en' => 'NRS', 'name_lc' => 'NRS','created_at'=>$this->time),
                
             ]
         );

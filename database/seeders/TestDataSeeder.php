@@ -50,59 +50,59 @@ class TestDataSeeder extends Seeder
     }
     private function units(){
         DB::table('mst_units')->insert([
-            array('id' => 1, 'code'=>'0','name_en' => 'KG','name_lc' => 'KG'),
-            array('id' => 2, 'code'=>'1','name_en' => 'Litre','name_lc' => 'Litre'),
+            array('id' => 1, 'code_text'=>'kg','name_en' => 'KG','name_lc' => 'KG'),
+            array('id' => 2, 'code_text'=>'lt','name_en' => 'Litre','name_lc' => 'Litre'),
         ]);
         DB::statement("SELECT SETVAL('mst_units_id_seq',100)");
     }
     private function category(){
         DB::table('mst_categories')->insert([
-            array('id' => 1, 'code'=>'0','name_en' => 'Veg','name_lc' => 'Veg'),
-            array('id' => 2, 'code'=>'1','name_en' => 'Non Veg','name_lc' => 'Non Veg'),
+            array('id' => 1, 'code'=>'1','name_en' => 'Veg','name_lc' => 'Veg'),
+            array('id' => 2, 'code'=>'2','name_en' => 'Non Veg','name_lc' => 'Non Veg'),
         ]);
         DB::statement("SELECT SETVAL('mst_categories_id_seq',100)");
     }
     private function subcategory(){
         DB::table('mst_subcategories')->insert([
-            array('id' => 1, 'code'=>'0','category_id'=>'1','name_en' => 'Tomato','name_lc' => 'Tomato'),
-            array('id' => 2, 'code'=>'1','category_id'=>'1','name_en' => 'Potato','name_lc' => 'Potato'),
+            array('id' => 1, 'code'=>'1','category_id'=>'1','name_en' => 'Tomato','name_lc' => 'Tomato'),
+            array('id' => 2, 'code'=>'2','category_id'=>'1','name_en' => 'Potato','name_lc' => 'Potato'),
        
-            array('id' => 3, 'code'=>'2','category_id'=>'2','name_en' => 'Meat','name_lc' => 'Meat'),
-            array('id' => 4, 'code'=>'3','category_id'=>'2','name_en' => 'Fish','name_lc' => 'Fish'),
+            array('id' => 3, 'code'=>'3','category_id'=>'2','name_en' => 'Meat','name_lc' => 'Meat'),
+            array('id' => 4, 'code'=>'4','category_id'=>'2','name_en' => 'Fish','name_lc' => 'Fish'),
         ]);
         DB::statement("SELECT SETVAL('mst_subcategories_id_seq',100)");
     }
     private function supplier(){
         DB::table('mst_suppliers')->insert([
-            array('id' => 1, 'code'=>'0','name_en' => 'Government Ltd','name_lc' => 'Government Ltd'),
-            array('id' => 2, 'code'=>'12','name_en' => 'Hello Ltd','name_lc' => 'hello Ltd'),
+            array('id' => 1, 'code'=>'1','name_en' => 'Government Ltd','name_lc' => 'Government Ltd'),
+            array('id' => 2, 'code'=>'2','name_en' => 'Hello Ltd','name_lc' => 'hello Ltd'),
            
         ]);
         DB::statement("SELECT SETVAL('mst_suppliers_id_seq',100)");
     }
     private function store(){
         DB::table('mst_stores')->insert([
-            array('id' => 1, 'code'=>'0','name_en' => 'A-Store','name_lc' => 'A-Store'),
-            array('id' => 2, 'code'=>'1','name_en' => 'B-Store','name_lc' => 'B-Store'),
-            array('id' => 3, 'code'=>'2','name_en' => 'C-Store','name_lc' => 'C-Store'),
+            array('id' => 1, 'code'=>'1','name_en' => 'A-Store','name_lc' => 'A-Store'),
+            array('id' => 2, 'code'=>'2','name_en' => 'B-Store','name_lc' => 'B-Store'),
+            array('id' => 3, 'code'=>'3','name_en' => 'C-Store','name_lc' => 'C-Store'),
         
         ]);
         DB::statement("SELECT SETVAL('mst_stores_id_seq',100)");
     }
     private function brand(){
         DB::table('mst_brands')->insert([
-            array('id' => 1, 'code'=>'0','name_en' => 'Brand1','name_lc' => 'Brand1'),
-            array('id' => 2, 'code'=>'1','name_en' => 'Brand2','name_lc' => 'Brand2'),
-            array('id' => 3, 'code'=>'2','name_en' => 'Brand3','name_lc' => 'Brand3'),
+            array('id' => 1, 'code'=>'1','name_en' => 'Brand1','name_lc' => 'Brand1'),
+            array('id' => 2, 'code'=>'2','name_en' => 'Brand2','name_lc' => 'Brand2'),
+            array('id' => 3, 'code'=>'3','name_en' => 'Brand3','name_lc' => 'Brand3'),
         
         ]);
         DB::statement("SELECT SETVAL('mst_brands_id_seq',100)");
     }
     private function item(){
         DB::table('mst_items')->insert([
-            array('id' => 1, 'code'=>'0','category_id'=>1,'subcategory_id'=>1,'supplier_id'=>1,'name_en' => 'Item1','name_lc' => 'Item1','brand_id'=>1,'unit_id'=>1,'tax_vat'=>13,'discount_mode_id'=>1),
-            array('id' => 2, 'code'=>'1','category_id'=>1,'subcategory_id'=>1,'supplier_id'=>1,'name_en' => 'Item2','name_lc' => 'Item2','brand_id'=>1,'unit_id'=>1,'tax_vat'=>13,'discount_mode_id'=>1),
-            array('id' => 3, 'code'=>'2','category_id'=>1,'subcategory_id'=>1,'supplier_id'=>1,'name_en' => 'Item3','name_lc' => 'Item3','brand_id'=>1,'unit_id'=>1,'tax_vat'=>13,'discount_mode_id'=>1),
+            array('id' => 1, 'code'=>'1','category_id'=>1,'subcategory_id'=>1,'supplier_id'=>1,'name_en' => 'Item1','name_lc' => 'Item1','brand_id'=>1,'unit_id'=>1,'tax_vat'=>13,'discount_mode_id'=>1),
+            array('id' => 2, 'code'=>'2','category_id'=>1,'subcategory_id'=>1,'supplier_id'=>1,'name_en' => 'Item2','name_lc' => 'Item2','brand_id'=>1,'unit_id'=>1,'tax_vat'=>13,'discount_mode_id'=>1),
+            array('id' => 3, 'code'=>'3','category_id'=>1,'subcategory_id'=>1,'supplier_id'=>1,'name_en' => 'Item3','name_lc' => 'Item3','brand_id'=>1,'unit_id'=>1,'tax_vat'=>13,'discount_mode_id'=>1),
         ]);
         DB::statement("SELECT SETVAL('mst_items_id_seq',100)");
     }

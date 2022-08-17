@@ -21,7 +21,7 @@ class MstUnit extends BaseModel
     // public $timestamps = false;
     protected $guarded = ['id'];
     protected $fillable = [
-        'code',
+        'code_text',
         'name_en',
         'name_lc',
         'is_active',
