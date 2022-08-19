@@ -15,21 +15,7 @@
 
 @extends(backpack_view('blank'))
 
-@section('header')
-    <section class="container-fluid">
-	  <h2>
-	  	<span class="text-capitalize">{!! $crud->getHeading() ?? $crud->entity_name_plural !!}</span>
-      	<small id="datatable_info_stack">{!! $crud->getSubheading() ?? '' !!}</small>
-
-        @if($crud->hasAccess('create'))
-          <small><a href="{{ url($crud->route) }}" class="d-print-none font-sm"><i class="la la-angle-double-{{ config('backpack.base.html_direction') == 'rtl' ? 'right' : 'left' }}"></i> {{ trans('backpack::crud.back_to_all') }} <span>{{ $crud->entity_name_plural }}</span></a></small>
-        @endif
-	  </h2>
-	</section>
-@endsection
-
-@php 
-@endphp
+@include('header')
 
 {{-- Header Content --}}
 @section('content')
@@ -101,41 +87,38 @@
             <tbody id="po-table">
                 {{-- first row --}}
                 @foreach($items as $key => $item)
-                    @php 
-                        $i = $loop->iteration;
-                    @endphp
                     <tr>
                         <td></td>
                         <td>
                             <div class="input-group">
-                                <input type="text" value="{{ $item->itemEntity->name_en }}" class="form-control p-1 inv_item" data-cntr="{{ $i }}" name="inv_item[{{ $i }}]" placeholder="Search item..." id='inv_item-{{ $i }}' size="1" style="width:10rem;">
-                                <input type="hidden" id="inv_item_hidden-{{ $i }}" value="{{ $item->item_id }}" name="inv_item_hidden[{{ $i }}]" class="inv_item_hidden">
+                                <input type="text" value="{{ $item->itemEntity->name_en }}" class="form-control p-1 inv_item" data-cntr="{{ $key }}" name="inv_item[{{ $key }}]" placeholder="Search item..." id='inv_item-{{ $key }}' size="1" style="width:10rem;">
+                                <input type="hidden" id="inv_item_hidden-{{ $key }}" value="{{ $item->item_id }}" name="inv_item_hidden[{{ $key }}]" class="inv_item_hidden">
                             </div>
                         </td>
                         <td>
                             <div class="input-group">
-                                <input type="number" value="{{ $item->purchase_qty }}" class="form-control p-1 AddQty" data-cntr="{{ $i }}" id="AddQty-{{ $i }}" placeholder="Add Qty" name="purchase_qty[{{ $i }}]" size="1" style="width:5rem;">
+                                <input type="number" value="{{ $item->purchase_qty }}" class="form-control p-1 AddQty" data-cntr="{{ $key }}" id="AddQty-{{ $key }}" placeholder="Add Qty" name="purchase_qty[{{ $key }}]" size="1" style="width:5rem;">
                             </div>
                         </td>
                         <td>
                             <div class="input-group">
-                                <input type="number" value="{{ $item->free_qty }}" class="form-control p-1 FreeQty" data-cntr="{{ $i }}" id="FreeQty-{{ $i }}" placeholder="Free Qty" name="free_qty[{{ $i }}]" size="1" style="width:5rem;" >
+                                <input type="number" value="{{ $item->free_qty }}" class="form-control p-1 FreeQty" data-cntr="{{ $key }}" id="FreeQty-{{ $key }}" placeholder="Free Qty" name="free_qty[{{ $key }}]" size="1" style="width:5rem;" >
                             </div>
                         </td>
                         <td>
                             <div class="input-group">
-                                <input type="number" value="{{ $item->total_qty }}" class="form-control p-1 TotalQty" data-cntr="{{ $i }}" id="TotalQty-{{ $i }}" placeholder="Total Qty" name="total_qty[{{ $i }}]" size="1" style="width:5rem;" readonly>
+                                <input type="number" value="{{ $item->total_qty }}" class="form-control p-1 TotalQty" data-cntr="{{ $key }}" id="TotalQty-{{ $key }}" placeholder="Total Qty" name="total_qty[{{ $key }}]" size="1" style="width:5rem;" readonly>
                             </div>
                         </td>
                         <td>
                             <div class="input-group">
-                                <input type="number" value="{{ $item->purchase_price }}" class="form-control p-1 UnitCost" data-cntr="{{ $i }}" id="UnitCost-{{ $i }}" placeholder="Unit Cost" name="purchase_price[{{ $i }}]" size="1" style="width:5rem;" >
+                                <input type="number" value="{{ $item->purchase_price }}" class="form-control p-1 UnitCost" data-cntr="{{ $key }}" id="UnitCost-{{ $key }}" placeholder="Unit Cost" name="purchase_price[{{ $key }}]" size="1" style="width:5rem;" >
                             </div>
                         </td>
 
                         <td>
                             <div class="input-group">
-                                <select class="form-select form-control DiscountMode" data-cntr="{{ $i }}" id="DiscountMode-{{ $i }}" name="discount_mode_id[{{ $i }}]" style="min-width: 73px;" >
+                                <select class="form-select form-control DiscountMode" data-cntr="{{ $key }}" id="DiscountMode-{{ $key }}" name="discount_mode_id[{{ $key }}]" style="min-width: 73px;" >
                                     <option value="1" {{ $entry->discount_mode_id === 1 ? 'selected' : '' }}>%</option>
                                     <option value="2" {{ $entry->discount_mode_id === 2 ? 'selected' : '' }}>NRS</option>
                                 </select>
@@ -143,13 +126,13 @@
                         </td>
                         <td>
                             <div class="input-group">
-                                <input type="number" value="{{ $item->discount }}" class="form-control p-1 Discount" data-cntr="{{ $i }}" id="Discount-{{ $i }}" placeholder="Discount" name="discount[{{ $i }}]" size="1" style="width:5rem;" >
+                                <input type="number" value="{{ $item->discount }}" class="form-control p-1 Discount" data-cntr="{{ $key }}" id="Discount-{{ $key }}" placeholder="Discount" name="discount[{{ $key }}]" size="1" style="width:5rem;" >
                             </div>
                         </td>
 
                         <td>
                             <div class="input-group">
-                                <input type="number" value="{{ $item->item_amount }}" class="form-control p-1 TotalAmount" data-cntr="{{ $i }}" id="TotalAmount-{{ $i }}" placeholder="Total Amount" name="item_amount[{{ $i }}]" size="1" style="width:5rem;" readonly>
+                                <input type="number" value="{{ $item->item_amount }}" class="form-control p-1 TotalAmount" data-cntr="{{ $key }}" id="TotalAmount-{{ $key }}" placeholder="Total Amount" name="item_amount[{{ $key }}]" size="1" style="width:5rem;" readonly>
                             </div>
                         </td>
                         <td>
@@ -233,7 +216,7 @@
             <div class="col-md-6 col-sm-12">
                 <div class="input-group mb-3">
                     <span class="input-group-text">Remarks</span>
-                    <textarea class="form-control comment" value="{{ $entry->comments }}" name="comments" placeholder="Remarks" rows="5"></textarea>
+                    <textarea class="form-control comment" name="comments" placeholder="Remarks" rows="5">{{ $entry->comments }}</textarea>
                 </div>
             </div>
             <div class="col-md-6 col-sm-12">

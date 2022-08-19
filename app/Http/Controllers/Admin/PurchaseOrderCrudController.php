@@ -223,9 +223,9 @@ class PurchaseOrderCrudController extends BaseCrudController
 
                 Alert::success(trans('backpack::crud.insert_success'))->flash();
                 return response()->json([
-                        'status' => true,
-                        'url' => backpack_url('/purchase-order/'. $id.'/show'),
-                    ]);
+                    'status' => true,
+                    'url' => backpack_url('/purchase-order/'. $id.'/show'),
+                ]);
             }catch (\Throwable $th) {
                 dd($th);
                 DB::rollback();
@@ -288,6 +288,7 @@ class PurchaseOrderCrudController extends BaseCrudController
                 'name' => $item->name_en
             ]);
         }
+        
         $data['item_lists'] = $filtered_items;
         $data['invType'] = 'addRepeaterToPO';
         $data['crud'] = $this->crud;

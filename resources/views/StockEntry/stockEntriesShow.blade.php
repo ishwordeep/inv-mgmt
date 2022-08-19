@@ -30,30 +30,23 @@
     </style>
 @endpush
 
-@section('header')
-    <section class="container-fluid">
-        <h2>
-            <span class="text-capitalize">{!! $crud->getHeading() ?? $crud->entity_name_plural !!}</span>
-            <small>{!! $crud->getSubheading() ?? trans('backpack::crud.preview').' '.$crud->entity_name !!}.</small>
-
-            @if ($crud->hasAccess('list'))
-                <small><a href="{{ url($crud->route) }}" class="d-print-none font-sm"><i class="la la-angle-double-{{ config('backpack.base.html_direction') == 'rtl' ? 'right' : 'left' }}"></i> {{ trans('backpack::crud.back_to_all') }} <span>{{ $crud->entity_name_plural }}</span></a></small>
-            @endif
-        </h2>
-    </section>
-@endsection
+@include('header')
 
 @php 
  $status=[
     1=>'text-warning',
     2=>'text-success',
     3=>'text-danger',
-    ];
-   
-  
+    ];  
 @endphp
+
 @section('content')
     <div class="card shadow px-3 mt-4">
+        <div class="buttons mt-2 text-right">
+            <a href="{{ route('seprintpdf', $entry->id) }}" target="_blank" class="btn btn-sm btn-primary"><i class="la la-file-pdf">&nbsp;PDF</i></a>
+            <a href="{{ route('sesendemail', $entry->id) }}" class="btn btn-sm btn-primary"><i class="la la-inbox">&nbsp;Email</i></a>
+        </div>
+
         <!-- store name section -->
         <div class="mt-3">
             <div class="row">
@@ -107,13 +100,10 @@
                         {{-- <span class="me-1" style="font-weight: bold;">{{isset($entry->requested_store_id)?"Requested Store":"Supplier"}} :</span> <span>{{isset($entry->requested_store_id)?$entry->requestedStoreEntity->name_en:$entry->supplierEntity->name_en}}</span> --}}
                     </div>
                 </div>
-                
             </div>
         </div>
 
         <!-- table for item -->
- 
-
         <div>
             <div class="table-responsive">
                 <table class="table table-bordered table-sm">
@@ -171,8 +161,6 @@
                             <td class="font-weight-bold">Tax Amount</td>
                             <td>{{$entry->total_tax }}</td>
                         </tr>
-                       
-                     
                         <tr>
                             <td class="font-weight-bold">Net Amount</td>
                             <td>{{$entry->net_amount}}</td>
@@ -181,6 +169,9 @@
                     </table>
                 </div>
             </div>
+        </div>
+        <div class="col-md-2 mb-2">
+            <a href="{{ backpack_url('/stock-entry/'. $entry->id.'/edit') }}" class="btn btn-sm btn-success"><i class="la la-edit">&nbsp;Edit</i></a>
         </div>
     </div>
 @endsection
