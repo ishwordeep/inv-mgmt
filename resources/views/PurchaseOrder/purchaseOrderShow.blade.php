@@ -43,17 +43,21 @@
 @endsection
 
 @php 
- $status=[
-    1=>'text-warning',
-    2=>'text-success',
-    3=>'text-danger',
+    $status=[
+        1=>'text-warning',
+        2=>'text-success',
+        3=>'text-danger',
     ];
    
-  
 @endphp
 
 @section('content')
     <div class="card shadow px-3 mt-4">
+        <div class="buttons mt-2 text-right">
+            <a href="{{ route('poprintpdf', $entry->id) }}" target="_blank" class="btn btn-sm btn-primary"><i class="la la-file-pdf">&nbsp;PDF</i></a>
+            <a href="{{ route('posendmail', $entry->id) }}" class="btn btn-sm btn-primary"><i class="la la-inbox">&nbsp;Email</i></a>
+        </div>
+
         <!-- store name section -->
         <div class="mt-3">
             <div class="row">
@@ -69,8 +73,6 @@
                     </div>
                 </div>
                
-               
-             
                 <div class="col-lg-3 col-md-4">
                     <div class="mb-3">
                         <span class="me-1" style="font-weight: bold;">PO Number: </span> <span>{{$entry->po_number??'n/a'}}</span>
@@ -167,6 +169,9 @@
                     </table>
                 </div>
             </div>
+        </div>
+        <div class="col-md-2 mb-2">
+            <a href="{{ backpack_url('/purchase-order/'. $entry->id.'/edit') }}" class="btn btn-sm btn-success"><i class="la la-edit">&nbsp;Edit</i></a>
         </div>
     </div>
 @endsection

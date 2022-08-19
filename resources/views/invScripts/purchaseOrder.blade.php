@@ -14,6 +14,7 @@
         }
     });
 });
+
 $('#purchaseOrderForm').validate({
         submitHandler: function(form) {
             Swal.fire({
@@ -27,6 +28,7 @@ $('#purchaseOrderForm').validate({
                 if (confirmResponse.isConfirmed) {
                     let data = $('#purchaseOrderForm').serialize();
                     let url = form.action;
+
                     axios.post(url, data).then((response) => {
                         window.location.href = response.data.url;
                     }, (error) => {

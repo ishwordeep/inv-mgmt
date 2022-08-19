@@ -64,7 +64,7 @@
                     }
                     grossAmt = grossAmt + purchaseOrderQty * purchasePrice;
                     totalDiscAmt = totalDiscAmt + itemDiscount;
-                    console.log(grossAmt, totalDiscAmt, taxableAmt, totalTaxAmt);
+                    // console.log(grossAmt, totalDiscAmt, taxableAmt, totalTaxAmt);
 
 
                 }

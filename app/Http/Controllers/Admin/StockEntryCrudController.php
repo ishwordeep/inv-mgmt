@@ -143,6 +143,7 @@ class StockEntryCrudController extends BaseCrudController
                 'url' => backpack_url('/stock-entry/'. $stock->id.'/show'),
             ]);
         } catch (\Exception $e) {
+            dd($e);
             DB::rollback();
             return response()->json([
                 'status' => 'failed',

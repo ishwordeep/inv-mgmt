@@ -1,4 +1,8 @@
-
+@php 
+    $method = $crud->getActionMethod();
+    if($method == 'edit')
+        $invType = $data['invType'];
+@endphp
 <tr class="text-white" style="background-color: #192840">
     <th scope="col">S.N.</th>
     <th scope="col">Item Name</th>
