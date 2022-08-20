@@ -50,7 +50,7 @@ class CreateStockMigrationsTable extends Migration
             $table->unsignedBigInteger('add_qty')->nullable();
             $table->unsignedBigInteger('free_qty')->nullable();
             $table->unsignedBigInteger('total_qty')->nullable();
-            $table->timestamp('expiry_date')->nullable();
+            $table->date('expiry_date')->nullable();
             $table->unsignedFloat('unit_cost_price')->nullable();
             $table->unsignedFloat('unit_sales_price')->nullable();
             $table->integer('discount_mode_id')->nullable();

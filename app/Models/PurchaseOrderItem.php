@@ -3,8 +3,9 @@
 namespace App\Models;
 
 use App\Base\BaseModel;
-use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use App\Models\MstItem;
 use Illuminate\Database\Eloquent\Model;
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
 
 class PurchaseOrderItem extends BaseModel
 {
@@ -35,6 +36,9 @@ class PurchaseOrderItem extends BaseModel
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+    public function itemEntity(){
+        return $this->belongsTo(MstItem::class,'po_id','id');
+    }
 
     /*
     |--------------------------------------------------------------------------

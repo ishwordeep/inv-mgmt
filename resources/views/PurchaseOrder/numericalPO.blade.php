@@ -50,7 +50,7 @@
                     
                     let itemDiscount = calcItemDiscount(purchaseOrderQty, purchasePrice, discountMode,
                     discount);
-                    console.log(purchaseOrderQty, purchasePrice, discountMode,discount,"CALC: ",itemDiscount)
+                    // console.log(purchaseOrderQty, purchasePrice, discountMode,discount,"CALC: ",itemDiscount)
 
                     grossAmt = grossAmt + purchaseOrderQty*purchasePrice;
                     totalDiscAmt = totalDiscAmt + itemDiscount;

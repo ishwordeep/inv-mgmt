@@ -32,7 +32,7 @@
             , select: function(event, ui) {
                 let present = false;
                 if (present) {} else {
-                    console.log("first auto")
+                    // console.log("first auto")
                     enableFieldsForPO(ui.item.id)
                     $('#inv_item_hidden-1').val(ui.item.id);
                 }
@@ -53,6 +53,7 @@
                 $("#stock-table").append(tr);
                 counterArray.push(getLastArrayData() + 1);
             }
+
             if (type === "addRepeaterToPO") {
                 let tr = $("#repeaterRowPO").clone(true);
                 tr.removeAttr("class");
@@ -62,13 +63,16 @@
                 counterArray.push(getLastArrayData() + 1);
 
             }
+
             if (type === "addRepeaterToSales") {
                 let tr = $("#repeaterRowSales").clone(true);
                 tr.removeAttr("class");
                 $("#sales-table").append(tr);
             }
+
             $(".destroyRepeater").removeClass("d-none");
             console.log("REpeater::", availableTags)
+            
             $("#inv_item-" +getLastArrayData()).autocomplete({
                 source: availableTags,
                 minLength: 1,

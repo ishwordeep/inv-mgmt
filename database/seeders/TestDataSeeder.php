@@ -28,6 +28,7 @@ class TestDataSeeder extends Seeder
         $this->store();
         $this->brand();
         $this->item();
+        $this->po_sequence();
     }
     private function organization()
     {
@@ -103,6 +104,13 @@ class TestDataSeeder extends Seeder
             array('id' => 1, 'code'=>'1','category_id'=>1,'subcategory_id'=>1,'supplier_id'=>1,'name_en' => 'Item1','name_lc' => 'Item1','brand_id'=>1,'unit_id'=>1,'tax_vat'=>13,'discount_mode_id'=>1),
             array('id' => 2, 'code'=>'2','category_id'=>1,'subcategory_id'=>1,'supplier_id'=>1,'name_en' => 'Item2','name_lc' => 'Item2','brand_id'=>1,'unit_id'=>1,'tax_vat'=>13,'discount_mode_id'=>1),
             array('id' => 3, 'code'=>'3','category_id'=>1,'subcategory_id'=>1,'supplier_id'=>1,'name_en' => 'Item3','name_lc' => 'Item3','brand_id'=>1,'unit_id'=>1,'tax_vat'=>13,'discount_mode_id'=>1),
+        ]);
+        DB::statement("SELECT SETVAL('mst_items_id_seq',100)");
+    }
+
+    private function po_sequence(){
+        DB::table('mst_po_sequences')->insert([
+            array('id' => 1, 'code'=>'1','name' => 'Purchase Order','sequence_code' =>'PO'),
         ]);
         DB::statement("SELECT SETVAL('mst_items_id_seq',100)");
     }
