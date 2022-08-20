@@ -51,6 +51,7 @@ class CreateSalesMigrationsTable extends Migration
             $table->foreign('created_by')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreign('approved_by')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
         });
+        
         Schema::create('sales_items', function (Blueprint $table) {
 
             $table->increments('id');

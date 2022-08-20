@@ -95,7 +95,6 @@ class StockEntryCrudController extends BaseCrudController
             $stock = StockEntry::create($stockInput);
             
             foreach ($request->inv_item_hidden as $key => $val) {
-
                 if(isset($request->inv_item_hidden[$key])){
                 $itemArr = [
                     'stock_id' => $stock->id,
@@ -109,7 +108,7 @@ class StockEntryCrudController extends BaseCrudController
                     'unit_sales_price' => $request->unit_sale[$key],
                     'expiry_date' => $request->expiry_date[$key],
                     'tax_vat' => $request->taxvat[$key],
-                    'amount' => $request->item_total[$key],
+                    'amount' => $request->item_amount[$key],
                 ];
                
 
@@ -124,6 +123,7 @@ class StockEntryCrudController extends BaseCrudController
             ]);
         } catch (\Exception $e) {
             DB::rollback();
+            dd($e);
             return response()->json([
                 'status' => 'failed',
                 'message' => "Failed to create stock. Please contact your administrator." . $e->getMessage()

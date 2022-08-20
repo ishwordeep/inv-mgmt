@@ -30,6 +30,7 @@ class TestDataSeeder extends Seeder
         $this->item();
         $this->po_sequence();
     }
+
     private function organization()
     {
 
@@ -38,6 +39,7 @@ class TestDataSeeder extends Seeder
         ]);
         DB::statement("SELECT SETVAL('mst_organizations_id_seq',100)");
     }
+
     private function users(){
         DB::table('users')->insert([
             array('id' => 1, 'code'=>'sys','name' => 'System Admin', 'email' => 'super@gmail.com','user_level'=>1,'password' => \Hash::make('123456')),
@@ -49,6 +51,7 @@ class TestDataSeeder extends Seeder
         DB::statement("SELECT SETVAL('users_id_seq',100)");
 
     }
+    
     private function units(){
         DB::table('mst_units')->insert([
             array('id' => 1, 'code_text'=>'kg','name_en' => 'KG','name_lc' => 'KG'),
@@ -56,6 +59,7 @@ class TestDataSeeder extends Seeder
         ]);
         DB::statement("SELECT SETVAL('mst_units_id_seq',100)");
     }
+
     private function category(){
         DB::table('mst_categories')->insert([
             array('id' => 1, 'code'=>'1','name_en' => 'Veg','name_lc' => 'Veg'),
@@ -63,6 +67,7 @@ class TestDataSeeder extends Seeder
         ]);
         DB::statement("SELECT SETVAL('mst_categories_id_seq',100)");
     }
+
     private function subcategory(){
         DB::table('mst_subcategories')->insert([
             array('id' => 1, 'code'=>'1','category_id'=>'1','name_en' => 'Tomato','name_lc' => 'Tomato'),
@@ -73,6 +78,7 @@ class TestDataSeeder extends Seeder
         ]);
         DB::statement("SELECT SETVAL('mst_subcategories_id_seq',100)");
     }
+
     private function supplier(){
         DB::table('mst_suppliers')->insert([
             array('id' => 1, 'code'=>'1','name_en' => 'Government Ltd','name_lc' => 'Government Ltd'),
@@ -81,6 +87,7 @@ class TestDataSeeder extends Seeder
         ]);
         DB::statement("SELECT SETVAL('mst_suppliers_id_seq',100)");
     }
+
     private function store(){
         DB::table('mst_stores')->insert([
             array('id' => 1, 'code'=>'1','name_en' => 'A-Store','name_lc' => 'A-Store'),
@@ -90,6 +97,7 @@ class TestDataSeeder extends Seeder
         ]);
         DB::statement("SELECT SETVAL('mst_stores_id_seq',100)");
     }
+
     private function brand(){
         DB::table('mst_brands')->insert([
             array('id' => 1, 'code'=>'1','name_en' => 'Brand1','name_lc' => 'Brand1'),
@@ -99,6 +107,7 @@ class TestDataSeeder extends Seeder
         ]);
         DB::statement("SELECT SETVAL('mst_brands_id_seq',100)");
     }
+    
     private function item(){
         DB::table('mst_items')->insert([
             array('id' => 1, 'code'=>'1','category_id'=>1,'subcategory_id'=>1,'supplier_id'=>1,'name_en' => 'Item1','name_lc' => 'Item1','brand_id'=>1,'unit_id'=>1,'tax_vat'=>13,'discount_mode_id'=>1),

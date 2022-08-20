@@ -41,6 +41,7 @@ class CreateMasterMigrationsTable extends Migration
 
             $table->foreign('country_id')->references('id')->on('mst_countries')->cascadeOnDelete()->cascadeOnUpdate();
         });
+
         Schema::create('mst_districts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('code')->unique();
@@ -204,6 +205,7 @@ class CreateMasterMigrationsTable extends Migration
             $table->unsignedSmallInteger('deleted_by')->nullable();
             $table->timestamps();
         });
+
         Schema::create('mst_purchase_return_sequences', function (Blueprint $table) {
             $table->increments('id');
             $table->string('code')->unique();
@@ -216,6 +218,7 @@ class CreateMasterMigrationsTable extends Migration
             $table->unsignedSmallInteger('deleted_by')->nullable();
             $table->timestamps();
         });
+
         Schema::create('mst_stores', function (Blueprint $table) {
             $table->increments('id');
             $table->string('code')->unique();
@@ -283,6 +286,7 @@ class CreateMasterMigrationsTable extends Migration
             $table->unsignedSmallInteger('deleted_by')->nullable();
             $table->timestamps();
         });
+
         Schema::create('mst_stock_adjustment_no', function (Blueprint $table) {
             $table->increments('id');
             $table->string('code')->unique()->nullable();
@@ -309,6 +313,7 @@ class CreateMasterMigrationsTable extends Migration
             $table->unsignedSmallInteger('deleted_by')->nullable();
             $table->timestamps();
         });
+
         Schema::create('mst_brands', function (Blueprint $table) {
 
             $table->increments('id');
@@ -355,6 +360,7 @@ class CreateMasterMigrationsTable extends Migration
             $table->foreign('discount_mode_id')->references('id')->on('mst_discount_modes')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreign('brand_id')->references('id')->on('mst_brands')->cascadeOnDelete()->cascadeOnUpdate();
         });
+        
         Schema::create('purchase_order_types', function (Blueprint $table) {
 
             $table->increments('id');

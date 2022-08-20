@@ -4,8 +4,8 @@
     <td></td>
     <td>
         <div class="input-group">
-            <input type="text" value="{{$item->item_id}}" class="form-control p-1 inv_item" data-cntr='' name="" placeholder="Search item..." id='' size="1" style="width:10rem;">
-            <input type="hidden" value="{{$item->item_id}}" name="itemStockHidden[]" class="">
+            <input type="text" value="{{$item->itemEntity->name_en}}" class="form-control p-1 inv_item" data-cntr='' name="" placeholder="Search item..." id='' size="1" style="width:10rem;">
+            <input type="hidden" value="{{$item->item_id}}" name="inv_item_hidden[]" class="">
         </div>
     </td>
     <td>
@@ -76,7 +76,7 @@
     <td>
         <div class="input-group">
             <input type="text" class="form-control p-1 inv_item" data-cntr='' name="" placeholder="Search item..." id='' size="1" style="width:10rem;">
-            <input type="hidden" name="itemStockHidden[]" class="">
+            <input type="hidden" name="inv_item_hidden[]" class="">
         </div>
     </td>
     <td>

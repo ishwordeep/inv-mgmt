@@ -19,7 +19,7 @@ class CreatePurchaseOrdersTable extends Migration
 
             $table->increments('id');
             $table->string('po_number')->nullable();
-            $table->string('po_date')->nullable();
+            $table->date('po_date')->nullable();
             $table->string('expected_delivery')->nullable();
             $table->unsignedBigInteger('approved_by')->nullable();
             $table->float('gross_amt')->nullable();

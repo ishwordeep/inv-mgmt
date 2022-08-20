@@ -43,6 +43,7 @@ class CreateStockMigrationsTable extends Migration
             $table->foreign('supplier_id')->references('id')->on('mst_suppliers')->onDelete('restrict')->onUpdate('cascade');
             $table->foreign('requested_store_id')->references('id')->on('mst_stores')->onDelete('restrict')->onUpdate('cascade');
         });
+
         Schema::create('stock_items', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('stock_id')->nullable();
@@ -62,6 +63,7 @@ class CreateStockMigrationsTable extends Migration
             $table->foreign('item_id')->references('id')->on('mst_items')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreign('stock_id')->references('id')->on('stock_entries')->cascadeOnDelete()->cascadeOnUpdate();
         });
+
         Schema::create('batch_details', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedSmallInteger('store_id')->nullable();
@@ -76,6 +78,7 @@ class CreateStockMigrationsTable extends Migration
             $table->unsignedSmallInteger('created_by');
             $table->timestamps();
         });
+        
         Schema::create('item_details', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedSmallInteger('store_id')->nullable();
