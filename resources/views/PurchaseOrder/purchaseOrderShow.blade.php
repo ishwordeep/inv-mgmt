@@ -42,10 +42,12 @@
 
 @section('content')
     <div class="card shadow px-3 mt-4">
+        @if($entry->status_id=='2')
         <div class="buttons mt-2 text-right">
             <a href="{{ route('poprintpdf', $entry->id) }}" target="_blank" class="btn btn-sm btn-primary"><i class="la la-file-pdf">&nbsp;PDF</i></a>
             <a href="{{ route('posendmail', $entry->id) }}" class="btn btn-sm btn-primary"><i class="la la-inbox">&nbsp;Email</i></a>
         </div>
+        @endif
 
         <!-- store name section -->
         <div class="mt-3">

@@ -149,6 +149,30 @@
             $('#status').val(3);
         });
 
+
+        //pucrhase order edit autocomplete load
+        @if(isset($items))
+    let totalItems = {{ $items->count() }};
+
+    for (let i = 0; i < totalItems; i++) {
+        console.log(counterArray)
+        counterArray.push(i)
+        $("#inv_item-"+i).autocomplete({
+            source: availableTags
+            , minLength: 1
+            , select: function(event, ui) {
+                let present = false;
+                if (present) {} else {
+                    // console.log("first auto")
+                    enableFieldsForPO(ui.item.id)
+                    $('#inv_item_hidden-1').val(ui.item.id);
+                }
+            }
+        });
+    }
+    @endif
+
     });
+
 
 </script>

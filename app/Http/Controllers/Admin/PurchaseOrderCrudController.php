@@ -149,12 +149,15 @@ class PurchaseOrderCrudController extends BaseCrudController
         $id = $this->crud->getCurrentEntryId() ?? $id;
         $edit_data = $this->getData($id);
         $data = $this->getCreateData();
+        // dd($data['item_lists']);
+        
 
         return view('PurchaseOrder.purchaseOrderEdit', [
             'data' => $data,
             'entry' => $edit_data['entry'],
             'items' => $edit_data['items'],
             'crud' => $edit_data['crud'],
+            'item_lists'=>$data['item_lists']
         ]);
     }
 
