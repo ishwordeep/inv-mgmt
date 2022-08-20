@@ -84,7 +84,7 @@
                         console.log("rep auto")
 
 
-                        enableFieldsForPO(ui.item.id);
+                        enableFieldsForPO(getLastArrayData());
                         $("#inv_item_hidden-" + getLastArrayData()).val(ui.item.id);
                     }
                 }
@@ -164,7 +164,7 @@
                 if (present) {} else {
                     // console.log("first auto")
                     debugger;
-                    enableFieldsForPO(ui.item.id)
+                    enableFieldsForPO(getLastArrayData())
                     $('#inv_item_hidden-'+i).val(ui.item.id);
                 }
             }
