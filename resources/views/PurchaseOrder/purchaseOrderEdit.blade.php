@@ -137,7 +137,7 @@
                         </td>
                         <td>
                             <div class="input-group" style="width:5rem;">
-                                <i class="las la-trash p-1 text-danger destroyRepeater d-none" aria-hidden="true"></i>
+                                <i class="las la-trash p-1 text-danger destroyRepeater" aria-hidden="true"></i>
                             </div>
                         </td>
                     </tr>
