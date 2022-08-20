@@ -212,7 +212,7 @@ class StockEntryCrudController extends BaseCrudController
 
                 if(isset($request->inv_item_hidden[$key])){
                     $itemArr = [
-                        'stock_id' => $stock->id,
+                        'stock_id' => $id,
                         'item_id' => $request->inv_item_hidden[$key],
                         'add_qty' => $request->purchase_qty[$key],
                         'free_qty' => $request->free_qty[$key],
