@@ -49,7 +49,7 @@
             if (type === "addRepeaterToStockEntry") {
                 let tr = $("#repeaterRowStock").clone(true);
                 tr.removeAttr("class");
-                setIdNameTorepeater(getLastArrayData() + 1,tr);
+                setIdNameTorepeater(getLastArrayData()+1,tr);
                 $("#stock-table").append(tr);
                 counterArray.push(getLastArrayData() + 1);
             }

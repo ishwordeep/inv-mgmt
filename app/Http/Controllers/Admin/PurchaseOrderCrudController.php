@@ -36,17 +36,9 @@ class PurchaseOrderCrudController extends BaseCrudController
     {
         CRUD::column('po_number');
         CRUD::column('po_date');
-        CRUD::column('expected_delivery');
-        CRUD::column('approved_by');
-        CRUD::column('gross_amt');
-        CRUD::column('discount_amt');
-        CRUD::column('tax_amt');
-        CRUD::column('other_charges');
         CRUD::column('net_amt');
-        CRUD::column('comments');
         CRUD::column('store_id');
         CRUD::column('supplier_id');
-        CRUD::column('po_type_id');
         CRUD::column('requested_store_id');
     }
 

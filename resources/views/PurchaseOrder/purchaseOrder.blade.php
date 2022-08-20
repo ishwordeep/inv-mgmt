@@ -60,7 +60,7 @@
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="requested_store" style="min-width: 100px;">Requested
                         Store</label>
-                    <select class="form-select form-control" id="requested_store" name="requested_store_id" style="min-width: 100px;" >
+                    <select class="form-select form-control" id="requested_store" name="requested_store_id" style="min-width: 100px;" disabled >
                         <option val='' >--Select--</option>
                         @foreach($requested_stores as $store)
                         <option value={{$store->id}}>{{$store->name_en}}</option>

@@ -113,7 +113,6 @@
                     <tbody>
                     @foreach($items as $item)
                         <tr>
-                            
                             <td scope="col">{{$item->itemEntity->name_en}}</td>
                             <td scope="col">{{$item->purchase_qty}}</td>
                             <td scope="col">{{$item->free_qty??'n/a'}}</td>
@@ -159,8 +158,10 @@
                 </div>
             </div>
         </div>
+        @if($entry->status_id=='1')
         <div class="col-md-2 mb-2">
             <a href="{{ backpack_url('/purchase-order/'. $entry->id.'/edit') }}" class="btn btn-sm btn-success"><i class="la la-edit">&nbsp;Edit</i></a>
         </div>
+        @endif
     </div>
 @endsection
