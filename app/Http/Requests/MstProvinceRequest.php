@@ -27,7 +27,7 @@ class MstProvinceRequest extends FormRequest
         $id_check = $this->request->get('id') ? ",".$this->request->get('id') : "";
         return [
             'name_en' => 'required|max:100|unique:mst_provinces,name_en'.$id_check,
-            'name_lc' => 'required|max:100|unique:mst_provinces,name_lc'.$id_check,
+            'name_lc' => 'max:100|unique:mst_provinces,name_lc'.$id_check,
             'country_id'=>'required'
         ];
     }

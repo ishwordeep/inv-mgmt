@@ -39,7 +39,7 @@ class MstCountryCrudController extends BaseCrudController
         
         $columns = [
             $this->addRowNumberColumn(),
-            $this->addCodeColumn(),
+            $this->addCodeTextColumn(),
             $this->addNameEnColumn(),
             $this->addNameLcColumn(),
             $this->addIsActiveColumn(),
@@ -64,7 +64,7 @@ class MstCountryCrudController extends BaseCrudController
         CRUD::setValidation(MstCountryRequest::class);
 
         $fields = [
-            $this->addReadOnlyCodeTextField(),
+            $this->addCodeTextField(),
             $this->addColMd8Field(),
             $this->addNameEnField(),
             $this->addNameLcField(),            

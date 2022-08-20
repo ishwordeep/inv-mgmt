@@ -24,8 +24,10 @@ class PurchaseOrderTypeRequest extends FormRequest
      */
     public function rules()
     {
+        $id_check = $this->request->get('id') ? ",".$this->request->get('id') : "";
         return [
-            // 'name' => 'required|min:5|max:255'
+            'name_en' => 'required|max:100|unique:mst_discount_modes,name_en'.$id_check,
+            'name_lc' => 'max:100|unique:mst_discount_modes,name_lc'.$id_check,
         ];
     }
 

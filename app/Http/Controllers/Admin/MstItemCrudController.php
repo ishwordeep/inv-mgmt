@@ -63,7 +63,7 @@ class MstItemCrudController extends BaseCrudController
             $this->addNameEnColumn(),
             $this->addNameLcColumn(),
             $this->addCategoryColumn(),
-            $this->addSubCategoryColumn(),
+            // $this->addSubCategoryColumn(),
             $this->addIsActiveColumn(),
         ];
         $this->crud->addColumns(array_filter($columns));
@@ -97,24 +97,24 @@ class MstItemCrudController extends BaseCrudController
             $this->addNameLcField(),
             $this->addDescriptionField(),
             $this->addCategoryField(),
-            [
-                'label'     => 'Sub Category',
-                'type'      => 'select2_from_ajax',
-                'method' => 'GET',
-                'name'      => 'subcategory_id', // the column that contains the ID of that connected entity;
-                'model'     => MstSubcategory::class,
-                'entity'    => 'subCategoryEntity', // the method that defines the relationship in your Model
-                'attribute' => 'name_en', // foreign key attribute that is shown to user
-                'data_source' => url("admin/api/subCategoryEntity/category_id"), //api/modelsmallname/tableid from which state is taken
-                'minimum_input_length' => 0,
-                'dependencies' => ["category_id"],
-                'wrapper' => [
-                    'class' => 'form-group col-md-4',
-                ],
-                'attributes' => [
-                    'placeholder' => 'Select Category first',
-                ]
-            ],
+            // [
+            //     'label'     => 'Sub Category',
+            //     'type'      => 'select2_from_ajax',
+            //     'method' => 'GET',
+            //     'name'      => 'subcategory_id', // the column that contains the ID of that connected entity;
+            //     'model'     => MstSubcategory::class,
+            //     'entity'    => 'subCategoryEntity', // the method that defines the relationship in your Model
+            //     'attribute' => 'name_en', // foreign key attribute that is shown to user
+            //     'data_source' => url("admin/api/subCategoryEntity/category_id"), //api/modelsmallname/tableid from which state is taken
+            //     'minimum_input_length' => 0,
+            //     'dependencies' => ["category_id"],
+            //     'wrapper' => [
+            //         'class' => 'form-group col-md-4',
+            //     ],
+            //     'attributes' => [
+            //         'placeholder' => 'Select Category first',
+            //     ]
+            // ],
             [
                 'name'  => 'supplier_id',
                 'label' => 'Supplier',

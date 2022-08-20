@@ -94,6 +94,9 @@ class MstOrganizationCrudController extends BaseCrudController
                 'type' => 'image',
                 'label' => 'Logo',
                 'disk'   => 'uploads',
+                'wrapper' => [
+                    'class' => 'form-group col-md-6'
+                ]
             ],
             $this->addDescriptionField(),
             $this->addIsActiveField(),
