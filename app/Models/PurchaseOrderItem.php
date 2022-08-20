@@ -36,9 +36,9 @@ class PurchaseOrderItem extends BaseModel
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function itemEntity(){
-        return $this->belongsTo(MstItem::class,'po_id','id');
-    }
+    // public function itemEntity(){
+    //     return $this->belongsTo(MstItem::class,'item_id','id');
+    // }
 
     /*
     |--------------------------------------------------------------------------
