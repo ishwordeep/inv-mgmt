@@ -111,7 +111,9 @@ class StockEntryCrudController extends BaseCrudController
                     'amount' => $request->item_amount[$key],
                 ];
                
-
+                if($statusCheck=='2'){
+                    $this->saveItemQtyDetails($itemArr);
+                }
                 $stockItem = StockItem::create($itemArr);
             }
             }
@@ -227,6 +229,7 @@ class StockEntryCrudController extends BaseCrudController
                     ];
                 
                     $stockItem = StockItem::create($itemArr);
+                    $this->saveItemQtyDetails($itemArr);
                 }   
             }
             
@@ -245,6 +248,7 @@ class StockEntryCrudController extends BaseCrudController
 
     private function saveBatchQtyDetails($itemArr)
     {
+        
         $arr = [
             'store_id' => $this->user->store_id,
             'item_id' => $itemArr['item_id'],
@@ -263,9 +267,10 @@ class StockEntryCrudController extends BaseCrudController
     
     private function saveItemQtyDetails($itemArr)
     {
+        // dd("hell",$this->user);
         $arr = [
             'store_id' => $this->user->store_id,
-            'item_id' => $itemArr['mst_item_id'],
+            'item_id' => $itemArr['item_id'],
             'created_by' => $this->user->id,
         ];
 

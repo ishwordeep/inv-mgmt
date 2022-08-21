@@ -42,10 +42,12 @@
 
 @section('content')
     <div class="card shadow px-3 mt-4">
+        @if($entry->status_id=='2')
         <div class="buttons mt-2 text-right">
             <a href="{{ route('seprintpdf', $entry->id) }}" target="_blank" class="btn btn-sm btn-primary"><i class="la la-file-pdf">&nbsp;PDF</i></a>
             <a href="{{ route('sesendemail', $entry->id) }}" class="btn btn-sm btn-primary"><i class="la la-inbox">&nbsp;Email</i></a>
         </div>
+        @endif
 
         <!-- store name section -->
         <div class="mt-3">
@@ -170,8 +172,10 @@
                 </div>
             </div>
         </div>
+        @if($entry->status_id=='1')
         <div class="col-md-2 mb-2">
             <a href="{{ backpack_url('/stock-entry/'. $entry->id.'/edit') }}" class="btn btn-sm btn-success"><i class="la la-edit">&nbsp;Edit</i></a>
         </div>
+        @endif
     </div>
 @endsection
