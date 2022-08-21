@@ -81,7 +81,7 @@ Route::group([
     Route::crud('sale-item', 'SaleItemCrudController');
     
     Route::crud('item-detail', 'ItemDetailCrudController');
-    Route::get('item-detail',[ItemDetailCrudController::class,'getItemDetails'])->name('item-details');
+    Route::get('item-detail',[ItemDetailCrudController::class,'getItemDetailsView'])->name('item-details');
     Route::get('check-and-get-item-qty/{itemid}',[SaleCrudController::class,'getItemQuantity'])->name('getitemqty');
     
     // Reporting Route
@@ -91,4 +91,6 @@ Route::group([
     Route::get('report/green-zoned-items',[DashboardController::class,'greenZonedStock'])->name('green-zoned-items');
     Route::get('report/yellow-zoned-items',[DashboardController::class,'yellowZonedStock'])->name('yellow-zoned-items');
     Route::get('report/red-zoned-items',[DashboardController::class,'redZonedStock'])->name('red-zoned-items');
+    Route::get('report/getitemdetails/{itemname}',[ItemDetailCrudController::class,'getItemDetails'])->name('getitemdetails');
+
 }); // this should be the absolute last line of this file
