@@ -62,7 +62,7 @@ class MstDiscountModeCrudController extends BaseCrudController
         CRUD::setValidation(MstDiscountModeRequest::class);
 
         $fields = [
-            $this->addReadOnlyCodeTextField(),
+            $this->addCodeTextField(),
             $this->addColMd8Field(),
             $this->addNameEnField(),
             $this->addNameLcField(),

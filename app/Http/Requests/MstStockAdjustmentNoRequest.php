@@ -27,7 +27,7 @@ class MstStockAdjustmentNoRequest extends FormRequest
         $id_check = $this->request->get('id') ? ",".$this->request->get('id') : "";
         return [
             'name' => 'required|max:100|unique:mst_stock_adjustment_no,name'.$id_check,
-            'sequence_code' => 'max:100|unique:mst_stock_adjustment_no,sequence_code'.$id_check
+            'sequence_code' => 'required|max:100|unique:mst_stock_adjustment_no,sequence_code'.$id_check
         ];
     }
 

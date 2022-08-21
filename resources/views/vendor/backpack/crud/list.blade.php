@@ -38,7 +38,7 @@
             @endif
           </div>
           <div class="col-sm-6">
-            <div id="datatable_search_stack" class="mt-sm-0 mt-2 d-print-none"></div>
+            <div id="datatable_search_stack" class="mt-sm-0 mt-2 d-print-none float-right"></div>
           </div>
         </div>
 

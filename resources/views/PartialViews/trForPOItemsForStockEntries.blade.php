@@ -72,6 +72,40 @@
 @endforeach
 {{-- repeaterTable --}}
 
+<tr id="repeaterRowStock" class="d-none">
+    <td></td>
+    <td>
+        <div class="input-group">
+            <input type="text" class="form-control p-1 inv_item" data-cntr='' name="" placeholder="Search item..." id='' size="1" style="width:10rem;">
+            <input type="hidden" name="inv_item_hidden[]" class="">
+        </div>
+    </td>
+    <td>
+        <div class="input-group">
+            <input type="number" class="form-control p-1 AddQty" data-cntr='' id="" placeholder="Add Qty" name="add_qty[]" size="1" style="width:5rem;">
+        </div>
+    </td>
+    <td>
+        <div class="input-group">
+            <input type="number" class="form-control p-1 FreeQty" data-cntr='' id="" placeholder="Free Qty" name="free_item[]" size="1" style="width:5rem;" >
+        </div>
+    </td>
+    <td>
+        <div class="input-group">
+            <input type="number" class="form-control p-1 TotalQty" data-cntr='' id="" placeholder="Total Qty" name="total_qty[]" size="1" style="width:5rem;" readonly>
+        </div>
+    </td>
+    <td>
+        <div class="input-group">
+            <input type="date" class="form-control p-1 ExpiryDate" data-cntr='' id="" placeholder="Expiry Date" name="expiry_date[]" size="1" style="width:7rem;" >
+        </div>
+    </td>
+    <td>
+        <div class="input-group">
+            <input type="number" class="form-control p-1 UnitCost" data-cntr='' id="" placeholder="Unit Cost" name="unit_cost_price[]" size="1" style="width:5rem;" >
+        </div>
+    </td>
+
 
 @include_once('invScripts.common')
 @include('StockEntry.numericalStockEntry')

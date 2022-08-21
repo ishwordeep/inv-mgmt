@@ -26,8 +26,9 @@ class MstCountryRequest extends FormRequest
     {
         $id_check = $this->request->get('id') ? ",".$this->request->get('id') : "";
         return [
+            'code_text' => 'required|max:100|unique:mst_countries,code_text'.$id_check,
             'name_en' => 'required|max:100|unique:mst_countries,name_en'.$id_check,
-            'name_lc' => 'required|max:100|unique:mst_countries,name_lc'.$id_check,
+            'name_lc' => 'max:100|unique:mst_countries,name_lc'.$id_check,
         ];
     }
 
@@ -39,6 +40,7 @@ class MstCountryRequest extends FormRequest
     public function attributes()
     {
         return [
+            'code_text' => 'Code',
             'name_en' => 'Name En',
             'name_lc' => 'Name Lc',
         ];

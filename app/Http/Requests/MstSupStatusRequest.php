@@ -27,7 +27,7 @@ class MstSupStatusRequest extends FormRequest
         $id_check = $this->request->get('id') ? ",".$this->request->get('id') : "";
         return [
             'name_en' => 'required|max:100|unique:mst_sup_status,name_en'.$id_check,
-            'name_lc' => 'required|max:100|unique:mst_sup_status,name_lc'.$id_check,
+            'name_lc' => 'max:100|unique:mst_sup_status,name_lc'.$id_check,
         ];
     }
 

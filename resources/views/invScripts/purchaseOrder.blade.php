@@ -38,6 +38,7 @@
             });
         }
     });
+
     $("#po_type").change(function() {
         let val = $(this).find(":selected").val();
         $("#supplier").prop('selectedIndex', 0);
@@ -51,7 +52,4 @@
             $("#supplier").attr("disabled", true);
         }
     });
-
-   
-
 </script>

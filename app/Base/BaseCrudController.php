@@ -71,15 +71,12 @@ class BaseCrudController extends CrudController
             ],
         ];
     }
-    protected function addReadOnlyCodeTextField()
+    protected function addCodeTextField()
     {
         return [
-            'name' => 'code',
+            'name' => 'code_text',
             'label' => 'Code',
             'type' => 'text',
-            'attributes' => [
-                'readonly' => true,
-            ],
             'wrapper' => [
                 'class' => 'form-group col-md-4'
             ],
@@ -291,6 +288,9 @@ class BaseCrudController extends CrudController
             'attribute' => 'name_en',
             'model' => MstStore::class,
             'label' => 'Store',
+            'wrapper' => [
+                'class' => 'form-group col-md-4'
+            ],
         ];
     }
     // ############### COLUMNS ###############################

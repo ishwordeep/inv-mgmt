@@ -65,7 +65,8 @@ class MstUnitCrudController extends BaseCrudController
         
 
         $fields = [
-            $this->addReadOnlyCodeTextField(),
+            $this->addCodeTextField(),
+            $this->addColMd8Field(),
             $this->addNameEnField(),
             $this->addNameLcField(),
             $this->addIsActiveField(),

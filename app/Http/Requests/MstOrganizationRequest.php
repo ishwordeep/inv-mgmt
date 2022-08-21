@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+
 class MstOrganizationRequest extends FormRequest
 {
     /**
@@ -27,13 +28,12 @@ class MstOrganizationRequest extends FormRequest
         $id_check = $this->request->get('id') ? "," . $this->request->get('id') : "";
         return [
             'name_en' => 'required|max:100|unique:mst_organizations,name_en' . $id_check,
-            'name_lc' => 'required|max:100|unique:mst_organizations,name_lc' . $id_check,
+            'name_lc' => 'max:100|unique:mst_organizations,name_lc' . $id_check,
             'country_id' => 'required',
             'province_id' => 'required',
             'district_id' => 'required',
             'phone' => 'required',
             'email' => 'required',
-
         ];
     }
 
