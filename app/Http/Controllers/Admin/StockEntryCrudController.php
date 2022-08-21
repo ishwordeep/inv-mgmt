@@ -229,7 +229,10 @@ class StockEntryCrudController extends BaseCrudController
                     ];
                 
                     $stockItem = StockItem::create($itemArr);
+                    if($statusCheck=='2'){
                     $this->saveItemQtyDetails($itemArr);
+                    }
+
                 }   
             }
             
