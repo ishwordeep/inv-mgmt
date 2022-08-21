@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ItemDetailCrudController;
 use App\Http\Controllers\Admin\MstItemCrudController;
+use App\Http\Controllers\Admin\SaleCrudController;
 use App\Http\Controllers\Admin\StockEntryCrudController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use Illuminate\Support\Facades\Route;
@@ -81,6 +82,7 @@ Route::group([
     
     Route::crud('item-detail', 'ItemDetailCrudController');
     Route::get('item-detail',[ItemDetailCrudController::class,'getItemDetails'])->name('item-details');
+    Route::get('check-and-get-item-qty/{itemid}',[SaleCrudController::class,'getItemQuantity'])->name('getitemqty');
     
     // Reporting Route
     Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');

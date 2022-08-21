@@ -32,7 +32,11 @@
             , select: function(event, ui) {
                 let present = false;
                 if (present) {} else {
-                    // console.log("first auto")
+                    let type=$(this).closest('tbody').attr('id')
+                 
+                    if(type==='sales-table'){
+                        CheckAndAssignAvaibaleItemQty(ui.item.id);
+                    }
                     enableFieldsForPO(ui.item.id)
                     $('#inv_item_hidden-1').val(ui.item.id);
                 }
@@ -45,7 +49,6 @@
 
         function repeater(type) {
             
-            console.log("ROW:", counterArray);
             if (type === "addRepeaterToStockEntry") {
                 let tr = $("#repeaterRowStock").clone(true);
                 tr.removeAttr("class");
@@ -67,7 +70,9 @@
             if (type === "addRepeaterToSales") {
                 let tr = $("#repeaterRowSales").clone(true);
                 tr.removeAttr("class");
+                setIdNameTorepeater(getLastArrayData() + 1,tr);
                 $("#sales-table").append(tr);
+                counterArray.push(getLastArrayData() + 1);
             }
 
             $(".destroyRepeater").removeClass("d-none");
@@ -81,9 +86,9 @@
                     if (present) {
                         alert("I am present");
                     } else {
-                        console.log("rep auto")
-
-
+                        if(type==='addRepeaterToSales'){
+                            CheckAndAssignAvaibaleItemQty(ui.item.id);
+                        }
                         enableFieldsForPO(getLastArrayData());
                         $("#inv_item_hidden-" + getLastArrayData()).val(ui.item.id);
                     }
@@ -170,7 +175,21 @@
             }
             });
         }
-    @endif
+        @endif
+
+        //check available qty for SALES
+        function CheckAndAssignAvaibaleItemQty(itemId){
+            let url = '{{ route("getitemqty",":itemid") }}'
+            url = url.replace(':itemid', itemId);
+            console.log(url)
+            $.get(url).then(function(response) {
+                if(response.qty.item_qty){
+                    Swal.fire("available")
+                }else{
+                    Swal.fire("No Data Found")
+                }
+            })
+        }
 
     });
 

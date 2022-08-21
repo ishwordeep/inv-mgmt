@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Base\BaseCrudController;
 use App\Http\Requests\SaleRequest;
+use App\Models\ItemDetail;
 use App\Models\MstItem;
 use App\Models\MstStore;
 use App\Models\Sale;
@@ -29,6 +30,7 @@ class SaleCrudController extends BaseCrudController
         CRUD::setModel(\App\Models\Sale::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/sale');
         CRUD::setEntityNameStrings('sale', 'sales');
+        $this->user=backpack_user();
     }
 
     /**
@@ -59,14 +61,6 @@ class SaleCrudController extends BaseCrudController
         CRUD::column('total_discount');
         CRUD::column('taxable_amount');
         CRUD::column('total_tax');
-        CRUD::column('net_amount');
-        CRUD::column('receipt_amt');
-        CRUD::column('due_amt');
-        CRUD::column('status_id');
-        CRUD::column('remarks');
-        CRUD::column('created_at');
-        CRUD::column('updated_at');
-
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - CRUD::column('price')->type('number');
@@ -129,4 +123,12 @@ class SaleCrudController extends BaseCrudController
             'crud' => $data['crud'],
         ]);
     }
+
+    public function getItemQuantity($itemid){
+        $availableQty=ItemDetail::select('item_qty')->whereItemId($itemid)->whereStoreId($this->user->store_id)->first();
+
+        return response()->json([
+            'qty' => $availableQty,
+    ]);
+      }
 }

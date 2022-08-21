@@ -88,7 +88,7 @@
                 </div>
             </div>
 
-            <div class=" col-sm-4 ">
+            {{-- <div class=" col-sm-4 ">
                 <div class="input-group mb-3">
                     <label class="input-group-text" style="min-width: 100px;">Item Wise Discount <span class="text-danger">*</span></label>
                     <input type="checkbox" checked="true" name="itemWiseDiscount" id="itemWiseDiscount" class="form-control" style="min-width: 150px;" required>
@@ -100,7 +100,7 @@
                     <label class="input-group-text" style="min-width: 100px;">Discount <span class="text-danger">*</span></label>
                     <input type="text" name="" id="bulkDiscount" class="form-control" style="min-width: 150px;" disabled>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 
