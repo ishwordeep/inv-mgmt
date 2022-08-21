@@ -31,11 +31,12 @@
             , minLength: 1
             , select: function(event, ui) {
                 let present = false;
+                let checkStatus;
                 if (present) {} else {
                     let type=$(this).closest('tbody').attr('id')
                  
                     if(type==='sales-table'){
-                        CheckAndAssignAvaibaleItemQty(ui.item.id);
+                        checkStatus=CheckAndAssignAvaibaleItemQty(ui.item.id);
                     }
                     enableFieldsForPO(ui.item.id)
                     $('#inv_item_hidden-1').val(ui.item.id);
@@ -83,11 +84,12 @@
                 minLength: 1,
                 select: function(event, ui) {
                     let present = false;
+                    let checkStatus;
                     if (present) {
                         alert("I am present");
                     } else {
                         if(type==='addRepeaterToSales'){
-                            CheckAndAssignAvaibaleItemQty(ui.item.id);
+                            checkStatus=CheckAndAssignAvaibaleItemQty(ui.item.id);
                         }
                         enableFieldsForPO(getLastArrayData());
                         $("#inv_item_hidden-" + getLastArrayData()).val(ui.item.id);
@@ -106,6 +108,7 @@
             $(currentObj).find(".inv_item").attr("id", "inv_item-" + row).attr("name", "inv_item[" + row + "]");
             $(currentObj).find(".inv_item_hidden").attr("id", "inv_item_hidden-" + row).attr("name", "inv_item_hidden[" + row + "]");
             $(currentObj).find(".AddQty").attr("id", "AddQty-" + row).attr("name", "purchase_qty[" + row + "]");
+            $(currentObj).find(".AvailableQty").attr("id", "AvailableQty-" + row);
             $(currentObj).find(".FreeQty").attr("id", "FreeQty-" + row).attr("name", "free_qty[" + row + "]");
             $(currentObj).find(".TotalQty").attr("id", "TotalQty-" + row).attr("name", "total_qty[" + row + "]");
             $(currentObj).find(".ExpiryDate").attr("id", "ExpiryDate-" + row).attr("name", "expiry_date[" + row + "]");
@@ -168,7 +171,6 @@
                 let present = false;
                 if (present) {} else {
                     // console.log("first auto")
-                    debugger;
                     enableFieldsForPO(getLastArrayData())
                     $('#inv_item_hidden-'+i).val(ui.item.id);
                 }
@@ -184,7 +186,8 @@
             console.log(url)
             $.get(url).then(function(response) {
                 if(response.qty.item_qty){
-                    Swal.fire("available")
+                    $('#AvailableQty-'+getLastArrayData()).val(response.qty.item_qty);
+                    $('#AddQty-'+getLastArrayData()).attr({'max':response.qty.item_qty});;
                 }else{
                     Swal.fire("No Data Found")
                 }
