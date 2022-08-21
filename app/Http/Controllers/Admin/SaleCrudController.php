@@ -98,6 +98,83 @@ class SaleCrudController extends BaseCrudController
         return view('Sales.sales', $this->data);
     }
 
+    public function store()
+    {
+        $this->crud->hasAccessOrFail('create');
+        $request = $this->crud->validateRequest();
+        dd($request->all());
+        if (isset($request)) {
+            $purchaseOrderDetails = $request->only([
+                'status_id',
+                'po_type_id',
+                'supplier_id',
+                'store_id',
+                'requested_store_id',
+                'expected_delivery',
+                'approved_by',
+                'gross_amt',
+                'discount_amt',
+                'tax_amt',
+                'net_amt',
+                'comments',
+            ]);
+
+            $request->status_id=(int)$request->status_id;
+
+            if ($request->status_id === MstSupStatus::APPROVED) {
+                // if (!$this->user->is_po_approver) abort(401);
+                
+                $latestId =PurchaseOrder::where('status_id', MstSupStatus::APPROVED)->count() ?? 0;
+                // dd($request->status_id,$latestId);
+
+                $purchaseOrderDetails['po_number'] = (MstPoSequence::first()->sequence_code).($latestId + 1);
+                // dd((MstPoSequence::first()->sequence_code),$purchaseOrderDetails['po_number']);
+
+                $purchaseOrderDetails['po_date'] = Carbon::now()->toDateString();
+                $purchaseOrderDetails['approved_by'] = $this->user->id;
+            }
+
+            DB::beginTransaction();
+            try {
+                $POId = PurchaseOrder::create($purchaseOrderDetails);
+
+                foreach ($request->inv_item_hidden as $key => $val) {
+                    $itemArray = [
+                        'po_id' => $POId->id,
+                        'purchase_qty' => $request->purchase_qty[$key],
+                        'free_qty' => $request->free_qty[$key],
+                        'total_qty' => $request->purchase_qty[$key]+$request->free_qty[$key],
+                        'discount_mode_id' => $request->discount_mode_id[$key],
+                        'discount' => $request->discount[$key],
+                        'purchase_price' => $request->purchase_price[$key],
+                        'item_amount' =>$request->item_amount[$key],
+                        'item_id' => $request->inv_item_hidden[$key],
+                    ];
+                    $here = PurchaseOrderItem::create($itemArray);
+                }
+
+                DB::commit();
+
+                Alert::success(trans('backpack::crud.insert_success'))->flash();
+                return response()->json([
+                        'status' => true,
+                        'url' => backpack_url('/purchase-order/'. $POId->id.'/show'),
+                ]);
+
+                // return redirect(backpack_url('/purchase-order/'. $POId->id.'/show'));
+            } catch (\Throwable $th) {
+                dd($th);
+                DB::rollback();
+
+                return response()->json([
+                    'status' => false,
+                    'message' => $th->getMessage()
+                ], 404);
+            }
+        }
+    }
+
+
     public function show($id)
     {
         // dd("blade[salesShow.blade.php] to be edited");

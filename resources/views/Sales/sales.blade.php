@@ -159,30 +159,30 @@
                         </td>
                         <td>
                             <div class="input-group">
-                                <input type="number" class="form-control p-1 AddQty" data-cntr='1' id="AddQty-1" placeholder="Add Qty" name="" size="1" style="width:5rem;" >
+                                <input type="number" class="form-control p-1 AddQty" data-cntr='1' id="AddQty-1" placeholder="Add Qty" name="purchase_qty[1]" size="1" style="width:5rem;" >
                             </div>
                         </td>
                        
                         <td>
                             <div class="input-group">
-                                <input type="number" class="form-control p-1 FreeQty" data-cntr='1' id="FreeQty[1]" placeholder="Free Qty" name="" size="1" style="width:5rem;" >
+                                <input type="number" class="form-control p-1 FreeQty" data-cntr='1' id="FreeQty[1]" placeholder="Free Qty" name="free_qty[1]" size="1" style="width:5rem;" >
                             </div>
                         </td>
                         <td>
                             <div class="input-group">
-                                <input type="number" class="form-control p-1 TotalQty" data-cntr='1' id="TotalQty-1" placeholder="Total Qty" name="" size="1" style="width:5rem;" readonly>
+                                <input type="number" class="form-control p-1 TotalQty" data-cntr='1' id="TotalQty-1" placeholder="Total Qty" name="total_qty[1]" size="1" style="width:5rem;" readonly>
                             </div>
                         </td>
                     
                         <td>
                             <div class="input-group">
-                                <input type="number" class="form-control p-1 UnitCost" data-cntr='1' id="UnitCost-1" placeholder="Unit Cost" name="" size="1" style="width:5rem;" >
+                                <input type="number" class="form-control p-1 UnitCost" data-cntr='1' id="UnitCost-1" placeholder="Unit Cost" name="purchase_price[1]" size="1" style="width:5rem;" >
                             </div>
                         </td>
 
                         <td>
                             <div class="input-group">
-                                <select class="form-select form-control DiscountMode" data-cntr='1' id="DiscountMode-1" style="min-width: 73px;" >
+                                <select class="form-select form-control DiscountMode" name="discount_mode_id[1]" data-cntr='1' id="DiscountMode-1" style="min-width: 73px;" >
                                     <option value="1">%</option>
                                     <option value="2">NRS</option>
                                 </select>
@@ -190,13 +190,13 @@
                         </td>
                         <td>
                             <div class="input-group">
-                                <input type="number" class="form-control p-1 Discount" data-cntr='1' id="Discount-1" placeholder="Discount" name="" size="1" style="width:5rem;" >
+                                <input type="number" class="form-control p-1 Discount" data-cntr='1' id="Discount-1" placeholder="Discount" name="discount[1]" size="1" style="width:5rem;" >
                             </div>
                         </td>
 
                         <td>
                             <div class="input-group">
-                                <input type="number" class="form-control p-1 TotalAmount" data-cntr='1' id="TotalAmount-1" placeholder="Total Amount" name="" size="1" style="width:5rem;" readonly>
+                                <input type="number" class="form-control p-1 TotalAmount" data-cntr='1' id="TotalAmount-1" placeholder="Total Amount" name="item_amount[1]" size="1" style="width:5rem;" readonly>
                             </div>
                         </td>
                         <td>
