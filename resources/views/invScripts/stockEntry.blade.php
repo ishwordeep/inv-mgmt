@@ -8,7 +8,11 @@
                     Swal.fire("No Data Found")
                 } else {
                     let pod = response.pod;
+                    $("#supplier option[value="+pod.supplier_id+"]").attr('selected', 'selected');
+                    $("#requested_store option[value="+pod.requested_store_id+"]").attr('selected', 'selected');
+                    $("#store option[value="+pod.store_id+"]").attr('selected', 'selected');
                     $("#stock-table").html(response.view)
+                    $("#addRepeaterToStockEntry").hide()
                 }
             });
         });

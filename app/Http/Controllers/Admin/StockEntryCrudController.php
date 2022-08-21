@@ -109,7 +109,7 @@ class StockEntryCrudController extends BaseCrudController
                     'unit_sales_price' => $request->unit_sale[$key],
                     'expiry_date' => $request->expiry_date[$key],
                     'tax_vat' => $request->taxvat[$key],
-                    'amount' => $request->item_total[$key],
+                    'amount' => $request->item_amount[$key],
                 ];
                
 

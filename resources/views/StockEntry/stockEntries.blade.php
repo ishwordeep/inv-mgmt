@@ -58,7 +58,7 @@
             <div class=" col-sm-4">
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">Store</label>
-                    <select class="form-select form-control" id="inputGroupSelect01" name="store_id" style="min-width:150px;">
+                    <select class="form-select form-control" id="store" name="store_id" style="min-width:150px;">
                         <option selected value="">Choose...</option>
                         @foreach($stores as $store)
                             <option value={{$store->id}}>{{$store->name_en}}</option>
@@ -82,7 +82,7 @@
 
            
 
-            <div class=" col-sm-4 ">
+            {{-- <div class=" col-sm-4 ">
                 <div class="input-group mb-3">
                     <span class="input-group-text">Item Wise Discount</span>
 
@@ -94,7 +94,7 @@
                     <span class="input-group-text">Discount</span>
                     <input type="text" name="" id="bulkDiscount" class="form-control" disabled>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 
