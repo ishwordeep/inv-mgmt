@@ -39,7 +39,7 @@
                 Sales Overview
             </h3>
         </div>
-        <div style="height:500px;width:600px;">
+        <div style="height:500px;width:500px;">
             <canvas id="myChart" width="400" height="400"></canvas>
         </div>
     </div>
@@ -48,6 +48,7 @@
 
     <script src="{{ asset('js/chart.min.js') }}"></script>
     <script>
+        const storeWiseSales=<?= echo $sales ?>
         const labels = [
             'January',
             'February',
@@ -71,12 +72,7 @@
                     borderColor: 'rgb(55, 9, 32)',
                     data: [0, 30, 52, 12, 70, 230, 45],
                 },
-                // {
-                //     label: 'Item C',
-                //     backgroundColor: 'rgb(5, 99, 132)',
-                //     borderColor: 'rgb(5, 99, 132)',
-                //     data: [0, 10, 92, 12, 220, 20, 45],
-                // }
+               
             ]
         };
 
