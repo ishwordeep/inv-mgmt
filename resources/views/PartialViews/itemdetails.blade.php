@@ -25,7 +25,7 @@
             <div class="card-counter success">
                 <i class="fa fa-building"></i>
                 <span class="count-numbers" id="">{{$item->item_qty}} Units</span>
-                <span class="count-name">{{$item->storeEntity->name_en}}</span>
+                <span class="count-name">{{isset($item->store_id) ? $item->storeEntity->name_en : ''}}</span>
             </div>
         </div>
         @endforeach
@@ -40,15 +40,14 @@
             </h3>
         </div>
         <div style="height:500px;width:600px;">
-            <canvas id="myChart"></canvas>
+            <canvas id="myChart" width="400" height="400"></canvas>
         </div>
     </div>
 </div>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ asset('js/chart.min.js') }}"></script>
     <script>
-        debugger;
         const labels = [
             'January',
             'February',
