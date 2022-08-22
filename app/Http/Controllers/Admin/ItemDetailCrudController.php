@@ -8,6 +8,7 @@ use App\Models\ItemDetail;
 use App\Models\MstItem;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class ItemDetailCrudController
@@ -38,7 +39,14 @@ class ItemDetailCrudController extends BaseCrudController
             $itemDetails=ItemDetail::with('storeEntity')->select('item_qty','store_id')->whereItemId($itemId->id)->get();
            
 
-            return view('PartialViews.itemdetails',compact('itemDetails'));
+            $sales=DB::table('sales')
+            ->join('sales_items as sitems', 'sales.id', '=', 'sitems.sales_id')
+            ->select(DB::raw('sum(sitems.total_qty) as salesdata, sales.store_id'))
+            ->where('sitems.item_id', $itemId->id)
+            ->groupBy('sales.store_id')
+            ->get();
+            // dd($sales);
+            return view('PartialViews.itemdetails',compact('itemDetails','sales'));
         }
         else{
             dd("no items");
