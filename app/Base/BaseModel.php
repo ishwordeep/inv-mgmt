@@ -115,5 +115,7 @@ class BaseModel extends Model
     public function requestedStoreEntity(){
         return $this->belongsTo(MstStore::class,'requested_store_id','id');
     }
-
+    public function createdByEntity(){
+        return $this->belongsTo(User::class,'created_by','id');
+    }
 }

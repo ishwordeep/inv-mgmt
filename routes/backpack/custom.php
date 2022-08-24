@@ -77,7 +77,9 @@ Route::group([
     Route::get('api/subCategoryEntity/{category_id}', [MstItemCrudController::class, 'getSubCategoryAPI']);
 
     Route::crud('batch-detail', 'BatchDetailCrudController');
+
     Route::crud('sale', 'SaleCrudController');
+    Route::get('sale-print-pdf/{sale_id}','SaleCrudController@salePrintPdf')->name('saleprintpdf');
     Route::crud('sale-item', 'SaleItemCrudController');
     
     Route::crud('item-detail', 'ItemDetailCrudController');

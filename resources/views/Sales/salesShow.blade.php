@@ -2,10 +2,10 @@
 
 @php
 
-$defaultBreadcrumbs = [
-trans('backpack::crud.admin') => url(config('backpack.base.route_prefix'), 'dashboard'),
-$crud->entity_name_plural => url($crud->route),
-trans('backpack::crud.add') => false,
+    $defaultBreadcrumbs = [
+    trans('backpack::crud.admin') => url(config('backpack.base.route_prefix'), 'dashboard'),
+    $crud->entity_name_plural => url($crud->route),
+    trans('backpack::crud.add') => false,
 ];
 
 // if breadcrumbs aren't defined in the CrudController, use the default breadcrumbs
@@ -32,33 +32,25 @@ $breadcrumbs = $breadcrumbs ?? $defaultBreadcrumbs;
 </style>
 @endpush
 
-@section('header')
-<section class="container-fluid">
-    <h2>
-        <span class="text-capitalize">{!! $crud->getHeading() ?? $crud->entity_name_plural !!}</span>
-        <small>{!! $crud->getSubheading() ?? trans('backpack::crud.preview').' '.$crud->entity_name !!}.</small>
-
-        @if ($crud->hasAccess('list'))
-        <small><a href="{{ url($crud->route) }}" class="d-print-none font-sm"><i
-                    class="la la-angle-double-{{ config('backpack.base.html_direction') == 'rtl' ? 'right' : 'left' }}"></i>
-                {{ trans('backpack::crud.back_to_all') }} <span>{{ $crud->entity_name_plural }}</span></a></small>
-        @endif
-    </h2>
-</section>
-@endsection
+@include('header')
 
 @php
-$status=[
-1=>'text-warning',
-2=>'text-success',
-3=>'text-danger',
-4=>'text-warning',
-5=>'text-warning'
-];
+    $status=[
+        1=>'text-warning',
+        2=>'text-success',
+        3=>'text-danger',
+        4=>'text-warning',
+        5=>'text-warning'
+    ];
 @endphp
 
 @section('content')
 <div class="card shadow px-3 mt-4">
+    @if($entry->status_id=='2')
+        <div class="buttons mt-2 text-right">
+            <a href="{{ route('saleprintpdf', $entry->id) }}" target="_blank" class="btn btn-sm btn-primary"><i class="la la-file-pdf">&nbsp;PDF</i></a>
+        </div>
+    @endif
     <!-- store name section -->
     <div class="mt-3">
         <div class="row">
@@ -66,7 +58,7 @@ $status=[
                 <div class="mb-3">
                     <span class="me-1" style="font-weight: bold;"> Status: </span> <span
                         class="{{ isset($entry->status_id)? $status[$entry->status_id] : ''}}"
-                        style="font-weight: bold;"> {{ucfirst($entry->supStatus->name_en)}}</span>
+                        style="font-weight: bold;"> {{ucfirst($entry->statusEntity->name_en)}}</span>
                 </div>
             </div>
             <div class="col-lg-3 col-md-4">
@@ -126,7 +118,7 @@ $status=[
                     <tr style="background-color: rgb(241, 241, 241)">
                         <th scope="col">Item Name</th>
                         <th scope="col">Total Qty</th>
-                        <th scope="col">Unit </th>
+                        <!-- <th scope="col">Unit </th> -->
                         <th scope="col">Unit Price</th>
                         <th scope="col">Tax/Vat</th>
                         <th scope="col">Amount</th>
@@ -139,7 +131,7 @@ $status=[
                     <tr>
                         <td scope="col">{{$item->item_id}}</td>
                         <td scope="col">{{$item->total_qty}}</td>
-                        <td scope="col">{{$item->unit_id}}</td>
+                        <!-- <td scope="col">{{$item->unit_id}}</td> -->
                         <td scope="col">{{$item->unit_price}}</td>
                         <td scope="col">{{$item->tax_vat??'0'}}</td>
                         <td scope="col">{{$item->item_total}}</td>
@@ -167,28 +159,33 @@ $status=[
                 <table class="table table-sm table-borderless text-dark">
                     <tr>
                         <td class="font-weight-bold">Gross total:</td>
-                        <td>{{$entry->gross_amt}}</td>
+                        <td>{{$entry->gross_total}}</td>
                     </tr>
                     <tr>
                         <td class="font-weight-bold">Total Disc:</td>
-                        <td>{{$entry->discount_amt}}</td>
-                    </tr>
-                    <tr>
-                        <td class="font-weight-bold">Taxable Amount:</td>
-                        <td>{{$entry->taxable_amt}}</td>
-                    </tr>
-                    <tr>
-                        <td class="font-weight-bold">Tax Total:</td>
-                        <td>{{$entry->total_tax_vat}}</td>
+                        <td>{{$entry->total_discount}}</td>
                     </tr>
                     <tr>
                         <td class="font-weight-bold">Net Amount:</td>
-                        <td>{{$entry->net_amt}}</td>
+                        <td>{{$entry->net_amount}}</td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold">Receipt Amount:</td>
+                        <td>{{$entry->receipt_amt}}</td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold">Due Amount:</td>
+                        <td>{{$entry->due_amt}}</td>
                     </tr>
                     <tbody></tbody>
                 </table>
             </div>
         </div>
     </div>
+    @if($entry->status_id=='1')
+        <div class="col-md-2 mb-2">
+            <a href="{{ backpack_url('/sale/'. $entry->id.'/edit') }}" class="btn btn-sm btn-success"><i class="la la-edit">&nbsp;Edit</i></a>
+        </div>
+    @endif
 </div>
 @endsection

@@ -16,7 +16,7 @@ class SaleItem extends BaseModel
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'sale_items';
+    protected $table = 'sales_items';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
