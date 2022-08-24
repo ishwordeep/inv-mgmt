@@ -59,7 +59,6 @@
         labels.push(storeWiseSales[i].store_id);
         salesdataa.push(storeWiseSales[i].salesdata);
     }
-    debugger;
 
     const data = {
   labels: labels,

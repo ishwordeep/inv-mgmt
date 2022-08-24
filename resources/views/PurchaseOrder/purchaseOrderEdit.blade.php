@@ -104,7 +104,7 @@
                         </td>
                         <td>
                             <div class="input-group">
-                                <input type="number" min="0" value="{{ $item->free_qty }}" class="form-control p-1 FreeQty" data-cntr="{{ $key }}" id="FreeQty-{{ $key }}" placeholder="Free Qty" name="free_qty[{{ $key }}]" size="1" style="width:5rem;" required>
+                                <input type="number" min="0" value="{{ $item->free_qty }}" class="form-control p-1 FreeQty" data-cntr="{{ $key }}" id="FreeQty-{{ $key }}" placeholder="Free Qty" name="free_qty[{{ $key }}]" size="1" style="width:5rem;">
                             </div>
                         </td>
                         <td>
@@ -114,13 +114,13 @@
                         </td>
                         <td>
                             <div class="input-group">
-                                <input type="number" min="0" value="{{ $item->purchase_price }}" class="form-control p-1 UnitCost" data-cntr="{{ $key }}" id="UnitCost-{{ $key }}" placeholder="Unit Cost" name="purchase_price[{{ $key }}]" size="1" style="width:5rem;" required>
+                                <input type="number" min="0" value="{{ $item->purchase_price }}" class="form-control p-1 UnitCost" data-cntr="{{ $key }}" id="UnitCost-{{ $key }}" placeholder="Unit Cost" name="purchase_price[{{ $key }}]" size="1" style="width:5rem;">
                             </div>
                         </td>
 
                         <td>
                             <div class="input-group">
-                                <select class="form-select form-control DiscountMode" data-cntr="{{ $key }}" id="DiscountMode-{{ $key }}" name="discount_mode_id[{{ $key }}]" style="min-width: 73px;" required>
+                                <select class="form-select form-control DiscountMode" data-cntr="{{ $key }}" id="DiscountMode-{{ $key }}" name="discount_mode_id[{{ $key }}]" style="min-width: 73px;">
                                     <option value="1" {{ $entry->discount_mode_id === 1 ? 'selected' : '' }}>%</option>
                                     <option value="2" {{ $entry->discount_mode_id === 2 ? 'selected' : '' }}>NRS</option>
                                 </select>
@@ -160,7 +160,7 @@
                     </td>
                     <td>
                         <div class="input-group">
-                            <input type="number" min="0" class="form-control p-1 FreeQty" data-cntr='' id="" placeholder="Free Qty" name="" size="1" style="width:5rem;" required>
+                            <input type="number" min="0" class="form-control p-1 FreeQty" data-cntr='' id="" placeholder="Free Qty" name="" size="1" style="width:5rem;">
                         </div>
                     </td>
                     <td>
@@ -170,13 +170,13 @@
                     </td>
                     <td>
                         <div class="input-group">
-                            <input type="number" min="0" class="form-control p-1 UnitCost" data-cntr='' id="" placeholder="Unit Cost" name="" size="1" style="width:5rem;" required>
+                            <input type="number" min="0" class="form-control p-1 UnitCost" data-cntr='' id="" placeholder="Unit Cost" name="" size="1" style="width:5rem;">
                         </div>
                     </td>
 
                     <td>
                         <div class="input-group">
-                            <select class="form-select form-control DiscountMode" data-cntr='' id="" style="min-width: 73px;" required>
+                            <select class="form-select form-control DiscountMode" data-cntr='' id="" style="min-width: 73px;">
                                 <option value="1">%</option>
                                 <option value="2">NRS</option>
                             </select>
@@ -184,7 +184,7 @@
                     </td>
                     <td>
                         <div class="input-group">
-                            <input type="number" min="0" class="form-control p-1 Discount" data-cntr='' id="" placeholder="Discount" name="" size="1" style="width:5rem;" required>
+                            <input type="number" min="0" class="form-control p-1 Discount" data-cntr='' id="" placeholder="Discount" name="" size="1" style="width:5rem;">
                         </div>
                     </td>
 

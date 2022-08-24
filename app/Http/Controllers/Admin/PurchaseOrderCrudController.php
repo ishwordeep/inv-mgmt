@@ -94,14 +94,14 @@ class PurchaseOrderCrudController extends BaseCrudController
                 foreach ($request->inv_item_hidden as $key => $val) {
                     $itemArray = [
                         'po_id' => $POId->id,
-                        'purchase_qty' => $request->purchase_qty[$key],
-                        'free_qty' => $request->free_qty[$key],
-                        'total_qty' => $request->purchase_qty[$key]+$request->free_qty[$key],
-                        'discount_mode_id' => $request->discount_mode_id[$key],
-                        'discount' => $request->discount[$key],
-                        'purchase_price' => $request->purchase_price[$key],
-                        'item_amount' =>$request->item_amount[$key],
-                        'item_id' => $request->inv_item_hidden[$key],
+                        'purchase_qty' => $request->purchase_qty[$key] ?? 0,
+                        'free_qty' => $request->free_qty[$key] ?? 0,
+                        'total_qty' => $request->purchase_qty[$key]+$request->free_qty[$key] ?? 0,
+                        'discount_mode_id' => $request->discount_mode_id[$key] ?? 0,
+                        'discount' => $request->discount[$key] ?? 0,
+                        'purchase_price' => $request->purchase_price[$key] ?? 0,
+                        'item_amount' =>$request->item_amount[$key] ?? 0,
+                        'item_id' => $request->inv_item_hidden[$key] ?? 0,
                     ];
                     $here = PurchaseOrderItem::create($itemArray);
                 }

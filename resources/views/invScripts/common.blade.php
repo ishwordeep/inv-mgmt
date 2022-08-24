@@ -162,7 +162,6 @@
         @if(isset($items))
         let totalItems = {{ $items->count() }};
         for (let i = 0; i < totalItems; i++) {
-            console.log(counterArray)
             counterArray.push(i)
             $("#inv_item-"+i).autocomplete({
             source: availableTags
@@ -170,7 +169,6 @@
             , select: function(event, ui) {
                 let present = false;
                 if (present) {} else {
-                    // console.log("first auto")
                     enableFieldsForPO(getLastArrayData())
                     $('#inv_item_hidden-'+i).val(ui.item.id);
                 }

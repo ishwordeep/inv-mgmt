@@ -104,7 +104,7 @@
                     </td>
                     <td>
                         <div class="input-group">
-                            <input type="number" min="0" class="form-control p-1 FreeQty" data-cntr='1' id="FreeQty-1" placeholder="Free Qty" name="free_qty[1]" size="1" style="width:5rem;"  disabled required>
+                            <input type="number" min="0" class="form-control p-1 FreeQty" data-cntr='1' id="FreeQty-1" placeholder="Free Qty" name="free_qty[1]" size="1" style="width:5rem;"  disabled>
                         </div>
                     </td>
                     <td>
@@ -114,13 +114,13 @@
                     </td>
                     <td>
                         <div class="input-group">
-                            <input type="number" min="0" class="form-control p-1 UnitCost" data-cntr='1' id="UnitCost-1" placeholder="Unit Cost" name="purchase_price[1]" size="1" style="width:5rem;" disabled required>
+                            <input type="number" min="0" class="form-control p-1 UnitCost" data-cntr='1' id="UnitCost-1" placeholder="Unit Cost" name="purchase_price[1]" size="1" style="width:5rem;" disabled>
                         </div>
                     </td>
 
                     <td>
                         <div class="input-group">
-                            <select class="form-select form-control DiscountMode" data-cntr='1' id="DiscountMode-1" name="discount_mode_id[1]" style="min-width: 73px;" disabled required>
+                            <select class="form-select form-control DiscountMode" data-cntr='1' id="DiscountMode-1" name="discount_mode_id[1]" style="min-width: 73px;" disabled>
                                 <option value="1">%</option>
                                 <option value="2">NRS</option>
                             </select>
@@ -128,7 +128,7 @@
                     </td>
                     <td>
                         <div class="input-group">
-                            <input type="number" min="0" class="form-control p-1 Discount" data-cntr='1' id="Discount-1" placeholder="Discount" name="discount[1]" size="1" style="width:5rem;" disabled required>
+                            <input type="number" min="0" class="form-control p-1 Discount" data-cntr='1' id="Discount-1" placeholder="Discount" name="discount[1]" size="1" style="width:5rem;" disabled>
                         </div>
                     </td>
 
@@ -159,7 +159,7 @@
                     </td>
                     <td>
                         <div class="input-group">
-                            <input type="number" min="0" class="form-control p-1 FreeQty" data-cntr='' id="" placeholder="Free Qty" name="" size="1" style="width:5rem;" disabled required>
+                            <input type="number" min="0" class="form-control p-1 FreeQty" data-cntr='' id="" placeholder="Free Qty" name="" size="1" style="width:5rem;" disabled>
                         </div>
                     </td>
                     <td>
@@ -169,7 +169,7 @@
                     </td>
                     <td>
                         <div class="input-group">
-                            <input type="number" min="0" class="form-control p-1 UnitCost" data-cntr='' id="" placeholder="Unit Cost" name="" size="1" style="width:5rem;" disabled required>
+                            <input type="number" min="0" class="form-control p-1 UnitCost" data-cntr='' id="" placeholder="Unit Cost" name="" size="1" style="width:5rem;" disabled>
                         </div>
                     </td>
 
@@ -183,7 +183,7 @@
                     </td>
                     <td>
                         <div class="input-group">
-                            <input type="number" min="0" class="form-control p-1 Discount" data-cntr='' id="" placeholder="Discount" name="" size="1" style="width:5rem;" disabled required>
+                            <input type="number" min="0" class="form-control p-1 Discount" data-cntr='' id="" placeholder="Discount" name="" size="1" style="width:5rem;" disabled>
                         </div>
                     </td>
 
