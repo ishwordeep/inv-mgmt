@@ -25,7 +25,7 @@
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-store') }}'><i class='nav-icon la la-list-ul'></i> Stores</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-brand') }}'><i class='nav-icon la la-list-ul'></i> Brands</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-item') }}'><i class='nav-icon la la-list-ul'></i> Items</a></li>
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-return-reason') }}'><i class='nav-icon la la-list-ul'></i> Return Reasons</a></li>
+        {{-- <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-return-reason') }}'><i class='nav-icon la la-list-ul'></i> Return Reasons</a></li> --}}
     </ul>
 </li>
 </li>
@@ -33,9 +33,9 @@
     <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-compass"></i><span>Sequences</span></span></a>
     <ul class="nav-dropdown-items">
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-invoice-sequence') }}'><i class='nav-icon la la-list-ul'></i> Invoice Sequences</a></li>
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-batch-no') }}'><i class='nav-icon la la-list-ul'></i> Batch No</a></li>
+        {{-- <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-batch-no') }}'><i class='nav-icon la la-list-ul'></i> Batch No</a></li> --}}
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-po-sequence') }}'><i class='nav-icon la la-list-ul'></i> Po Sequences</a></li>
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-purchase-return-sequence') }}'><i class='nav-icon la la-list-ul'></i> PR Sequences</a></li>
+        {{-- <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-purchase-return-sequence') }}'><i class='nav-icon la la-list-ul'></i> PR Sequences</a></li> --}}
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-stock-adjustment-no') }}'><i class='nav-icon la la-list-ul'></i> Stock Adjustment No</a></li>
     </ul>
 </li>
@@ -56,3 +56,5 @@
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('user') }}'><i class='nav-icon la la-user'></i> Users</a></li>
 {{-- <li class='nav-item'><a class='nav-link' href='{{ backpack_url('batch-detail') }}'><i class='nav-icon la la-list-ul'></i> Batch details</a></li> --}}
 <li class='nav-item'><a class='nav-link' href='{{ route('item-details') }}'><i class='nav-icon la la-list'></i> Item Details</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ route('item-details') }}'><i class='nav-icon la la-list'></i> Sales Details</a></li> 
+
