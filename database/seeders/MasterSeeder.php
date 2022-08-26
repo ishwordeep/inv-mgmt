@@ -32,7 +32,7 @@ class MasterSeeder extends Seeder
      DB::table('mst_countries')->insert([
             array('id' => 1,'code_text' => 'nep','name_en' => 'Nepal','name_lc' => 'नेपाल','created_at'=>$this->time),
         ]);
-        DB::statement("SELECT SETVAL('mst_provinces_id_seq',100)");
+        DB::statement("SELECT SETVAL('mst_countries_id_seq',100)");
     }
 
     private function mstProvinces()
