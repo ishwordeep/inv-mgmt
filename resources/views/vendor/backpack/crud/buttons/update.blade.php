@@ -2,8 +2,14 @@
 	@if (!$crud->model->translationEnabled())
 
 	<!-- Single edit button -->
+	@if(in_array($crud->model->getTable(),[
+        'purchase_orders',
+        'stock_entries',
+		'sales',
+    ])  && ($entry->status_id === 2))
+    @else
 	<a href="{{ url($crud->route.'/'.$entry->getKey().'/edit') }}" class="btn btn-sm btn-outline-success" tooltip><i class="la la-edit" data-toggle="tooltip" title="Edit"></i></a>
-
+	@endif
 	@else
 
 	<!-- Edit button group -->
