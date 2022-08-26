@@ -92,6 +92,7 @@ class SaleCrudController extends BaseCrudController
             if ($request->status_id === MstSupStatus::APPROVED) {                
                 $latestId = Sale::where('status_id', MstSupStatus::APPROVED)->count() ?? 0;
                 $approved_by = $this->user->id;
+
             }
 
             DB::beginTransaction();
@@ -130,6 +131,31 @@ class SaleCrudController extends BaseCrudController
                         'item_total' =>$request->item_amount[$key],
                     ];
                     $here = SaleItem::create($itemArray);
+                    if ($request->status_id === MstSupStatus::APPROVED) {
+                        // dd("hell",$this->user);
+                        $arr = [
+                            'store_id' => $this->user->store_id,
+                            'item_id' => $itemArray['item_id'],
+                            'created_by' => $this->user->id,
+                        ];
+                
+                
+                       
+                            $arr['item_qty'] = $itemArray['total_qty'];
+                            $existingItemQty =ItemDetail::where([
+                                'store_id' => $this->user->store_id,
+                                'item_id' => $itemArray['item_id'],
+                            ])->first();
+                
+                            $flag = $existingItemQty ?? false;
+                       
+                        if ($flag) {
+                            $flag->item_qty = $existingItemQty->item_qty-$arr['item_qty'];
+                            $flag->save();
+                        } else {
+                            ItemDetail::create($arr);
+                        }
+                    }
                 }
 
                 DB::commit();
