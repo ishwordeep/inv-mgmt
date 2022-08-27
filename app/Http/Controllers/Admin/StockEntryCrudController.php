@@ -35,7 +35,7 @@ class StockEntryCrudController extends BaseCrudController
         CRUD::setEntityNameStrings('', 'Stock Entries');
         $this->user = backpack_user();
     }
-<<<<<<< Updated upstream
+
     protected function setupListOperation()
     {
         $columns = [
@@ -55,7 +55,7 @@ class StockEntryCrudController extends BaseCrudController
                 'attribute' => 'name_en', // foreign key attribute that is shown to user
                 'model' => MstSupStatus::class
             ],
-         
+
             [
                 'name' => 'stock_adjustment_number',
                 'type' => 'text',
@@ -66,41 +66,16 @@ class StockEntryCrudController extends BaseCrudController
                 'type' => 'date',
                 'label' => 'Entry date'
             ],
-            
+
             [
                 'name' => 'net_amount',
                 'type' => 'text',
                 'label' => 'Net Amount'
-=======
-
-    protected function setupListOperation()
-    {
-        $columns = [
-            $this->addStoreColumn(),
-            [
-                'name' => 'po_number',
-                'label' => 'PO Number'
-            ],
-            [
-                'name' => 'invoice_number',
-                'label' => 'Invoice Number',
-            ],
-            [
-                'name' => 'stock_adjustment_number',
-                'label' => 'Stock Adjustment No.',
-            ],
-            [
-                'name' => 'entry_date',
-                'label' => 'Entry Date',
->>>>>>> Stashed changes
             ],
         ];
         $this->crud->addColumns(array_filter($columns));
     }
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
     public function create()
     {
         $this->crud->hasAccessOrFail('create');

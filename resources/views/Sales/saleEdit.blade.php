@@ -51,12 +51,12 @@
                     </div>
                 </div>
 
-                <div class=" col-sm-4 ">
+             {{--   <div class=" col-sm-4 ">
                     <div class="input-group mb-3">
                         <label class="input-group-text" for="invoice_number" style="min-width: 100px;">Invoice Number<span class="text-danger">*</span></label>
-                        <input type="text" id="invoice_number" name='invoice_number' value="{{ $entry->invoice_number }}" class="form-control" placeholder="Inv Num" style="min-width: 100px;" required>
+                        <input type="text" id="invoice_number" name='invoice_number' value="{{ $entry->invoice_number }}" class="form-control" placeholder="Inv Num" style="min-width: 100px;">
                     </div>
-                </div>
+                </div>--}}
                 <div class=" col-sm-4 ">
                     <div class="input-group mb-3">
                         <label class="input-group-text" for="transaction_date" style="min-width: 100px;">Transaction Date<span class="text-danger">*</span></label>

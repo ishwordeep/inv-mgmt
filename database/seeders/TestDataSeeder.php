@@ -30,6 +30,7 @@ class TestDataSeeder extends Seeder
         $this->item();
         $this->po_sequence();
         $this->stock_adjustment_no();
+        $this->invoice_sequence();
     }
 
     private function organization()
@@ -128,6 +129,13 @@ class TestDataSeeder extends Seeder
     private function stock_adjustment_no(){
         DB::table('mst_stock_adjustment_no')->insert([
             array('id' => 1, 'code'=>'1','name' => 'Stock Adjustment','sequence_code' =>'SA'),
+        ]);
+        DB::statement("SELECT SETVAL('mst_items_id_seq',100)");
+    }
+
+    private function invoice_sequence(){
+        DB::table('mst_invoice_sequences')->insert([
+            array('id' => 1, 'code'=>'1','name' => 'InvoiceSequence','sequence_code' =>'IS'),
         ]);
         DB::statement("SELECT SETVAL('mst_items_id_seq',100)");
     }
