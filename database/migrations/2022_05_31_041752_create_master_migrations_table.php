@@ -335,9 +335,9 @@ class CreateMasterMigrationsTable extends Migration
             $table->string('name_en')->unique();
             $table->string('name_lc')->unique();
             $table->string('description')->nullable();
-            $table->unsignedSmallInteger('category_id');
-            $table->unsignedSmallInteger('subcategory_id');
-            $table->unsignedSmallInteger('supplier_id');
+            $table->unsignedSmallInteger('category_id')->nullable();
+            $table->unsignedSmallInteger('subcategory_id')->nullable();
+            $table->unsignedSmallInteger('supplier_id')->nullable();
             $table->unsignedSmallInteger('brand_id')->nullable();
             $table->unsignedSmallInteger('unit_id')->nullable();
             $table->integer('stock_alert_minimum')->nullable();

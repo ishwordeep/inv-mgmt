@@ -115,50 +115,50 @@ class MstItemCrudController extends BaseCrudController
             //         'placeholder' => 'Select Category first',
             //     ]
             // ],
-            [
-                'name'  => 'supplier_id',
-                'label' => 'Supplier',
-                'type' => 'select2',
-                'entity' => 'supplierEntity',
-                'attribute' => 'name_en',
-                'model' => MstSupplier::class,
-                'wrapper' => [
-                    'class' => 'form-group col-md-4',
-                ],
-            ],
-            [
-                'name'  => 'brand_id',
-                'label' => 'Brand',
-                'type' => 'select2',
-                'entity' => 'brandEntity',
-                'attribute' => 'name_en',
-                'model' => MstBrand::class,
-                'wrapper' => [
-                    'class' => 'form-group col-md-4',
-                ],
-            ],
-            [
-                'name'  => 'unit_id',
-                'label' => 'Unit',
-                'type' => 'select2',
-                'entity' => 'unitEntity',
-                'attribute' => 'name_en',
-                'model' => MstUnit::class,
-                'wrapper' => [
-                    'class' => 'form-group col-md-4',
-                ],
-            ],
-            [
-                'name'  => 'discount_mode_id',
-                'label' => 'Discount Mode',
-                'type' => 'select2',
-                'entity' => 'discountModeEntity',
-                'attribute' => 'name_en',
-                'model' => MstDiscountMode::class,
-                'wrapper' => [
-                    'class' => 'form-group col-md-4',
-                ],
-            ],
+            // [
+            //     'name'  => 'supplier_id',
+            //     'label' => 'Supplier',
+            //     'type' => 'select2',
+            //     'entity' => 'supplierEntity',
+            //     'attribute' => 'name_en',
+            //     'model' => MstSupplier::class,
+            //     'wrapper' => [
+            //         'class' => 'form-group col-md-4',
+            //     ],
+            // ],
+            // [
+            //     'name'  => 'brand_id',
+            //     'label' => 'Brand',
+            //     'type' => 'select2',
+            //     'entity' => 'brandEntity',
+            //     'attribute' => 'name_en',
+            //     'model' => MstBrand::class,
+            //     'wrapper' => [
+            //         'class' => 'form-group col-md-4',
+            //     ],
+            // ],
+            // [
+            //     'name'  => 'unit_id',
+            //     'label' => 'Unit',
+            //     'type' => 'select2',
+            //     'entity' => 'unitEntity',
+            //     'attribute' => 'name_en',
+            //     'model' => MstUnit::class,
+            //     'wrapper' => [
+            //         'class' => 'form-group col-md-4',
+            //     ],
+            // ],
+            // [
+            //     'name'  => 'discount_mode_id',
+            //     'label' => 'Discount Mode',
+            //     'type' => 'select2',
+            //     'entity' => 'discountModeEntity',
+            //     'attribute' => 'name_en',
+            //     'model' => MstDiscountMode::class,
+            //     'wrapper' => [
+            //         'class' => 'form-group col-md-4',
+            //     ],
+            // ],
             [
                 'name'  => 'stock_alert_minimum',
                 'label' => 'Stock Minimum Alert',
@@ -168,45 +168,45 @@ class MstItemCrudController extends BaseCrudController
                     'class' => 'form-group col-md-4',
                 ],
             ],
-            [
-                'name'  => 'tax_vat',
-                'label' => 'Tax/Vat',
-                'type' => 'number',
-                'wrapper' => [
-                    'class' => 'form-group col-md-4',
-                ],
-            ],
+            // [
+            //     'name'  => 'tax_vat',
+            //     'label' => 'Tax/Vat',
+            //     'type' => 'number',
+            //     'wrapper' => [
+            //         'class' => 'form-group col-md-4',
+            //     ],
+            // ],
             $this->addDescriptionField(),
-            [
-                'name' => 'is_taxable',
-                'label' => 'Is Taxable',
-                'type' => 'radio',
-                'default' => 1,
-                'inline' => true,
-                'wrapper' => [
-                    'class' => 'form-group col-md-4',
-                ],
-                'options' =>
-                [
-                    1 => 'Yes',
-                    0 => 'No',
-                ],
-            ],
-            [
-                'name' => 'is_nonclaimable',
-                'label' => 'Is Non-claimable',
-                'type' => 'radio',
-                'default' => 1,
-                'inline' => true,
-                'wrapper' => [
-                    'class' => 'form-group col-md-4',
-                ],
-                'options' =>
-                [
-                    1 => 'Yes',
-                    0 => 'No',
-                ],
-            ],
+            // [
+            //     'name' => 'is_taxable',
+            //     'label' => 'Is Taxable',
+            //     'type' => 'radio',
+            //     'default' => 1,
+            //     'inline' => true,
+            //     'wrapper' => [
+            //         'class' => 'form-group col-md-4',
+            //     ],
+            //     'options' =>
+            //     [
+            //         1 => 'Yes',
+            //         0 => 'No',
+            //     ],
+            // ],
+            // [
+            //     'name' => 'is_nonclaimable',
+            //     'label' => 'Is Non-claimable',
+            //     'type' => 'radio',
+            //     'default' => 1,
+            //     'inline' => true,
+            //     'wrapper' => [
+            //         'class' => 'form-group col-md-4',
+            //     ],
+            //     'options' =>
+            //     [
+            //         1 => 'Yes',
+            //         0 => 'No',
+            //     ],
+            // ],
             
             $this->addIsActiveField(),
         ];
@@ -222,7 +222,7 @@ class MstItemCrudController extends BaseCrudController
     /**
      * Define what happens when the Update operation is loaded.
      * 
-     * @see https://backpackforlaravel.com/docs/crud-operation-update
+     * @see https://backpackforlaravel.com/docs/cfsubrud-operation-update
      * @return void
      */
     protected function setupUpdateOperation()
