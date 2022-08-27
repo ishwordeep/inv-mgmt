@@ -31,17 +31,30 @@ class SaleCrudController extends BaseCrudController
 
     protected function setupListOperation()
     {
-        CRUD::column('id');
-        CRUD::column('store_id');
-        CRUD::column('invoice_number');
-        CRUD::column('invoice_date');
-        CRUD::column('created_by');
-        CRUD::column('approved_by');
-        CRUD::column('transaction_date');
-        CRUD::column('bill_type');
-        CRUD::column('company_name');
-        CRUD::column('discount_mode_id');
-        CRUD::column('gross_total');
+        $columns = [
+            $this->addStoreField(),
+            [
+                'name' => 'invoice_number',
+                'label' => 'Invoice Number',
+            ],
+            [
+                'name' => 'transaction_date',
+                'label' => 'Transaction Date',
+            ],
+            [
+                'name' => 'company_name',
+                'label' => 'Company Name',
+            ],
+            [
+                'name' => 'full_name',
+                'label' => 'Full Name',
+            ],
+            [
+                'name' => 'address',
+                'label' => 'Address',
+            ],
+        ];
+        $this->crud->addColumns(array_filter($columns));
     }
 
     public function create()
