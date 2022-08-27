@@ -2,6 +2,7 @@
 <li class="nav-item"><a class="nav-link" href="{{ backpack_url('dashboard') }}"><i class="la la-home nav-icon"></i> {{ trans('backpack::base.dashboard') }}</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-organization') }}'><i class='nav-icon la la-users'></i> Organization</a></li>
 
+@if(backpack_user()->user_level=='1')
 <li class="nav-item nav-dropdown">
     <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-compass"></i><span>Super Master</span></span></a>
     <ul class="nav-dropdown-items">
@@ -15,20 +16,25 @@
         {{-- <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-payment-mode') }}'><i class='nav-icon la la-list-ul'></i> Payment Modes</a></li> --}}
     </ul>
 </li>
+@endif
 <li class="nav-item nav-dropdown">
     <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-compass"></i><span>Primary Master</span></span></a>
     <ul class="nav-dropdown-items">
+@if(backpack_user()->user_level=='2')
+        
         <!-- <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-unit') }}'><i class='nav-icon la la-list-ul'></i> Units</a></li> -->
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-category') }}'><i class='nav-icon la la-list-ul'></i> Categories</a></li>
         <!-- <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-subcategory') }}'><i class='nav-icon la la-list-ul'></i> Subcategories</a></li> -->
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-supplier') }}'><i class='nav-icon la la-list-ul'></i> Suppliers</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-store') }}'><i class='nav-icon la la-list-ul'></i> Stores</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-brand') }}'><i class='nav-icon la la-list-ul'></i> Brands</a></li>
+       @endif
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-item') }}'><i class='nav-icon la la-list-ul'></i> Items</a></li>
         {{-- <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-return-reason') }}'><i class='nav-icon la la-list-ul'></i> Return Reasons</a></li> --}}
     </ul>
 </li>
 </li>
+@if(backpack_user()->user_level=='2')
 <li class="nav-item nav-dropdown">
     <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-compass"></i><span>Sequences</span></span></a>
     <ul class="nav-dropdown-items">
@@ -39,6 +45,7 @@
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mst-stock-adjustment-no') }}'><i class='nav-icon la la-list-ul'></i> Stock Adjustment No</a></li>
     </ul>
 </li>
+@endif
 
 
 <li class="nav-item nav-dropdown">

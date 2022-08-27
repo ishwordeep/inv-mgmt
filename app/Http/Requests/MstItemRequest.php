@@ -30,7 +30,7 @@ class MstItemRequest extends FormRequest
             'name_lc' => 'max:100|unique:mst_items,name_lc'.$id_check,
             'category_id'=>'required',
             // 'subcategory_id'=>'required',
-            'supplier_id'=>'required',
+            // 'supplier_id'=>'required',
 
         ];
     }
