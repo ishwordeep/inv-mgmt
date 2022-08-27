@@ -13,6 +13,7 @@ use App\Models\PurchaseOrder;
 use App\Base\BaseCrudController;
 use App\Models\PurchaseOrderItem;
 use App\Http\Requests\SaleRequest;
+use App\Models\MstInvoiceSequence;
 use Illuminate\Support\Facades\DB;
 use Prologue\Alerts\Facades\Alert;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
@@ -39,17 +40,8 @@ class SaleCrudController extends BaseCrudController
         CRUD::column('transaction_date');
         CRUD::column('bill_type');
         CRUD::column('company_name');
-        CRUD::column('pan_vat');
-        CRUD::column('full_name');
-        CRUD::column('address');
-        CRUD::column('contact_number');
         CRUD::column('discount_mode_id');
-        CRUD::column('discount');
-        CRUD::column('flat_discount');
         CRUD::column('gross_total');
-        CRUD::column('total_discount');
-        CRUD::column('taxable_amount');
-        CRUD::column('total_tax');
     }
 
     public function create()
@@ -92,10 +84,13 @@ class SaleCrudController extends BaseCrudController
             if ($request->status_id === MstSupStatus::APPROVED) {                
                 $latestId = Sale::where('status_id', MstSupStatus::APPROVED)->count() ?? 0;
                 $approved_by = $this->user->id;
-
             }
 
             DB::beginTransaction();
+            $latestId =Sale::where('status_id', MstSupStatus::APPROVED)->count() ?? 0;
+                // dd($request->status_id,$latestId);
+
+            $request->invoice_number = (MstInvoiceSequence::first()->sequence_code).($latestId + 1);
             try {
                 $sales = Sale::create([
                     'bill_type' => $request->bill_type,

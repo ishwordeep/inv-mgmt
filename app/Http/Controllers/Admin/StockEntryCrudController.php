@@ -35,7 +35,45 @@ class StockEntryCrudController extends BaseCrudController
         CRUD::setEntityNameStrings('', 'Stock Entries');
         $this->user = backpack_user();
     }
-
+    protected function setupListOperation()
+    {
+        $columns = [
+            [
+                'label' => 'Store',
+                'type' => 'select',
+                'name' => 'store_id', // the column that contains the ID of that connected entity;
+                'entity' => 'storeEntity', // the method that defines the relationship in your Model
+                'attribute' => 'name_en', // foreign key attribute that is shown to user
+                'model' => MstStore::class
+            ],
+            [
+                'label' => 'Status',
+                'type' => 'select',
+                'name' => 'status_id', // the column that contains the ID of that connected entity;
+                'entity' => 'statusEntity', // the method that defines the relationship in your Model
+                'attribute' => 'name_en', // foreign key attribute that is shown to user
+                'model' => MstSupStatus::class
+            ],
+         
+            [
+                'name' => 'stock_adjustment_number',
+                'type' => 'text',
+                'label' => 'Adjustment No'
+            ],
+            [
+                'name' => 'entry_date',
+                'type' => 'date',
+                'label' => 'Entry date'
+            ],
+            
+            [
+                'name' => 'net_amount',
+                'type' => 'text',
+                'label' => 'Net Amount'
+            ],
+        ];
+        $this->crud->addColumns(array_filter($columns));
+    }
     public function create()
     {
         $this->crud->hasAccessOrFail('create');
