@@ -49,15 +49,16 @@ class DashboardController extends BaseCrudController
         $data['items']=DB::table('item_details')
             ->join('mst_items', 'mst_items.id', 'item_details.item_id')
             ->select('mst_items.*','item_details.*')
+            // ->where('item_details.item_qty','<','mst_items.stock_alert_minimum')
             ->get();
-            dd($data['items']);
         
         // $rrr = DB::table('item_details')
         // ->join('mst_items', 'mst_items.id', '=', 'item_details.item_id')
         // ->select('mst_items.*')
         // ->get();
         // dd($rrr);
-        $data['items']=MstItem::whereIsActive(false)->get();
-        return view('dashboard.items',['data'=>$data]);
+        // $data['items']=MstItem::whereIsActive(false)->get();
+
+        return view('dashboard.red_zone_items',['data'=>$data]);
     }
 }

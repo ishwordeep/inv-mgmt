@@ -1,5 +1,4 @@
 @php 
-dd($data['items']);
 @endphp
 
 @extends(backpack_view('blank'))
@@ -22,7 +21,6 @@ dd($data['items']);
                     <tr>
                         <th scope="col">S.N.</th>
                         <th scope="col">Item Name</th>
-                        <th scope="col">Category</th>
                         <th scope="col">Available Qty</th>
                         <th scope="col">Action</th>
                     </tr>
@@ -33,7 +31,6 @@ dd($data['items']);
                     <tr>
                         <td>{{$key+1}}</td>
                         <td>{{$item->name_en}}</td>
-                        <td>{{$item->categoryEntity->name_en}}</td>
                         <td>55</td>
                         <td>
                             <i class="fa-solid fa-eye px-2"></i>

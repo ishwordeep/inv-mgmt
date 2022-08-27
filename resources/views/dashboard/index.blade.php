@@ -100,7 +100,7 @@
                 </div>
             </a>
         </div>
-        <div class="col-lg-4 col-md-6 col-xs-12">
+        {{--<div class="col-lg-4 col-md-6 col-xs-12">
             <a href="{{route('yellow-zoned-items')}}">
                 <div class="card-counter warning">
                     <i class="fa fa-check"></i>
@@ -108,7 +108,7 @@
                     <span class="count-name">Yellow</span>
                 </div>
             </a>
-        </div>
+        </div>--}}
         <div class="col-lg-4 col-md-6 col-xs-12">
             <a href="{{route('red-zoned-items')}}">
                 <div class="card-counter danger">
