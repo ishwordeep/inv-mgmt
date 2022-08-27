@@ -237,7 +237,12 @@ class PurchaseOrderCrudController extends BaseCrudController
 
     public function poSendMail($id){
         $data = $this->getData($id);
+
+        if($data['entry']->po_type_id == 1)
         $data['store_email'] = MstStore::whereId($data['entry']->store_id)->pluck('email')->first();
+        
+        if($data['entry']->po_type_id == 2)
+            $data['store_email'] = MstStore::whereId($data['entry']->requested_store_id)->pluck('email')->first();
         
         $pdf = PDF::loadView('PurchaseOrder.purchaseOrderPdf', $data);
 
