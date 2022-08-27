@@ -8,6 +8,7 @@ use App\Models\MstItem;
 use App\Models\MstStore;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends BaseCrudController
 {
@@ -37,12 +38,20 @@ class DashboardController extends BaseCrudController
     public function yellowZonedStock(){
         $data['title'] = "Yellow Zoned Stocks";
         $data['specifiedColor']='bg-warning';
+        
         return view('dashboard.items',['data'=>$data]);
     }
     public function redZonedStock(){
         $data['po']=true;
         $data['specifiedColor']='bg-danger';
         $data['title'] = "Red Zoned Stocks";
+
+        $data['items']=DB::table('item_details')
+            ->join('mst_items', 'mst_items.id', 'item_details.item_id')
+            ->select('mst_items.id,mst_items.name_en,mst_items.stock_alert_minimum', 'item_details.item_qty,item_details.store_id')
+            ->get();
+            dd($data['items']);
+        $data['items']=MstItem::whereIsActive(false)->get();
         return view('dashboard.items',['data'=>$data]);
     }
 }
